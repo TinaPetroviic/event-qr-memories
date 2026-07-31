@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import { createEvent, type CreateEventState } from "@/app/dashboard/actions";
 import { suggestEventSlug } from "@/lib/utils/slug";
 import { EVENT_TYPE_KEYS, EVENT_TYPES, type EventTypeKey } from "@/lib/eventTypes";
-import { ClipboardIcon, PlusIcon } from "@/components/icons";
+import { PlusIcon } from "@/components/icons";
 
 const initialState: CreateEventState = {};
 
@@ -46,21 +46,8 @@ export function CreateEventModal() {
             <h2 className="mt-3 font-display text-2xl text-ink-900">Kreirajte novi događaj</h2>
             <p className="mt-1 text-sm text-ink-700">Unesite osnovne podatke o vašem događaju.</p>
 
-            <form action={formAction} className="mt-6 space-y-6">
-              {/* Section A: basic event details */}
-              <div>
-                <div className="flex items-center gap-3">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
-                    <ClipboardIcon className="h-4.5 w-4.5" aria-hidden />
-                  </span>
-                  <div>
-                    <h3 className="font-display text-lg text-ink-900">Osnovni podaci o događaju</h3>
-                    <p className="text-xs text-ink-700/70">Vrsta, naziv, datum i link koji dijelite s gostima.</p>
-                  </div>
-                </div>
-
-                <div className="mt-4 space-y-4">
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <form action={formAction} className="mt-6 space-y-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
                       <label htmlFor="eventType" className="mb-1 block text-sm font-medium text-ink-700">
                         Vrsta događaja
@@ -142,19 +129,17 @@ export function CreateEventModal() {
                     <p className="mt-1.5 text-xs text-ink-700/60">Ovo je link koji dijelite s gostima.</p>
                   </div>
 
-                  <label className="flex items-center gap-3 rounded-xl border border-gold-400/30 bg-cream-100/60 px-4 py-3">
-                    <input
-                      type="checkbox"
-                      name="galleryPublic"
-                      className="h-4 w-4 accent-gold-500"
-                    />
-                    <span className="text-sm text-ink-900">
-                      Javna galerija{" "}
-                      <span className="text-ink-700">- svi posjetitelji linka mogu vidjeti sve fotografije</span>
-                    </span>
-                  </label>
-                </div>
-              </div>
+              <label className="flex items-center gap-3 rounded-xl border border-gold-400/30 bg-cream-100/60 px-4 py-3">
+                <input
+                  type="checkbox"
+                  name="galleryPublic"
+                  className="h-4 w-4 accent-gold-500"
+                />
+                <span className="text-sm text-ink-900">
+                  Javna galerija{" "}
+                  <span className="text-ink-700">- svi posjetitelji linka mogu vidjeti sve fotografije</span>
+                </span>
+              </label>
 
               {state.error && (
                 <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{state.error}</p>
