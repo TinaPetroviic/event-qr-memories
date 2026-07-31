@@ -20,7 +20,10 @@ export function WaveDivider({
   className?: string;
 }) {
   return (
-    <div aria-hidden className={`w-full overflow-hidden ${backdropClassName} ${className}`}>
+    <div
+      aria-hidden
+      className={`relative z-10 -my-px w-full overflow-hidden ${backdropClassName} ${className}`}
+    >
       <svg
         viewBox="0 0 1440 100"
         preserveAspectRatio="none"
