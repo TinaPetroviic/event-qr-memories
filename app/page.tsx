@@ -4,7 +4,7 @@ import { DecorativeGlow } from "@/components/DecorativeGlow";
 const STEPS = [
   {
     title: "Kreirajte događaj",
-    text: "Registrujte se i unesite imena, datum vjenčanja i prilagođeni link za goste.",
+    text: "Registrujte se i unesite naziv događaja, datum i prilagođeni link za goste - za vjenčanje, rođendan, godišnjicu firme ili bilo koju drugu proslavu.",
     icon: "💌",
   },
   {
@@ -27,12 +27,12 @@ const FEATURES = [
   },
   {
     title: "Glasovne poruke",
-    text: "Poseban dodir - gosti mogu snimiti i ostaviti glasovnu čestitku mladencima.",
+    text: "Poseban dodir - gosti mogu snimiti i ostaviti glasovnu čestitku ili poruku.",
     icon: "🎙️",
   },
   {
     title: "4 dizajna QR kartice",
-    text: "Odaberite Klasik, Modernu, Romantiku ili Rustik izgled koji odgovara vašem vjenčanju.",
+    text: "Odaberite Klasik, Modernu, Romantiku ili Rustik izgled koji odgovara vašem događaju.",
     icon: "🎨",
   },
   {
@@ -52,20 +52,20 @@ export default function LandingPage() {
             className="divider-flourish animate-fade-up text-xs font-medium uppercase tracking-[0.3em] text-gold-600"
             style={{ animationDelay: "0ms" }}
           >
-            <span>Digitalna knjiga uspomena</span>
+            <span>Digitalna knjiga uspomena za svaki događaj</span>
           </p>
           <h1
             className="animate-fade-up mt-6 max-w-3xl font-display text-5xl leading-tight text-ink-900 sm:text-6xl"
             style={{ animationDelay: "80ms" }}
           >
-            Capture the Love
+            QR Uspomene
           </h1>
           <p
             className="animate-fade-up mt-6 max-w-xl text-lg text-ink-700"
             style={{ animationDelay: "160ms" }}
           >
-            Neka vaši gosti podijele svoje najljepše trenutke s vašeg vjenčanja - jednim skeniranjem QR
-            koda, bez preuzimanja aplikacije.
+            Neka vaši gosti podijele svoje najljepše trenutke s vašeg vjenčanja, rođendana, godišnjice
+            firme ili bilo kojeg drugog događaja - jednim skeniranjem QR koda, bez preuzimanja aplikacije.
           </p>
           <div
             className="animate-fade-up mt-10 flex flex-col gap-4 sm:flex-row"
@@ -113,7 +113,7 @@ export default function LandingPage() {
               <span>Sve na jednom mjestu</span>
             </p>
             <h2 className="mt-4 font-display text-3xl text-ink-900">
-              Sve što vam je potrebno za jedan poseban dan
+              Sve što vam je potrebno za bilo koju proslavu
             </h2>
           </div>
           <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-5 sm:grid-cols-2">
@@ -144,7 +144,8 @@ export default function LandingPage() {
             Spremni da počnete sakupljati uspomene?
           </h2>
           <p className="mx-auto mt-3 max-w-md text-ink-700">
-            Kreirajte besplatan račun za nekoliko minuta i imajte svoj QR kod spreman prije velikog dana.
+            Kreirajte besplatan račun za nekoliko minuta i imajte svoj QR kod spreman prije velikog dana -
+            bilo da slavite vjenčanje, rođendan, godišnjicu firme ili nešto sasvim svoje.
           </p>
           <div className="mt-8">
             <Link href="/signup" className="btn-primary px-8 py-3.5">
@@ -155,7 +156,7 @@ export default function LandingPage() {
       </section>
 
       <footer className="border-t border-gold-400/20 px-4 py-8 text-center text-sm text-ink-700">
-        © {new Date().getFullYear()} Capture the Love
+        © {new Date().getFullYear()} QR Uspomene
       </footer>
     </main>
   );

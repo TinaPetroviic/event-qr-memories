@@ -44,12 +44,12 @@ export function slugify(input: string): string {
 }
 
 /**
- * Builds a suggested event slug from the couple's names, e.g.
- * ("Amina", "Emir") -> "amina-i-emir".
+ * Builds a suggested event slug from the event title, e.g.
+ * "Nina & Marko" -> "nina-marko", "Rođendan Amele" -> "rodjendan-amele".
  */
-export function suggestEventSlug(brideName: string, groomName: string): string {
-  const base = `${slugify(brideName)}-i-${slugify(groomName)}`;
-  return base.replace(/^-+|-+$/g, "").replace(/-{2,}/g, "-") || "nase-vjencanje";
+export function suggestEventSlug(title: string): string {
+  const base = slugify(title);
+  return base.replace(/^-+|-+$/g, "").replace(/-{2,}/g, "-") || "nas-dogadjaj";
 }
 
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;

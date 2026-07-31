@@ -31,15 +31,14 @@ export async function updateEventSettings(
 ): Promise<SettingsFormState> {
   const { supabase, user } = await requireOwner();
 
-  const brideName = String(formData.get("brideName") ?? "").trim();
-  const groomName = String(formData.get("groomName") ?? "").trim();
-  const weddingDate = String(formData.get("weddingDate") ?? "").trim();
+  const title = String(formData.get("title") ?? "").trim();
+  const eventDate = String(formData.get("eventDate") ?? "").trim();
   const rawSlug = String(formData.get("slug") ?? "").trim();
   const welcomeMessage = String(formData.get("welcomeMessage") ?? "").trim();
   const galleryPublic = formData.get("galleryPublic") === "on";
   const rawQrDesign = String(formData.get("qrDesign") ?? "classic").trim();
 
-  if (!brideName || !groomName || !weddingDate) {
+  if (!title || !eventDate) {
     return { error: "Molimo popunite sva obavezna polja." };
   }
 
@@ -67,9 +66,8 @@ export async function updateEventSettings(
   const { error } = await supabase
     .from("events")
     .update({
-      bride_name: brideName,
-      groom_name: groomName,
-      wedding_date: weddingDate,
+      title,
+      event_date: eventDate,
       slug,
       welcome_message: welcomeMessage,
       gallery_public: galleryPublic,

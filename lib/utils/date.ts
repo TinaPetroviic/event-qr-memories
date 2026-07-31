@@ -32,7 +32,7 @@ const MONTHS = [
  * Implemented without Intl to guarantee identical output on server and
  * client regardless of the runtime's ICU data / default locale.
  */
-export function formatWeddingDate(isoDate: string): string {
+export function formatEventDate(isoDate: string): string {
   const [year, month, day] = isoDate.split("-").map(Number);
   if (!year || !month || !day) return isoDate;
 
@@ -54,7 +54,7 @@ export function formatDateShort(isoDate: string): string {
 /**
  * Formats a full ISO timestamp (e.g. a `created_at` value) as e.g.
  * "31. jula 2026.". Implemented without Intl for the same reason as
- * `formatWeddingDate` - relying on `toLocaleDateString` with a "bs-BA"
+ * `formatEventDate` - relying on `toLocaleDateString` with a "bs-BA"
  * locale produces a broken/generic fallback on runtimes that lack that
  * locale's ICU data (observed as garbage like "2026 M07 31").
  */

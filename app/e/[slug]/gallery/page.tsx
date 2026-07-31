@@ -40,9 +40,7 @@ export default async function GuestGalleryPage({ params }: { params: Promise<{ s
           <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
             <span>Galerija</span>
           </p>
-          <h1 className="mt-3 font-display text-3xl text-ink-900 sm:text-4xl">
-            {event.bride_name} <span className="text-gold-500">&amp;</span> {event.groom_name}
-          </h1>
+          <h1 className="mt-3 font-display text-3xl text-ink-900 sm:text-4xl">{event.title}</h1>
           <p className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-white/60 px-4 py-1.5 text-sm text-ink-700">
             <span aria-hidden>🤍</span>
             {photos.length} uspomena podijeljeno s ljubavlju

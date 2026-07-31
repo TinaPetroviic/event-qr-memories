@@ -9,9 +9,8 @@
 export type EventRow = {
   id: string;
   owner_id: string;
-  bride_name: string;
-  groom_name: string;
-  wedding_date: string; // ISO date (YYYY-MM-DD)
+  title: string;
+  event_date: string; // ISO date (YYYY-MM-DD)
   slug: string;
   welcome_message: string;
   gallery_public: boolean;
@@ -36,8 +35,7 @@ export type Database = {
     Tables: {
       events: {
         Row: EventRow;
-        Insert: Partial<EventRow> &
-          Pick<EventRow, "bride_name" | "groom_name" | "wedding_date" | "slug" | "owner_id">;
+        Insert: Partial<EventRow> & Pick<EventRow, "title" | "event_date" | "slug" | "owner_id">;
         Update: Partial<EventRow>;
         Relationships: [];
       };

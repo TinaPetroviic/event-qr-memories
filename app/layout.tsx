@@ -14,9 +14,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Capture the Love | Podijelite fotografije s vjenčanja",
+  title: "QR Uspomene | Podijelite fotografije s vašeg događaja",
   description:
-    "Capture the Love - jednostavan način da vaši gosti podijele fotografije s vašeg vjenčanja putem QR koda.",
+    "QR Uspomene - jednostavan način da vaši gosti podijele fotografije, video i glasovne poruke s vašeg događaja putem QR koda.",
 };
 
 export default function RootLayout({

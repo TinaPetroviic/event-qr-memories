@@ -7,7 +7,7 @@ export function DashboardNav({ email }: { email: string }) {
     <header className="sticky top-0 z-30 border-b border-gold-400/20 bg-cream-50/80 shadow-sm shadow-gold-600/5 backdrop-blur-md">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4 sm:px-6">
         <Link href="/dashboard" className="font-display text-xl text-ink-900">
-          Capture the Love
+          QR Uspomene
         </Link>
         <div className="flex items-center gap-4">
           <span className="hidden items-center gap-2 text-sm text-ink-700 sm:flex">

@@ -8,19 +8,18 @@ const initialState: CreateEventState = {};
 
 export function CreateEventModal() {
   const [open, setOpen] = useState(false);
-  const [brideName, setBrideName] = useState("");
-  const [groomName, setGroomName] = useState("");
+  const [title, setTitle] = useState("");
   const [slugTouched, setSlugTouched] = useState(false);
   const [slug, setSlug] = useState("");
   const [state, formAction, pending] = useActionState(createEvent, initialState);
 
-  const suggestedSlug = useMemo(() => suggestEventSlug(brideName, groomName), [brideName, groomName]);
+  const suggestedSlug = useMemo(() => suggestEventSlug(title), [title]);
   const effectiveSlug = slugTouched ? slug : suggestedSlug;
 
   return (
     <>
       <button type="button" onClick={() => setOpen(true)} className="btn-primary px-6 py-2.5">
-        <span aria-hidden>+</span> Novo vjenčanje
+        <span aria-hidden>+</span> Novi događaj
       </button>
 
       {open && (
@@ -37,47 +36,31 @@ export function CreateEventModal() {
               <span>Novi početak</span>
             </p>
             <h2 className="mt-3 font-display text-2xl text-ink-900">Kreirajte novi događaj</h2>
-            <p className="mt-1 text-sm text-ink-700">Unesite osnovne podatke o vašem vjenčanju.</p>
+            <p className="mt-1 text-sm text-ink-700">Unesite osnovne podatke o vašem događaju.</p>
 
             <form action={formAction} className="mt-6 space-y-4">
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label htmlFor="brideName" className="mb-1 block text-sm font-medium text-ink-700">
-                    Mlada
-                  </label>
-                  <input
-                    id="brideName"
-                    name="brideName"
-                    required
-                    value={brideName}
-                    onChange={(e) => setBrideName(e.target.value)}
-                    className="input-field px-3 py-2"
-                    placeholder="Amina"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="groomName" className="mb-1 block text-sm font-medium text-ink-700">
-                    Mladoženja
-                  </label>
-                  <input
-                    id="groomName"
-                    name="groomName"
-                    required
-                    value={groomName}
-                    onChange={(e) => setGroomName(e.target.value)}
-                    className="input-field px-3 py-2"
-                    placeholder="Emir"
-                  />
-                </div>
+              <div>
+                <label htmlFor="title" className="mb-1 block text-sm font-medium text-ink-700">
+                  Naziv događaja
+                </label>
+                <input
+                  id="title"
+                  name="title"
+                  required
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  className="input-field px-3 py-2"
+                  placeholder="Nina & Marko, Rođendan Amele, 10 godina firme..."
+                />
               </div>
 
               <div>
-                <label htmlFor="weddingDate" className="mb-1 block text-sm font-medium text-ink-700">
-                  Datum vjenčanja
+                <label htmlFor="eventDate" className="mb-1 block text-sm font-medium text-ink-700">
+                  Datum događaja
                 </label>
                 <input
-                  id="weddingDate"
-                  name="weddingDate"
+                  id="eventDate"
+                  name="eventDate"
                   type="date"
                   required
                   className="input-field px-3 py-2"
@@ -99,7 +82,7 @@ export function CreateEventModal() {
                       setSlug(e.target.value);
                     }}
                     className="w-full bg-transparent text-ink-900 outline-none"
-                    placeholder="amina-i-emir"
+                    placeholder="nina-marko"
                   />
                 </div>
               </div>

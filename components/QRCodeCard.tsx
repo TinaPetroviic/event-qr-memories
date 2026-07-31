@@ -6,15 +6,13 @@ import { QR_DESIGNS, type QrDesignKey } from "@/lib/qrDesigns";
 
 export function QRCodeCard({
   slug,
-  brideName,
-  groomName,
-  weddingDate,
+  title,
+  eventDate,
   design,
 }: {
   slug: string;
-  brideName: string;
-  groomName: string;
-  weddingDate: string;
+  title: string;
+  eventDate: string;
   design: QrDesignKey;
 }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -95,15 +93,17 @@ export function QRCodeCard({
       ctx.font = "72px serif";
       ctx.fillText(theme.motif, width / 2, 170);
 
-      // Couple names.
+      // Event title (a single free-form string - may or may not already
+      // contain "&", e.g. "Nina & Marko" vs. "Rođendan Amele" - so it's
+      // drawn as-is rather than assuming a "Name & Name" split).
       ctx.fillStyle = theme.textColor;
       ctx.font = `600 66px ${serifFamily}, serif`;
-      ctx.fillText(`${brideName} & ${groomName}`, width / 2, 280, width - 140);
+      ctx.fillText(title, width / 2, 280, width - 140);
 
-      // Wedding date.
+      // Event date.
       ctx.fillStyle = theme.accentColor;
       ctx.font = "32px sans-serif";
-      ctx.fillText(weddingDate, width / 2, 335);
+      ctx.fillText(eventDate, width / 2, 335);
 
       // QR code, with a light backing tile so it stays scannable on any background.
       const qrSize = 620;

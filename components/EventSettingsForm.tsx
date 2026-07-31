@@ -14,42 +14,28 @@ export function EventSettingsForm({ event }: { event: EventRow }) {
 
   return (
     <form action={formAction} className="space-y-5">
-      <div className="grid grid-cols-2 gap-3">
-        <div>
-          <label htmlFor="brideName" className="mb-1 block text-sm font-medium text-ink-700">
-            Mlada
-          </label>
-          <input
-            id="brideName"
-            name="brideName"
-            defaultValue={event.bride_name}
-            required
-            className="input-field px-3 py-2"
-          />
-        </div>
-        <div>
-          <label htmlFor="groomName" className="mb-1 block text-sm font-medium text-ink-700">
-            Mladoženja
-          </label>
-          <input
-            id="groomName"
-            name="groomName"
-            defaultValue={event.groom_name}
-            required
-            className="input-field px-3 py-2"
-          />
-        </div>
+      <div>
+        <label htmlFor="title" className="mb-1 block text-sm font-medium text-ink-700">
+          Naziv događaja
+        </label>
+        <input
+          id="title"
+          name="title"
+          defaultValue={event.title}
+          required
+          className="input-field px-3 py-2"
+        />
       </div>
 
       <div>
-        <label htmlFor="weddingDate" className="mb-1 block text-sm font-medium text-ink-700">
-          Datum vjenčanja
+        <label htmlFor="eventDate" className="mb-1 block text-sm font-medium text-ink-700">
+          Datum događaja
         </label>
         <input
-          id="weddingDate"
-          name="weddingDate"
+          id="eventDate"
+          name="eventDate"
           type="date"
-          defaultValue={event.wedding_date}
+          defaultValue={event.event_date}
           required
           className="input-field px-3 py-2"
         />

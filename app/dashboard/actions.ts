@@ -22,16 +22,15 @@ export async function createEvent(
     redirect("/login");
   }
 
-  const brideName = String(formData.get("brideName") ?? "").trim();
-  const groomName = String(formData.get("groomName") ?? "").trim();
-  const weddingDate = String(formData.get("weddingDate") ?? "").trim();
+  const title = String(formData.get("title") ?? "").trim();
+  const eventDate = String(formData.get("eventDate") ?? "").trim();
   const rawSlug = String(formData.get("slug") ?? "").trim();
 
-  if (!brideName || !groomName || !weddingDate) {
+  if (!title || !eventDate) {
     return { error: "Molimo popunite sva obavezna polja." };
   }
 
-  const slug = slugify(rawSlug || `${brideName}-i-${groomName}`);
+  const slug = slugify(rawSlug || title);
 
   if (!isValidSlug(slug)) {
     return { error: "Link mora sadržavati barem 3 znaka (slova, brojevi i crtice)." };
@@ -47,9 +46,8 @@ export async function createEvent(
     .from("events")
     .insert({
       owner_id: user.id,
-      bride_name: brideName,
-      groom_name: groomName,
-      wedding_date: weddingDate,
+      title,
+      event_date: eventDate,
       slug,
     })
     .select("id")

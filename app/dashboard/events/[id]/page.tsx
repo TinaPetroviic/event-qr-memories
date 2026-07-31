@@ -6,7 +6,7 @@ import { EventSettingsForm } from "@/components/EventSettingsForm";
 import { PhotoGrid, type GalleryPhoto } from "@/components/PhotoGrid";
 import { DownloadGalleryButton } from "@/components/DownloadGalleryButton";
 import { DeleteEventButton } from "@/components/DeleteEventButton";
-import { formatWeddingDate } from "@/lib/utils/date";
+import { formatEventDate } from "@/lib/utils/date";
 
 export default async function EventAdminPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -45,15 +45,13 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
     <div className="space-y-10">
       <div>
         <Link href="/dashboard" className="text-sm text-gold-600 hover:underline">
-          ← Nazad na sva vjenčanja
+          ← Nazad na sve događaje
         </Link>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-4 border-b border-gold-400/15 pb-6">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">Admin panel</p>
-            <h1 className="mt-1 font-display text-3xl text-ink-900 sm:text-4xl">
-              {event.bride_name} <span className="text-gold-500">&amp;</span> {event.groom_name}
-            </h1>
-            <p className="mt-1 text-ink-700">{formatWeddingDate(event.wedding_date)}</p>
+            <h1 className="mt-1 font-display text-3xl text-ink-900 sm:text-4xl">{event.title}</h1>
+            <p className="mt-1 text-ink-700">{formatEventDate(event.event_date)}</p>
           </div>
           <DeleteEventButton eventId={event.id} />
         </div>
@@ -63,9 +61,8 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
         <div className="lg:col-span-1">
           <QRCodeCard
             slug={event.slug}
-            brideName={event.bride_name}
-            groomName={event.groom_name}
-            weddingDate={formatWeddingDate(event.wedding_date)}
+            title={event.title}
+            eventDate={formatEventDate(event.event_date)}
             design={event.qr_design}
           />
         </div>
@@ -83,9 +80,7 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
           <h3 className="font-display text-xl text-ink-900">
             Uspomene gostiju <span className="text-ink-700">({photos.length})</span>
           </h3>
-          {photos.length > 0 && (
-            <DownloadGalleryButton photos={photos} zipName={`${event.bride_name}-${event.groom_name}`} />
-          )}
+          {photos.length > 0 && <DownloadGalleryButton photos={photos} zipName={event.title} />}
         </div>
         <PhotoGrid eventId={event.id} photos={photos} editable />
       </div>

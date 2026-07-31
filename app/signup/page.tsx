@@ -24,11 +24,12 @@ export default function SignupPage() {
         <div className="relative hidden flex-col justify-between overflow-hidden bg-gradient-to-br from-gold-500 to-gold-600 p-10 text-cream-50 lg:flex">
           <DecorativeGlow tone="dark" />
           <Link href="/" className="relative font-display text-2xl">
-            Capture the Love
+            QR Uspomene
           </Link>
           <div className="relative">
             <p className="font-display text-2xl italic leading-snug">
-              &ldquo;Svaka fotografija je uspomena zauvijek - sakupite ih sve na jednom mjestu.&rdquo;
+              &ldquo;Svaka fotografija je uspomena zauvijek - sakupite ih sve na jednom mjestu, za bilo koji
+              događaj.&rdquo;
             </p>
             <p className="divider-flourish mt-6 text-xs font-medium uppercase tracking-[0.3em] text-cream-100/80">
               <span>Kreirajte svoj album</span>
@@ -39,13 +40,14 @@ export default function SignupPage() {
         <div className="bg-white/70 p-8 backdrop-blur-sm sm:p-10">
           <div className="mb-8 text-center lg:hidden">
             <Link href="/" className="font-display text-2xl text-ink-900">
-              Capture the Love
+              QR Uspomene
             </Link>
           </div>
           <div className="mb-8 text-center lg:text-left">
             <h1 className="font-display text-3xl text-ink-900">Kreirajte račun</h1>
             <p className="mt-2 text-sm text-ink-700">
-              Napravite nezaboravnu digitalnu uspomenu s fotografijama vaših gostiju.
+              Napravite nezaboravnu digitalnu uspomenu s fotografijama vaših gostiju, za bilo koju vrstu
+              događaja.
             </p>
           </div>
 

@@ -110,7 +110,7 @@ export function PhotoGrid({
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={photo.url}
-                alt={photo.guestName ? `Fotografija od ${photo.guestName}` : "Fotografija s vjenčanja"}
+                alt={photo.guestName ? `Fotografija od ${photo.guestName}` : "Fotografija s događaja"}
                 className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.04]"
                 loading="lazy"
               />
@@ -207,7 +207,7 @@ export function PhotoGrid({
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={activePhoto.url}
-                alt={activePhoto.guestName ? `Fotografija od ${activePhoto.guestName}` : "Fotografija s vjenčanja"}
+                alt={activePhoto.guestName ? `Fotografija od ${activePhoto.guestName}` : "Fotografija s događaja"}
                 className="max-h-[70vh] w-auto max-w-full rounded-2xl object-contain"
               />
             )}

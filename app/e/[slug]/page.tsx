@@ -3,7 +3,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { PhotoUploadForm } from "@/components/PhotoUploadForm";
 import { DecorativeGlow } from "@/components/DecorativeGlow";
-import { formatWeddingDate } from "@/lib/utils/date";
+import { formatEventDate } from "@/lib/utils/date";
 
 export default async function GuestEventPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -29,17 +29,17 @@ export default async function GuestEventPage({ params }: { params: Promise<{ slu
           className="animate-fade-up mt-4 font-display text-4xl leading-tight text-ink-900 sm:text-6xl"
           style={{ animationDelay: "70ms" }}
         >
-          Capture the Love
+          QR Uspomene
         </h1>
 
         <p
           className="animate-fade-up mt-6 font-display text-2xl text-ink-900 sm:text-3xl"
           style={{ animationDelay: "140ms" }}
         >
-          {event.bride_name} <span className="text-gold-500">&amp;</span> {event.groom_name}
+          {event.title}
         </p>
         <p className="animate-fade-up mt-2 text-ink-700" style={{ animationDelay: "140ms" }}>
-          {formatWeddingDate(event.wedding_date)}
+          {formatEventDate(event.event_date)}
         </p>
 
         {event.welcome_message && (

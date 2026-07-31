@@ -1,25 +1,28 @@
-# Capture the Love
+# QR Uspomene
 
-Multi-tenant wedding QR photo-sharing platform. Couples create an event, get a
-unique guest link + QR code, and guests upload photos straight from their
-phone browser - no app install required.
+Multi-tenant event QR photo-sharing platform. Organizers create an event -
+a wedding, birthday, company anniversary, graduation, or any other
+celebration - get a unique guest link + QR code, and guests upload photos,
+videos and voice messages straight from their phone browser, no app install
+required.
 
 Built with Next.js (App Router) + TypeScript + Tailwind CSS, backed by
 Supabase (Postgres, Auth, Storage).
 
 ## Features
 
-- Email/password auth for couples (Supabase Auth)
-- Dashboard listing all of a couple's events, with a "create new event" flow
+- Email/password auth for organizers (Supabase Auth)
+- Dashboard listing all of an organizer's events, with a "create new event"
+  flow
 - Per-event admin panel: QR code (copy link / download PNG), welcome message
   and public/private gallery settings, photo grid with delete
-- Public guest page at `/e/[slug]` - couple names, date, welcome message and
+- Public guest page at `/e/[slug]` - event title, date, welcome message and
   an "add photo" upload button, with an optional guest name field
-- Public gallery at `/e/[slug]/gallery`, only visible when the couple enables
-  it
-- Postgres Row Level Security so couples only ever manage their own events,
-  and guests can only insert photos (never read/edit other events' data
-  beyond what's explicitly made public)
+- Public gallery at `/e/[slug]/gallery`, only visible when the organizer
+  enables it
+- Postgres Row Level Security so organizers only ever manage their own
+  events, and guests can only insert photos (never read/edit other events'
+  data beyond what's explicitly made public)
 
 ## 1. Create a Supabase project
 
@@ -27,15 +30,19 @@ Supabase (Postgres, Auth, Storage).
 2. In **Project Settings -> API**, copy the **Project URL** and the
    **anon public** key.
 
-## 2. Run the database migration
+## 2. Run the database migrations
 
 1. Open the **SQL Editor** in your Supabase project.
-2. Paste the contents of [`supabase/migrations/0001_init.sql`](./supabase/migrations/0001_init.sql)
-   and run it.
-
-This creates the `events` and `photos` tables, all Row Level Security
-policies, and a public `photos` storage bucket with matching storage
-policies.
+2. Paste and run the contents of each migration file in `supabase/migrations/`,
+   in order:
+   - [`0001_init.sql`](./supabase/migrations/0001_init.sql) - creates the
+     `events` and `photos` tables, all Row Level Security policies, and a
+     public `photos` storage bucket with matching storage policies.
+   - [`0002_media_and_qr_design.sql`](./supabase/migrations/0002_media_and_qr_design.sql) -
+     adds video/voice-message support and the QR card design picker.
+   - [`0003_generalize_events.sql`](./supabase/migrations/0003_generalize_events.sql) -
+     generalizes events from weddings-only to any event type (single
+     `title` field, `event_date`).
 
 Alternatively, if you use the Supabase CLI locally:
 
@@ -82,6 +89,7 @@ app/
 lib/
   supabase/                Browser + server Supabase clients, middleware helper
   utils/                   Slug generation, Bosnian/Serbian date formatting
+  qrDesigns.ts             QR card visual theme definitions
 components/                Shared UI (QR card, upload form, photo grid, ...)
 supabase/migrations/       SQL schema + RLS + storage policies
 ```
@@ -95,3 +103,4 @@ supabase/migrations/       SQL schema + RLS + storage policies
   this mirrors the QR-code sharing model where the link itself is the
   invitation.
 - Only the authenticated event owner can delete photos or their event.
+
