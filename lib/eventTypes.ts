@@ -6,7 +6,14 @@
 
 import type { IconName } from "@/components/icons";
 
-export type EventTypeKey = "wedding" | "birthday" | "anniversary" | "corporate" | "graduation" | "other";
+export type EventTypeKey =
+  | "wedding"
+  | "birthday"
+  | "anniversary"
+  | "baptism"
+  | "corporate"
+  | "graduation"
+  | "other";
 
 export type EventTypeInfo = {
   key: EventTypeKey;
@@ -18,6 +25,7 @@ export const EVENT_TYPES: Record<EventTypeKey, EventTypeInfo> = {
   wedding: { key: "wedding", label: "Vjenčanje", icon: "rings" },
   birthday: { key: "birthday", label: "Rođendan", icon: "cake" },
   anniversary: { key: "anniversary", label: "Godišnjica", icon: "champagne" },
+  baptism: { key: "baptism", label: "Krštenje", icon: "dove" },
   corporate: { key: "corporate", label: "Poslovni događaj", icon: "building" },
   graduation: { key: "graduation", label: "Matura ili diploma", icon: "graduationCap" },
   other: { key: "other", label: "Ostalo", icon: "sparkle" },

@@ -6,6 +6,8 @@
 // conditional-type check - interfaces don't, which breaks the supabase-js
 // generic Database inference (Schema silently resolves to `never`).
 
+import type { EventTypeKey } from "@/lib/eventTypes";
+
 export type EventRow = {
   id: string;
   owner_id: string;
@@ -15,7 +17,7 @@ export type EventRow = {
   welcome_message: string;
   gallery_public: boolean;
   qr_design: "classic" | "modern" | "romantic" | "rustic";
-  event_type: "wedding" | "birthday" | "anniversary" | "corporate" | "graduation" | "other";
+  event_type: EventTypeKey;
   cover_image_path: string | null;
   created_at: string;
 };
