@@ -27,8 +27,11 @@ export function PhotoGrid({
 
   if (items.length === 0) {
     return (
-      <div className="rounded-3xl border border-dashed border-gold-400/40 bg-white/50 p-10 text-center text-ink-700">
-        Još nema uspomena.
+      <div className="rounded-3xl border border-dashed border-gold-400/40 bg-white/50 p-10 text-center">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gold-500/10 text-2xl">
+          🤍
+        </div>
+        <p className="mt-4 text-ink-700">Još nema uspomena. Prve fotografije i poruke gostiju pojaviće se ovdje.</p>
       </div>
     );
   }
@@ -47,7 +50,7 @@ export function PhotoGrid({
       {items.map((photo) => (
         <div
           key={photo.id}
-          className="group relative aspect-square overflow-hidden rounded-2xl border border-gold-400/20 bg-cream-100 shadow-sm"
+          className="group relative aspect-square overflow-hidden rounded-2xl border border-gold-400/20 bg-cream-100 shadow-sm transition hover:shadow-lg hover:shadow-gold-600/10"
         >
           {photo.mediaType === "photo" && (
             // Guest-uploaded content, dimensions unknown ahead of time.
@@ -55,18 +58,26 @@ export function PhotoGrid({
             <img
               src={photo.url}
               alt={photo.guestName ? `Fotografija od ${photo.guestName}` : "Fotografija s vjenčanja"}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.04]"
               loading="lazy"
             />
           )}
           {photo.mediaType === "video" && (
-            <video controls playsInline className="h-full w-full object-cover">
-              <source src={photo.url} />
-            </video>
+            <div className="relative h-full w-full">
+              <video controls playsInline className="h-full w-full object-cover">
+                <source src={photo.url} />
+              </video>
+              <span className="pointer-events-none absolute left-2 top-2 rounded-full bg-ink-900/60 px-2 py-0.5 text-[10px] font-medium text-white">
+                🎥 Video
+              </span>
+            </div>
           )}
           {photo.mediaType === "audio" && (
-            <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-cream-100 p-3 text-center">
-              <span className="text-2xl">🎤</span>
+            <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-gold-200/60 via-cream-100 to-blush-100 p-4 text-center">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold-500/15 text-xl">
+                🎙️
+              </span>
+              <p className="text-xs font-medium uppercase tracking-wide text-gold-600">Glasovna poruka</p>
               <audio controls className="w-full" src={photo.url} />
             </div>
           )}

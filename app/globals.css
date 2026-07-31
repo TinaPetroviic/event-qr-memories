@@ -7,9 +7,17 @@
   --color-cream-50: #fdfbf6;
   --color-cream-100: #f9f2e7;
   --color-cream-200: #f2e6d1;
+  --color-cream-300: #ecdec0;
+  --color-gold-200: #e9d6ab;
+  --color-gold-300: #ddbb7e;
   --color-gold-400: #cba15c;
   --color-gold-500: #b8894a;
   --color-gold-600: #9c7238;
+  --color-blush-100: #faeef0;
+  --color-blush-300: #eab8c2;
+  --color-blush-500: #c96b82;
+  --color-blush-600: #a84e63;
+  --color-ink-500: #6b5945;
   --color-ink-700: #4a3b2f;
   --color-ink-900: #2e2419;
 }
@@ -40,4 +48,53 @@ body {
   height: 1px;
   flex: 1;
   background: linear-gradient(90deg, transparent, var(--color-gold-400), transparent);
+}
+
+/* Shared surface, form and button treatments so the same look/feel is
+   reused consistently instead of copy-pasted class strings everywhere.
+   Kept inside @layer components so plain utility classes added at a call
+   site (e.g. a smaller px-4 py-1.5) still win over these defaults. */
+@layer components {
+  .card-surface {
+    @apply rounded-3xl border border-gold-400/30 bg-white/70 shadow-sm shadow-gold-600/5;
+  }
+
+  .card-surface-interactive {
+    @apply rounded-3xl border border-gold-400/30 bg-white/70 shadow-sm shadow-gold-600/5 transition hover:-translate-y-0.5 hover:border-gold-400/50 hover:shadow-lg hover:shadow-gold-600/10;
+  }
+
+  .input-field {
+    @apply w-full rounded-xl border border-gold-400/40 bg-white px-4 py-2.5 text-ink-900 outline-none transition focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-6 py-3 font-medium text-white shadow-md shadow-gold-600/30 transition hover:bg-gold-600 hover:shadow-lg hover:shadow-gold-600/30 disabled:pointer-events-none disabled:opacity-60;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold-500/50 px-6 py-3 font-medium text-gold-600 transition hover:bg-gold-500 hover:text-white disabled:pointer-events-none disabled:opacity-60;
+  }
+}
+
+/* Subtle entrance used on mount for hero copy and cards - no scroll wiring,
+   just a gentle premium fade/lift rather than anything bouncy. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up {
+    animation: none;
+  }
 }

@@ -81,8 +81,8 @@ export function PhotoUploadForm({ eventId }: { eventId: string }) {
   };
 
   return (
-    <div className="rounded-3xl border border-gold-400/30 bg-white/80 p-6 text-center shadow-md shadow-gold-600/10 sm:p-8">
-      <div className="mx-auto mb-4 max-w-xs">
+    <div className="card-surface bg-white/80 p-6 text-center shadow-md shadow-gold-600/10 sm:p-8">
+      <div className="mx-auto mb-5 max-w-xs">
         <label htmlFor="guestName" className="mb-1 block text-sm font-medium text-ink-700">
           Vaše ime (opcionalno)
         </label>
@@ -91,7 +91,7 @@ export function PhotoUploadForm({ eventId }: { eventId: string }) {
           value={guestName}
           onChange={(e) => setGuestName(e.target.value)}
           placeholder="npr. Amela"
-          className="w-full rounded-xl border border-gold-400/40 bg-cream-50 px-4 py-2 text-center text-ink-900 outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30"
+          className="input-field text-center"
         />
       </div>
 
@@ -108,20 +108,21 @@ export function PhotoUploadForm({ eventId }: { eventId: string }) {
       />
       <label
         htmlFor="photo-input"
-        className={`inline-flex cursor-pointer items-center gap-2 rounded-full bg-gold-500 px-8 py-4 font-display text-lg text-white shadow-lg shadow-gold-600/30 transition hover:bg-gold-600 ${
+        className={`btn-primary w-full cursor-pointer px-8 py-4 font-display text-lg sm:w-auto ${
           status === "uploading" ? "pointer-events-none opacity-70" : ""
         }`}
       >
         {status === "uploading" ? "Slanje u tijeku..." : "📷 Dodaj fotografiju ili video"}
       </label>
 
-      <div>
+      <div className="mt-1">
+        <p className="my-4 text-xs uppercase tracking-[0.2em] text-ink-500">ili</p>
         <VoiceRecorderButton onUpload={handleVoiceUpload} disabled={status === "uploading"} />
       </div>
 
       {status === "success" && (
-        <p className="mt-4 rounded-lg bg-green-50 px-4 py-2 text-sm text-green-800">
-          Hvala! Poslano uspomena: {uploadedCount}. Slobodno dodajte još.
+        <p className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-green-50 px-4 py-2 text-sm text-green-800">
+          <span aria-hidden>✓</span> Hvala! Poslano uspomena: {uploadedCount}. Slobodno dodajte još.
         </p>
       )}
       {status === "error" && (

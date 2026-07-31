@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { PhotoGrid, type GalleryPhoto } from "@/components/PhotoGrid";
+import { DecorativeGlow } from "@/components/DecorativeGlow";
 
 export default async function GuestGalleryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -29,17 +30,23 @@ export default async function GuestGalleryPage({ params }: { params: Promise<{ s
   }));
 
   return (
-    <main className="flex-1 bg-cream-50 px-4 py-14 sm:py-20">
-      <div className="mx-auto max-w-5xl">
+    <main className="relative flex-1 overflow-hidden bg-gradient-to-b from-cream-100 via-cream-50 to-cream-50 px-4 py-14 sm:py-20">
+      <DecorativeGlow />
+      <div className="relative mx-auto max-w-5xl">
         <Link href={`/e/${slug}`} className="text-sm text-gold-600 hover:underline">
           ← Nazad
         </Link>
         <div className="mt-2 text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">Galerija</p>
+          <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
+            <span>Galerija</span>
+          </p>
           <h1 className="mt-3 font-display text-3xl text-ink-900 sm:text-4xl">
             {event.bride_name} <span className="text-gold-500">&amp;</span> {event.groom_name}
           </h1>
-          <p className="mt-2 text-ink-700">{photos.length} uspomena podijeljeno s ljubavlju</p>
+          <p className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-white/60 px-4 py-1.5 text-sm text-ink-700">
+            <span aria-hidden>🤍</span>
+            {photos.length} uspomena podijeljeno s ljubavlju
+          </p>
         </div>
 
         <div className="mt-10">

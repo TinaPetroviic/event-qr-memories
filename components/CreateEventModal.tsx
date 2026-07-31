@@ -19,24 +19,24 @@ export function CreateEventModal() {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className="rounded-full bg-gold-500 px-6 py-2.5 font-medium text-white shadow-md shadow-gold-600/30 transition hover:bg-gold-600"
-      >
-        + Novo vjenčanje
+      <button type="button" onClick={() => setOpen(true)} className="btn-primary px-6 py-2.5">
+        <span aria-hidden>+</span> Novo vjenčanje
       </button>
 
       {open && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-ink-900/40 px-4 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-ink-900/40 px-4 backdrop-blur-sm animate-fade-up"
+          style={{ animationDuration: "0.2s" }}
           onClick={() => setOpen(false)}
         >
           <div
-            className="w-full max-w-md rounded-3xl bg-cream-50 p-6 shadow-2xl sm:p-8"
+            className="w-full max-w-md rounded-3xl border border-gold-400/20 bg-cream-50 p-6 shadow-2xl sm:p-8"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="font-display text-2xl text-ink-900">Kreirajte novi događaj</h2>
+            <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
+              <span>Novi početak</span>
+            </p>
+            <h2 className="mt-3 font-display text-2xl text-ink-900">Kreirajte novi događaj</h2>
             <p className="mt-1 text-sm text-ink-700">Unesite osnovne podatke o vašem vjenčanju.</p>
 
             <form action={formAction} className="mt-6 space-y-4">
@@ -51,7 +51,7 @@ export function CreateEventModal() {
                     required
                     value={brideName}
                     onChange={(e) => setBrideName(e.target.value)}
-                    className="w-full rounded-xl border border-gold-400/40 bg-white px-3 py-2 text-ink-900 outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30"
+                    className="input-field px-3 py-2"
                     placeholder="Amina"
                   />
                 </div>
@@ -65,7 +65,7 @@ export function CreateEventModal() {
                     required
                     value={groomName}
                     onChange={(e) => setGroomName(e.target.value)}
-                    className="w-full rounded-xl border border-gold-400/40 bg-white px-3 py-2 text-ink-900 outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30"
+                    className="input-field px-3 py-2"
                     placeholder="Emir"
                   />
                 </div>
@@ -80,7 +80,7 @@ export function CreateEventModal() {
                   name="weddingDate"
                   type="date"
                   required
-                  className="w-full rounded-xl border border-gold-400/40 bg-white px-3 py-2 text-ink-900 outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-400/30"
+                  className="input-field px-3 py-2"
                 />
               </div>
 
@@ -116,11 +116,7 @@ export function CreateEventModal() {
                 >
                   Odustani
                 </button>
-                <button
-                  type="submit"
-                  disabled={pending}
-                  className="flex-1 rounded-full bg-gold-500 px-4 py-2.5 font-medium text-white shadow-md shadow-gold-600/30 transition hover:bg-gold-600 disabled:opacity-60"
-                >
+                <button type="submit" disabled={pending} className="btn-primary flex-1 px-4 py-2.5">
                   {pending ? "Kreiranje..." : "Kreiraj"}
                 </button>
               </div>

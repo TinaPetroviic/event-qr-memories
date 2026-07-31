@@ -104,23 +104,21 @@ export function VoiceRecorderButton({
 
   if (state === "preview") {
     return (
-      <div className="mt-3 flex flex-col items-center gap-3 rounded-2xl border border-gold-400/30 bg-cream-50 p-4">
+      <div className="mt-3 flex flex-col items-center gap-3 rounded-2xl border border-gold-400/30 bg-cream-50 p-4 shadow-inner">
+        <p className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-gold-600">
+          <span aria-hidden>🎧</span> Preslušajte prije slanja
+        </p>
         <audio controls src={previewUrl} className="w-full" />
         <div className="flex w-full gap-2">
           <button
             type="button"
             onClick={discardAndRerecord}
             disabled={uploading}
-            className="flex-1 rounded-full border border-gold-500/50 px-4 py-2 text-sm font-medium text-gold-600 transition hover:bg-gold-500 hover:text-white disabled:opacity-60"
+            className="btn-outline flex-1 px-4 py-2 text-sm"
           >
             Snimi ponovo
           </button>
-          <button
-            type="button"
-            onClick={send}
-            disabled={uploading}
-            className="flex-1 rounded-full bg-gold-500 px-4 py-2 text-sm font-medium text-white shadow-md shadow-gold-600/30 transition hover:bg-gold-600 disabled:opacity-60"
-          >
+          <button type="button" onClick={send} disabled={uploading} className="btn-primary flex-1 px-4 py-2 text-sm">
             {uploading ? "Slanje..." : "Pošalji"}
           </button>
         </div>
@@ -135,9 +133,13 @@ export function VoiceRecorderButton({
       <button
         type="button"
         onClick={stopRecording}
-        className="mt-3 inline-flex items-center gap-2 rounded-full border border-red-400 bg-red-50 px-6 py-3 font-medium text-red-700 shadow-sm transition hover:bg-red-100"
+        className="mt-3 inline-flex items-center gap-3 rounded-full border border-red-400 bg-red-50 px-6 py-3 font-medium text-red-700 shadow-sm transition hover:bg-red-100"
       >
-        <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-red-600" />
+        <span className="flex items-end gap-0.5" aria-hidden>
+          <span className="h-2 w-1 animate-pulse rounded-full bg-red-500" style={{ animationDelay: "0ms" }} />
+          <span className="h-3.5 w-1 animate-pulse rounded-full bg-red-600" style={{ animationDelay: "150ms" }} />
+          <span className="h-2.5 w-1 animate-pulse rounded-full bg-red-500" style={{ animationDelay: "300ms" }} />
+        </span>
         Snimanje... {mm}:{ss} (dodirnite za zaustavljanje)
       </button>
     );
@@ -148,7 +150,7 @@ export function VoiceRecorderButton({
       type="button"
       onClick={startRecording}
       disabled={disabled}
-      className="mt-3 inline-flex items-center gap-2 rounded-full border border-gold-500/50 px-6 py-3 font-medium text-gold-600 transition hover:bg-gold-500 hover:text-white disabled:pointer-events-none disabled:opacity-60"
+      className="btn-outline px-6 py-3"
     >
       🎙️ Snimi glasovnu poruku
     </button>

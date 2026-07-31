@@ -41,14 +41,15 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
   }));
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <div>
         <Link href="/dashboard" className="text-sm text-gold-600 hover:underline">
           ← Nazad na sva vjenčanja
         </Link>
-        <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
+        <div className="mt-2 flex flex-wrap items-end justify-between gap-4 border-b border-gold-400/15 pb-6">
           <div>
-            <h1 className="font-display text-3xl text-ink-900 sm:text-4xl">
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">Admin panel</p>
+            <h1 className="mt-1 font-display text-3xl text-ink-900 sm:text-4xl">
               {event.bride_name} <span className="text-gold-500">&amp;</span> {event.groom_name}
             </h1>
             <p className="mt-1 text-ink-700">{formatWeddingDate(event.wedding_date)}</p>
@@ -67,14 +68,17 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
             design={event.qr_design}
           />
         </div>
-        <div className="rounded-3xl border border-gold-400/30 bg-white/70 p-6 shadow-sm shadow-gold-600/5 lg:col-span-2">
-          <h3 className="mb-4 font-display text-xl text-ink-900">Postavke događaja</h3>
+        <div className="card-surface p-6 lg:col-span-2">
+          <h3 className="mb-1 font-display text-xl text-ink-900">Postavke događaja</h3>
+          <p className="mb-5 text-sm text-ink-700">
+            Uredite osnovne podatke, poruku dobrodošlice i izgled QR kartice.
+          </p>
           <EventSettingsForm event={event} />
         </div>
       </div>
 
       <div>
-        <div className="mb-4 flex items-center justify-between">
+        <div className="mb-4 flex items-center justify-between border-b border-gold-400/15 pb-3">
           <h3 className="font-display text-xl text-ink-900">
             Uspomene gostiju <span className="text-ink-700">({photos.length})</span>
           </h3>

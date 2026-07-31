@@ -129,10 +129,16 @@ export function QRCodeCard({
 
   return (
     <div
-      className="rounded-3xl border p-6 text-center shadow-sm"
+      className="rounded-3xl border p-6 text-center shadow-md transition-colors duration-300"
       style={{ background: theme.background, borderColor: theme.border }}
     >
-      <h3 className="font-display text-xl" style={{ color: theme.textColor }}>
+      <span
+        className="mx-auto flex h-9 w-9 items-center justify-center rounded-full text-base"
+        style={{ background: theme.accentColor, color: theme.background }}
+      >
+        {theme.motif}
+      </span>
+      <h3 className="mt-3 font-display text-xl" style={{ color: theme.textColor }}>
         QR kod za goste
       </h3>
       <p className="mt-1 text-sm" style={{ color: theme.textColor, opacity: 0.75 }}>
