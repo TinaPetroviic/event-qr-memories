@@ -89,7 +89,7 @@ export default function SignupPage() {
                   autoComplete="new-password"
                   minLength={6}
                   className="input-field"
-                  placeholder="••••••••"
+                  placeholder="Vaša lozinka"
                 />
               </div>
               <div>
@@ -104,7 +104,7 @@ export default function SignupPage() {
                   autoComplete="new-password"
                   minLength={6}
                   className="input-field"
-                  placeholder="••••••••"
+                  placeholder="Potvrdite vašu lozinku"
                 />
               </div>
 

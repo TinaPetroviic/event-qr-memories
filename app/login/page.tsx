@@ -65,7 +65,7 @@ export default function LoginPage() {
                 required
                 autoComplete="current-password"
                 className="input-field"
-                placeholder="••••••••"
+                placeholder="Vaša lozinka"
               />
             </div>
 
