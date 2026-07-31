@@ -1,11 +1,11 @@
 "use client";
 
-import { useActionState, useMemo, useState } from "react";
+import { useActionState, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { createEvent, type CreateEventState } from "@/app/dashboard/actions";
 import { suggestEventSlug } from "@/lib/utils/slug";
 import { EVENT_TYPE_KEYS, EVENT_TYPES, type EventTypeKey } from "@/lib/eventTypes";
-import { PlusIcon } from "@/components/icons";
+import { ChevronDownIcon, PlusIcon } from "@/components/icons";
 
 const initialState: CreateEventState = {};
 
@@ -15,10 +15,35 @@ export function CreateEventModal() {
   const [slugTouched, setSlugTouched] = useState(false);
   const [slug, setSlug] = useState("");
   const [eventType, setEventType] = useState<EventTypeKey | "">("");
+  const [eventTypeMenuOpen, setEventTypeMenuOpen] = useState(false);
+  const eventTypeRef = useRef<HTMLDivElement | null>(null);
   const [state, formAction, pending] = useActionState(createEvent, initialState);
 
   const suggestedSlug = useMemo(() => suggestEventSlug(title), [title]);
   const effectiveSlug = slugTouched ? slug : suggestedSlug;
+
+  // Native <select> popups are drawn by the OS/browser, not by our CSS, so
+  // their option list can't reliably match the app's own styling. This
+  // dropdown is a plain button + absolutely-positioned listbox instead, kept
+  // in sync with a hidden input so the form still submits "eventType" the
+  // same way a native select would.
+  useEffect(() => {
+    if (!eventTypeMenuOpen) return;
+    function handleClickOutside(e: MouseEvent) {
+      if (eventTypeRef.current && !eventTypeRef.current.contains(e.target as Node)) {
+        setEventTypeMenuOpen(false);
+      }
+    }
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setEventTypeMenuOpen(false);
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [eventTypeMenuOpen]);
 
   const closeModal = () => {
     setOpen(false);
@@ -48,32 +73,55 @@ export function CreateEventModal() {
 
             <form action={formAction} className="mt-6 space-y-4">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <div>
-                      <label htmlFor="eventType" className="mb-1 block text-sm font-medium text-ink-700">
+                    <div ref={eventTypeRef} className="relative">
+                      <label id="eventTypeLabel" className="mb-1 block text-sm font-medium text-ink-700">
                         Vrsta događaja
                       </label>
-                      <select
-                        id="eventType"
-                        name="eventType"
-                        required
-                        value={eventType}
-                        onChange={(e) => setEventType(e.target.value as EventTypeKey)}
-                        className={`input-field px-3 py-2 ${eventType === "" ? "text-ink-700/50" : "text-ink-900"}`}
+                      <input type="hidden" name="eventType" value={eventType} />
+                      <button
+                        type="button"
+                        aria-haspopup="listbox"
+                        aria-expanded={eventTypeMenuOpen}
+                        aria-labelledby="eventTypeLabel"
+                        onClick={() => setEventTypeMenuOpen((v) => !v)}
+                        className={`input-field flex w-full items-center justify-between px-3 py-2 text-left ${
+                          eventType === "" ? "text-ink-700/50" : "text-ink-900"
+                        }`}
                       >
-                        <option value="" disabled className="text-ink-700">
-                          Odaberite vrstu događaja
-                        </option>
-                        {/* Native <option> elements can only render text, not
-                            SVG icons, so this dropdown intentionally shows the
-                            label only - the icon shows up everywhere else this
-                            event type is displayed (dashboard cards, admin
-                            panel header). */}
-                        {EVENT_TYPE_KEYS.map((key) => (
-                          <option key={key} value={key}>
-                            {EVENT_TYPES[key].label}
-                          </option>
-                        ))}
-                      </select>
+                        {eventType === "" ? "Odaberite vrstu događaja" : EVENT_TYPES[eventType].label}
+                        <ChevronDownIcon
+                          className={`h-4 w-4 shrink-0 text-ink-700/60 transition-transform ${
+                            eventTypeMenuOpen ? "rotate-180" : ""
+                          }`}
+                          aria-hidden
+                        />
+                      </button>
+
+                      {eventTypeMenuOpen && (
+                        <ul
+                          role="listbox"
+                          aria-labelledby="eventTypeLabel"
+                          className="animate-fade-up absolute z-10 mt-1.5 w-full overflow-hidden rounded-xl border border-gold-400/30 bg-white py-1.5 shadow-lg shadow-gold-600/10"
+                          style={{ animationDuration: "0.15s" }}
+                        >
+                          {EVENT_TYPE_KEYS.map((key) => (
+                            <li key={key} role="option" aria-selected={eventType === key}>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setEventType(key);
+                                  setEventTypeMenuOpen(false);
+                                }}
+                                className={`flex w-full items-center px-3 py-2 text-left text-sm transition-colors hover:bg-cream-100 ${
+                                  eventType === key ? "font-medium text-gold-600" : "text-ink-900"
+                                }`}
+                              >
+                                {EVENT_TYPES[key].label}
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
 
                     <div>

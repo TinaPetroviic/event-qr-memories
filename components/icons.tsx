@@ -304,6 +304,14 @@ export function ChevronRightIcon(props: IconProps) {
   );
 }
 
+export function ChevronDownIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M5 9.5l7 7 7-7" />
+    </Base>
+  );
+}
+
 export function UploadIcon(props: IconProps) {
   return (
     <Base {...props}>
