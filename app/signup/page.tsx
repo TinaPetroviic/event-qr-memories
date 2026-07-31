@@ -79,7 +79,7 @@ export default function SignupPage() {
               </div>
               <div>
                 <label htmlFor="password" className="mb-1 block text-sm font-medium text-ink-700">
-                  Lozinka
+                  Lozinka <span className="font-normal text-ink-700/60">(najmanje 6 znakova)</span>
                 </label>
                 <input
                   id="password"
@@ -89,7 +89,7 @@ export default function SignupPage() {
                   autoComplete="new-password"
                   minLength={6}
                   className="input-field"
-                  placeholder="Najmanje 6 znakova"
+                  placeholder="••••••••"
                 />
               </div>
               <div>
@@ -104,7 +104,7 @@ export default function SignupPage() {
                   autoComplete="new-password"
                   minLength={6}
                   className="input-field"
-                  placeholder="Ponovite lozinku"
+                  placeholder="••••••••"
                 />
               </div>
 
