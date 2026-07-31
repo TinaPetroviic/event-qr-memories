@@ -58,24 +58,24 @@ export function CreateEventModal() {
             onClick={closeModal}
           >
           <div
-            className="my-auto w-full max-w-2xl rounded-3xl border border-gold-400/20 bg-cream-50 p-6 shadow-2xl sm:p-8"
+            className="my-auto w-full max-w-2xl rounded-2xl border border-ink-900/10 bg-cream-50 p-6 shadow-2xl sm:p-8"
             onClick={(e) => e.stopPropagation()}
           >
-            <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
+            <p className="divider-flourish text-xs font-medium uppercase tracking-[0.2em] text-gold-600">
               <span>Novi početak</span>
             </p>
-            <h2 className="mt-3 font-display text-2xl text-ink-900">Kreirajte novi događaj</h2>
+            <h2 className="mt-3 font-display text-2xl tracking-tight text-ink-900">Kreirajte novi događaj</h2>
             <p className="mt-1 text-sm text-ink-700">Unesite osnovne podatke o vašem događaju.</p>
 
             <form action={formAction} className="mt-6 space-y-8">
               {/* Section A: basic event details */}
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] sm:gap-6">
                 <div className="flex gap-3 sm:flex-col sm:gap-2">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ink-900/5 text-gold-600">
                     <ClipboardIcon className="h-5 w-5" aria-hidden />
                   </span>
                   <div>
-                    <h3 className="font-display text-lg text-ink-900">Osnovni podaci o događaju</h3>
+                    <h3 className="font-display text-lg tracking-tight text-ink-900">Osnovni podaci o događaju</h3>
                     <p className="mt-0.5 text-xs text-ink-700/70">
                       Vrsta, naziv, datum i link koji dijelite s gostima.
                     </p>
@@ -142,7 +142,7 @@ export function CreateEventModal() {
                     <label htmlFor="slug" className="mb-1 block text-sm font-medium text-ink-700">
                       Link za goste
                     </label>
-                    <div className="flex items-center rounded-xl border border-gold-400/40 bg-white px-3 py-2 focus-within:border-gold-500 focus-within:ring-2 focus-within:ring-gold-400/30">
+                    <div className="flex items-center rounded-xl border border-ink-900/15 bg-white px-3 py-2 focus-within:border-gold-500 focus-within:ring-2 focus-within:ring-gold-400/25">
                       <span className="whitespace-nowrap text-sm text-ink-700/60">/e/</span>
                       <input
                         id="slug"
@@ -161,16 +161,16 @@ export function CreateEventModal() {
                 </div>
               </div>
 
-              <div className="border-t border-gold-400/15" />
+              <div className="border-t border-ink-900/10" />
 
               {/* Section B: optional cover image */}
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] sm:gap-6">
                 <div className="flex gap-3 sm:flex-col sm:gap-2">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ink-900/5 text-gold-600">
                     <ImageIcon className="h-5 w-5" aria-hidden />
                   </span>
                   <div>
-                    <h3 className="font-display text-lg text-ink-900">Naslovna fotografija</h3>
+                    <h3 className="font-display text-lg tracking-tight text-ink-900">Naslovna fotografija</h3>
                     <p className="mt-0.5 text-xs text-ink-700/70">
                       Opcionalno. Prikazuje se gostima i na vašoj nadzornoj ploči.
                     </p>
@@ -199,14 +199,14 @@ export function CreateEventModal() {
                           <button
                             type="button"
                             onClick={() => fileInputRef.current?.click()}
-                            className="rounded-full border border-gold-400/40 px-3 py-1 text-xs font-medium text-ink-700 transition hover:bg-cream-100"
+                            className="rounded-lg border border-ink-900/15 px-3 py-1 text-xs font-medium text-ink-700 transition hover:bg-cream-100"
                           >
                             Promijeni
                           </button>
                           <button
                             type="button"
                             onClick={clearCover}
-                            className="rounded-full border border-red-300 px-3 py-1 text-xs font-medium text-red-700 transition hover:bg-red-50"
+                            className="rounded-lg border border-red-300 px-3 py-1 text-xs font-medium text-red-700 transition hover:bg-red-50"
                           >
                             Ukloni
                           </button>
@@ -217,9 +217,9 @@ export function CreateEventModal() {
                     <button
                       type="button"
                       onClick={() => fileInputRef.current?.click()}
-                      className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-gold-400/40 bg-white/50 px-4 py-8 text-center transition hover:border-gold-500 hover:bg-cream-100"
+                      className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-ink-900/20 bg-white/50 px-4 py-8 text-center transition hover:border-gold-500 hover:bg-cream-100"
                     >
-                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-ink-900/5 text-gold-600">
                         <UploadIcon className="h-5 w-5" aria-hidden />
                       </span>
                       <span className="text-sm font-medium text-ink-900">Dodirnite za učitavanje</span>
@@ -237,7 +237,7 @@ export function CreateEventModal() {
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="flex-1 rounded-full border border-gold-400/40 px-4 py-2.5 font-medium text-ink-700 transition hover:bg-cream-100"
+                  className="flex-1 rounded-xl border border-ink-900/25 px-4 py-2.5 font-semibold text-ink-700 transition hover:bg-cream-100"
                 >
                   Odustani
                 </button>

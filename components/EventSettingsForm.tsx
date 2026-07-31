@@ -47,7 +47,7 @@ export function EventSettingsForm({ event }: { event: EventRow }) {
         <label htmlFor="slug" className="mb-1 block text-sm font-medium text-ink-700">
           Link za goste
         </label>
-        <div className="flex items-center rounded-xl border border-gold-400/40 bg-white px-3 py-2 focus-within:border-gold-500 focus-within:ring-2 focus-within:ring-gold-400/30">
+        <div className="flex items-center rounded-xl border border-ink-900/15 bg-white px-3 py-2 focus-within:border-gold-500 focus-within:ring-2 focus-within:ring-gold-400/25">
           <span className="whitespace-nowrap text-sm text-ink-700/60">/e/</span>
           <input
             id="slug"
@@ -72,7 +72,7 @@ export function EventSettingsForm({ event }: { event: EventRow }) {
         />
       </div>
 
-      <label className="flex items-center gap-3 rounded-xl border border-gold-400/30 bg-cream-100/60 px-4 py-3">
+      <label className="flex items-center gap-3 rounded-xl border border-ink-900/15 bg-cream-100/60 px-4 py-3">
         <input
           type="checkbox"
           name="galleryPublic"

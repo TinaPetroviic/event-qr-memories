@@ -32,7 +32,7 @@ export function AdminPanelTabs({
       <div
         role="tablist"
         aria-label="Odjeljci admin panela"
-        className="mb-6 flex flex-wrap gap-2 border-b border-gold-400/15 pb-3"
+        className="mb-6 flex flex-wrap gap-2 border-b border-ink-900/10 pb-3"
       >
         {TABS.map((tab) => {
           const isActive = active === tab.key;
@@ -45,9 +45,9 @@ export function AdminPanelTabs({
               aria-selected={isActive}
               aria-controls={`tabpanel-${tab.key}`}
               onClick={() => setActive(tab.key)}
-              className={`inline-flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-medium transition ${
+              className={`inline-flex items-center gap-1.5 rounded-lg px-5 py-2 text-sm font-semibold transition ${
                 isActive
-                  ? "bg-gold-500 text-white shadow-sm shadow-gold-600/30"
+                  ? "bg-ink-900 text-cream-50 shadow-sm shadow-ink-900/25"
                   : "text-ink-700 hover:bg-cream-100"
               }`}
             >

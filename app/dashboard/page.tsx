@@ -29,17 +29,17 @@ export default async function DashboardPage() {
     <div>
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">Vaš prostor</p>
-          <h1 className="mt-1 font-display text-3xl text-ink-900 sm:text-4xl">Vaši događaji</h1>
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-gold-600">Vaš prostor</p>
+          <h1 className="mt-1 font-display text-3xl tracking-tight text-ink-900 sm:text-4xl">Vaši događaji</h1>
           <p className="mt-1 text-ink-700">Upravljajte događajima i pogledajte fotografije gostiju.</p>
         </div>
         <CreateEventModal />
       </div>
 
       {!events || events.length === 0 ? (
-        <div className="mt-12 rounded-3xl border border-dashed border-gold-400/40 bg-white/50 p-12 text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gold-500/10">
-            <SparkleIcon className="h-8 w-8 text-gold-600" aria-hidden />
+        <div className="mt-12 rounded-2xl border border-dashed border-ink-900/20 bg-white/60 p-12 text-center">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-ink-900">
+            <SparkleIcon className="h-8 w-8 text-gold-400" aria-hidden />
           </div>
           <p className="mt-5 font-display text-xl text-ink-900">Još nemate kreiranih događaja</p>
           <p className="mx-auto mt-2 max-w-sm text-ink-700">
@@ -73,8 +73,8 @@ export default async function DashboardPage() {
                 )}
                 <div className="flex flex-1 flex-col gap-4 p-6 pt-4">
                   <div className="flex items-start justify-between gap-3">
-                    <p className="font-display text-2xl text-ink-900">{event.title}</p>
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream-100 text-gold-600 transition group-hover:-translate-y-0.5 group-hover:bg-gold-500 group-hover:text-white">
+                    <p className="font-display text-2xl tracking-tight text-ink-900">{event.title}</p>
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream-100 text-ink-700 transition group-hover:-translate-y-0.5 group-hover:bg-ink-900 group-hover:text-gold-400">
                       <ChevronRightIcon className="h-5 w-5" aria-hidden />
                     </span>
                   </div>
@@ -82,7 +82,7 @@ export default async function DashboardPage() {
                     <CalendarIcon className="h-4 w-4" aria-hidden />
                     {formatDateShort(event.event_date)}
                   </p>
-                  <div className="mt-auto flex flex-wrap items-center justify-end gap-2 border-t border-gold-400/15 pt-4">
+                  <div className="mt-auto flex flex-wrap items-center justify-end gap-2 border-t border-ink-900/10 pt-4">
                     <span className="inline-flex items-center gap-1 rounded-full bg-cream-100 px-3 py-1 text-xs font-medium text-ink-700">
                       <Icon name={eventTypeInfo.icon} className="h-3.5 w-3.5" aria-hidden /> {eventTypeInfo.label}
                     </span>

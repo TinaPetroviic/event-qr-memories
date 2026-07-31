@@ -12,23 +12,23 @@ export default function LoginPage() {
 
   return (
     <main className="flex flex-1 items-center justify-center px-4 py-16">
-      <div className="grid w-full max-w-4xl overflow-hidden rounded-3xl border border-gold-400/30 shadow-xl shadow-gold-600/10 lg:grid-cols-2">
-        <div className="relative hidden flex-col justify-between overflow-hidden bg-gradient-to-br from-gold-500 to-gold-600 p-10 text-cream-50 lg:flex">
+      <div className="grid w-full max-w-4xl overflow-hidden rounded-2xl border border-ink-900/10 shadow-xl shadow-ink-900/10 lg:grid-cols-2">
+        <div className="relative hidden flex-col justify-between overflow-hidden bg-ink-900 p-10 text-cream-50 lg:flex">
           <DecorativeGlow tone="dark" />
           <Link href="/" className="relative font-display text-2xl">
             EventPix
           </Link>
           <div className="relative">
-            <p className="font-display text-2xl italic leading-snug">
+            <p className="font-display text-2xl leading-snug">
               &ldquo;Najljepši trenuci se pamte u malim uspomenama - hvala što ih čuvate zauvijek.&rdquo;
             </p>
-            <p className="divider-flourish mt-6 text-xs font-medium uppercase tracking-[0.3em] text-cream-100/80">
+            <p className="divider-flourish mt-6 justify-start text-xs font-medium uppercase tracking-[0.2em] text-cream-100/70">
               <span>Dobrodošli natrag</span>
             </p>
           </div>
         </div>
 
-        <div className="bg-white/70 p-8 backdrop-blur-sm sm:p-10">
+        <div className="bg-white p-8 sm:p-10">
           <div className="mb-8 text-center lg:hidden">
             <Link href="/" className="font-display text-2xl text-ink-900">
               EventPix

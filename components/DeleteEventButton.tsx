@@ -21,7 +21,7 @@ export function DeleteEventButton({ eventId }: { eventId: string }) {
       type="button"
       onClick={handleClick}
       disabled={isPending}
-      className="inline-flex items-center gap-1.5 rounded-full border border-red-300 px-5 py-2 text-sm font-medium text-red-700 transition hover:bg-red-50 disabled:pointer-events-none disabled:opacity-60"
+      className="inline-flex items-center gap-1.5 rounded-xl border border-red-300 px-5 py-2 text-sm font-semibold text-red-700 transition hover:bg-red-50 disabled:pointer-events-none disabled:opacity-60"
     >
       {isPending ? "Brisanje..." : "Izbriši događaj"}
     </button>
