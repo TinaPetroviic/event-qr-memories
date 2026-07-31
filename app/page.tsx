@@ -87,7 +87,7 @@ export default function LandingPage() {
               className="divider-flourish animate-fade-up text-xs font-medium uppercase tracking-[0.3em] text-gold-600 lg:justify-start"
               style={{ animationDelay: "0ms" }}
             >
-              <span>Digitalna knjiga uspomena za svaki događaj</span>
+              <span>Digitalna galerija uspomena za svaki događaj</span>
             </p>
             <h1
               className="animate-fade-up mt-6 max-w-xl font-display text-5xl leading-tight text-ink-900 sm:text-6xl"
@@ -335,7 +335,7 @@ export default function LandingPage() {
               <span>EventPix</span>
             </p>
             <p className="mx-auto mt-3 max-w-[26ch] text-ink-700/80 sm:mx-0">
-              Digitalna knjiga uspomena za vjenčanja, rođendane i sve vrste proslava.
+              Digitalna galerija uspomena za vjenčanja, rođendane i sve vrste proslava.
             </p>
           </div>
 

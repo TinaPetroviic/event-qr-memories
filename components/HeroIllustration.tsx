@@ -95,20 +95,20 @@ export function HeroIllustration() {
       </span>
 
       {/* Main tilted card */}
-      <div className="absolute left-1/2 top-1/2 w-[210px] -translate-x-1/2 -translate-y-1/2 -rotate-[5deg] rounded-[1.75rem] border border-gold-400/30 bg-white/90 p-5 text-center shadow-xl shadow-gold-600/20 backdrop-blur-sm sm:w-[250px] sm:p-6 lg:w-[270px]">
+      <div className="absolute left-1/2 top-1/2 w-[210px] -translate-x-1/2 -translate-y-1/2 -rotate-[5deg] rounded-[1.75rem] border border-gold-400/40 bg-gradient-to-b from-white to-cream-50 p-5 text-center shadow-2xl shadow-gold-600/25 ring-1 ring-white/60 backdrop-blur-sm sm:w-[250px] sm:p-6 lg:w-[270px]">
         <p className="text-[9px] font-semibold uppercase tracking-[0.25em] text-gold-600 sm:text-[10px]">
           Skenirajte kod
         </p>
 
         <div className="relative mx-auto mt-4 w-fit">
           {/* Viewfinder corner brackets, matching the printable QR card's style */}
-          <span className="pointer-events-none absolute -left-2 -top-2 h-4 w-4 border-l-2 border-t-2 border-gold-500 sm:h-5 sm:w-5" />
-          <span className="pointer-events-none absolute -right-2 -top-2 h-4 w-4 border-r-2 border-t-2 border-gold-500 sm:h-5 sm:w-5" />
-          <span className="pointer-events-none absolute -bottom-2 -left-2 h-4 w-4 border-b-2 border-l-2 border-gold-500 sm:h-5 sm:w-5" />
-          <span className="pointer-events-none absolute -bottom-2 -right-2 h-4 w-4 border-b-2 border-r-2 border-gold-500 sm:h-5 sm:w-5" />
+          <span className="pointer-events-none absolute -left-2.5 -top-2.5 h-5 w-5 rounded-tl-sm border-l-2 border-t-2 border-gold-500 sm:h-6 sm:w-6" />
+          <span className="pointer-events-none absolute -right-2.5 -top-2.5 h-5 w-5 rounded-tr-sm border-r-2 border-t-2 border-gold-500 sm:h-6 sm:w-6" />
+          <span className="pointer-events-none absolute -bottom-2.5 -left-2.5 h-5 w-5 rounded-bl-sm border-b-2 border-l-2 border-gold-500 sm:h-6 sm:w-6" />
+          <span className="pointer-events-none absolute -bottom-2.5 -right-2.5 h-5 w-5 rounded-br-sm border-b-2 border-r-2 border-gold-500 sm:h-6 sm:w-6" />
 
           <div
-            className="grid gap-[1px] rounded-md bg-ink-900 p-2 sm:p-2.5"
+            className="grid gap-[1px] rounded-lg bg-ink-900 p-2 shadow-inner shadow-black/40 sm:p-2.5"
             style={{ gridTemplateColumns: `repeat(${GRID_SIZE}, minmax(0, 1fr))` }}
           >
             {CELLS.map((dark, i) => (
@@ -120,7 +120,13 @@ export function HeroIllustration() {
           </div>
         </div>
 
-        <p className="mt-4 text-[10px] leading-relaxed text-ink-700 sm:text-xs">
+        <div className="mx-auto mt-4 flex items-center justify-center gap-2" aria-hidden>
+          <span className="h-px w-6 bg-gradient-to-r from-transparent to-gold-400/70" />
+          <span className="h-1 w-1 rounded-full bg-gold-500" />
+          <span className="h-px w-6 bg-gradient-to-l from-transparent to-gold-400/70" />
+        </div>
+
+        <p className="mt-3 text-[10px] leading-relaxed text-ink-700 sm:text-xs">
           Fotografija · Video · Glasovna poruka
         </p>
       </div>
