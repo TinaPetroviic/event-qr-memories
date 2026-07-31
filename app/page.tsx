@@ -82,7 +82,7 @@ export default function LandingPage() {
   return (
     <main className="flex flex-1 flex-col overflow-x-clip">
       <SiteHeader />
-      <section className="relative overflow-hidden bg-gradient-to-b from-cream-100 via-cream-50 to-cream-50 px-4 py-20 sm:py-28">
+      <section className="relative overflow-hidden bg-gradient-to-b from-cream-100 via-cream-50 to-cream-50 px-4 py-20 sm:px-6 sm:py-28">
         <DecorativeGlow />
         <div className="relative mx-auto grid max-w-6xl gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-8">
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
