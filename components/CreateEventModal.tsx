@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { createEvent, type CreateEventState } from "@/app/dashboard/actions";
 import { suggestEventSlug } from "@/lib/utils/slug";
 import { EVENT_TYPE_KEYS, EVENT_TYPES, type EventTypeKey } from "@/lib/eventTypes";
+import { ClipboardIcon, ImageIcon, PlusIcon, UploadIcon } from "@/components/icons";
 
 const initialState: CreateEventState = {};
 
@@ -46,7 +47,7 @@ export function CreateEventModal() {
   return (
     <>
       <button type="button" onClick={() => setOpen(true)} className="btn-primary px-6 py-2.5">
-        <span aria-hidden>+</span> Novi događaj
+        <PlusIcon className="h-5 w-5" aria-hidden /> Novi događaj
       </button>
 
       {open &&
@@ -70,8 +71,8 @@ export function CreateEventModal() {
               {/* Section A: basic event details */}
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] sm:gap-6">
                 <div className="flex gap-3 sm:flex-col sm:gap-2">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-lg text-gold-600">
-                    📋
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
+                    <ClipboardIcon className="h-5 w-5" aria-hidden />
                   </span>
                   <div>
                     <h3 className="font-display text-lg text-ink-900">Osnovni podaci o događaju</h3>
@@ -93,9 +94,14 @@ export function CreateEventModal() {
                       onChange={(e) => setEventType(e.target.value as EventTypeKey)}
                       className="input-field px-3 py-2"
                     >
+                      {/* Native <option> elements can only render text, not
+                          SVG icons, so this dropdown intentionally shows the
+                          label only - the icon shows up everywhere else this
+                          event type is displayed (dashboard cards, admin
+                          panel header). */}
                       {EVENT_TYPE_KEYS.map((key) => (
                         <option key={key} value={key}>
-                          {EVENT_TYPES[key].icon} {EVENT_TYPES[key].label}
+                          {EVENT_TYPES[key].label}
                         </option>
                       ))}
                     </select>
@@ -160,8 +166,8 @@ export function CreateEventModal() {
               {/* Section B: optional cover image */}
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] sm:gap-6">
                 <div className="flex gap-3 sm:flex-col sm:gap-2">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-lg text-gold-600">
-                    🖼️
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
+                    <ImageIcon className="h-5 w-5" aria-hidden />
                   </span>
                   <div>
                     <h3 className="font-display text-lg text-ink-900">Naslovna fotografija</h3>
@@ -213,8 +219,8 @@ export function CreateEventModal() {
                       onClick={() => fileInputRef.current?.click()}
                       className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-gold-400/40 bg-white/50 px-4 py-8 text-center transition hover:border-gold-500 hover:bg-cream-100"
                     >
-                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold-500/10 text-xl text-gold-600">
-                        ⬆
+                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
+                        <UploadIcon className="h-5 w-5" aria-hidden />
                       </span>
                       <span className="text-sm font-medium text-ink-900">Dodirnite za učitavanje</span>
                       <span className="text-xs text-ink-700/60">JPG ili PNG, po želji</span>

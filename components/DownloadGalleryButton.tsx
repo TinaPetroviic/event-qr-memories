@@ -4,6 +4,7 @@ import { useState } from "react";
 import JSZip from "jszip";
 import { slugify } from "@/lib/utils/slug";
 import type { GalleryPhoto } from "@/components/PhotoGrid";
+import { DownloadIcon } from "@/components/icons";
 
 function extensionFromPath(storagePath: string): string {
   const match = /\.([a-zA-Z0-9]+)$/.exec(storagePath);
@@ -68,7 +69,13 @@ export function DownloadGalleryButton({ photos, zipName }: { photos: GalleryPhot
   return (
     <div className="flex flex-col items-start gap-1.5 sm:items-end">
       <button type="button" onClick={handleDownload} disabled={isDownloading} className="btn-outline">
-        {isDownloading ? `Priprema preuzimanja... ${progress}/${photos.length}` : "⬇ Preuzmi cijelu galeriju"}
+        {isDownloading ? (
+          `Priprema preuzimanja... ${progress}/${photos.length}`
+        ) : (
+          <>
+            <DownloadIcon className="h-4 w-4" aria-hidden /> Preuzmi cijelu galeriju
+          </>
+        )}
       </button>
       {message && <p className="text-xs text-ink-700">{message}</p>}
     </div>

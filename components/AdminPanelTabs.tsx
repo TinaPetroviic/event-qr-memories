@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import { Icon, type IconName } from "@/components/icons";
 
 type TabKey = "pregled" | "postavke" | "uspomene";
 
-const TABS: { key: TabKey; label: string; icon: string }[] = [
-  { key: "pregled", label: "Pregled", icon: "🗂️" },
-  { key: "postavke", label: "Postavke", icon: "⚙️" },
-  { key: "uspomene", label: "Uspomene", icon: "🖼️" },
+const TABS: { key: TabKey; label: string; icon: IconName }[] = [
+  { key: "pregled", label: "Pregled", icon: "layoutGrid" },
+  { key: "postavke", label: "Postavke", icon: "settings" },
+  { key: "uspomene", label: "Uspomene", icon: "image" },
 ];
 
 // Simple, dependency-free tabs: all three panels are rendered up-front (so
@@ -44,13 +45,13 @@ export function AdminPanelTabs({
               aria-selected={isActive}
               aria-controls={`tabpanel-${tab.key}`}
               onClick={() => setActive(tab.key)}
-              className={`rounded-full px-5 py-2 text-sm font-medium transition ${
+              className={`inline-flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-medium transition ${
                 isActive
                   ? "bg-gold-500 text-white shadow-sm shadow-gold-600/30"
                   : "text-ink-700 hover:bg-cream-100"
               }`}
             >
-              <span aria-hidden>{tab.icon}</span> {tab.label}
+              <Icon name={tab.icon} className="h-4 w-4" aria-hidden /> {tab.label}
             </button>
           );
         })}

@@ -6,6 +6,7 @@ import { deletePhoto } from "@/app/dashboard/events/[id]/actions";
 import { formatTimestampShort } from "@/lib/utils/date";
 import { createClient } from "@/lib/supabase/client";
 import type { Database } from "@/lib/database.types";
+import { ChevronLeftIcon, ChevronRightIcon, CloseIcon, HeartIcon, MicrophoneIcon, VideoIcon } from "@/components/icons";
 
 type PhotoRow = Database["public"]["Tables"]["photos"]["Row"];
 
@@ -118,8 +119,8 @@ export function PhotoGrid({
   if (items.length === 0) {
     return (
       <div className="rounded-3xl border border-dashed border-gold-400/40 bg-white/50 p-10 text-center">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gold-500/10 text-2xl">
-          🤍
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gold-500/10">
+          <HeartIcon className="h-6 w-6 text-gold-600" aria-hidden />
         </div>
         <p className="mt-4 font-display text-lg text-ink-900">Još nema uspomena</p>
         <p className="mx-auto mt-2 max-w-sm text-ink-700">
@@ -181,15 +182,15 @@ export function PhotoGrid({
                 <video controls playsInline className="h-full w-full object-cover">
                   <source src={photo.url} />
                 </video>
-                <span className="pointer-events-none absolute left-2 top-2 rounded-full bg-ink-900/60 px-2 py-0.5 text-[10px] font-medium text-white">
-                  🎥 Video
+                <span className="pointer-events-none absolute left-2 top-2 inline-flex items-center gap-1 rounded-full bg-ink-900/60 px-2 py-0.5 text-[10px] font-medium text-white">
+                  <VideoIcon className="h-2.5 w-2.5" aria-hidden /> Video
                 </span>
               </div>
             )}
             {photo.mediaType === "audio" && (
               <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-gold-200/60 via-cream-100 to-blush-100 p-4 text-center">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold-500/15 text-xl">
-                  🎙️
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold-500/15">
+                  <MicrophoneIcon className="h-5 w-5 text-gold-600" aria-hidden />
                 </span>
                 <p className="text-xs font-medium uppercase tracking-wide text-gold-600">Glasovna poruka</p>
                 <audio controls className="w-full" src={photo.url} onClick={(e) => e.stopPropagation()} />
@@ -228,9 +229,9 @@ export function PhotoGrid({
             type="button"
             onClick={closeLightbox}
             aria-label="Zatvori"
-            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-xl text-white transition hover:bg-white/20"
+            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
           >
-            ✕
+            <CloseIcon className="h-5 w-5" aria-hidden />
           </button>
 
           {lightboxIndex > 0 && (
@@ -241,9 +242,9 @@ export function PhotoGrid({
                 setLightboxIndex(lightboxIndex - 1);
               }}
               aria-label="Prethodno"
-              className="absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-xl text-white transition hover:bg-white/20 sm:left-4"
+              className="absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 sm:left-4"
             >
-              ‹
+              <ChevronLeftIcon className="h-5 w-5" aria-hidden />
             </button>
           )}
           {lightboxIndex < items.length - 1 && (
@@ -254,9 +255,9 @@ export function PhotoGrid({
                 setLightboxIndex(lightboxIndex + 1);
               }}
               aria-label="Sljedeće"
-              className="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-xl text-white transition hover:bg-white/20 sm:right-4"
+              className="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 sm:right-4"
             >
-              ›
+              <ChevronRightIcon className="h-5 w-5" aria-hidden />
             </button>
           )}
 
@@ -279,8 +280,8 @@ export function PhotoGrid({
             )}
             {activePhoto.mediaType === "audio" && (
               <div className="flex w-full max-w-sm flex-col items-center gap-3 rounded-2xl bg-gradient-to-br from-gold-200/60 via-cream-100 to-blush-100 p-6 text-center">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold-500/15 text-xl">
-                  🎙️
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold-500/15">
+                  <MicrophoneIcon className="h-5 w-5 text-gold-600" aria-hidden />
                 </span>
                 <p className="text-xs font-medium uppercase tracking-wide text-gold-600">Glasovna poruka</p>
                 <audio controls className="w-full" src={activePhoto.url} />

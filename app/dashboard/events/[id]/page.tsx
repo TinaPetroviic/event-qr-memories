@@ -9,6 +9,7 @@ import { DeleteEventButton } from "@/components/DeleteEventButton";
 import { AdminPanelTabs } from "@/components/AdminPanelTabs";
 import { formatDateShort } from "@/lib/utils/date";
 import { EVENT_TYPES } from "@/lib/eventTypes";
+import { CalendarIcon, CameraIcon, Icon, MicrophoneIcon, VideoIcon } from "@/components/icons";
 
 export default async function EventAdminPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -69,10 +70,10 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
             <h3 className="mt-2 font-display text-2xl text-ink-900">{event.title}</h3>
             <div className="mt-3 flex flex-wrap gap-2 text-sm">
               <span className="flex items-center gap-1.5 rounded-full bg-cream-100 px-3 py-1 text-ink-700">
-                <span aria-hidden>📅</span> {formatDateShort(event.event_date)}
+                <CalendarIcon className="h-4 w-4" aria-hidden /> {formatDateShort(event.event_date)}
               </span>
               <span className="flex items-center gap-1.5 rounded-full bg-cream-100 px-3 py-1 text-ink-700">
-                <span aria-hidden>{eventTypeInfo.icon}</span> {eventTypeInfo.label}
+                <Icon name={eventTypeInfo.icon} className="h-4 w-4" aria-hidden /> {eventTypeInfo.label}
               </span>
               <span
                 className={`rounded-full px-3 py-1 font-medium ${
@@ -100,15 +101,21 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
         </div>
         <div className="card-surface p-5 text-center">
           <p className="font-display text-3xl text-ink-900">{photoCount}</p>
-          <p className="mt-1 text-xs uppercase tracking-wide text-ink-700/70">📷 Fotografije</p>
+          <p className="mt-1 flex items-center justify-center gap-1 text-xs uppercase tracking-wide text-ink-700/70">
+            <CameraIcon className="h-3.5 w-3.5" aria-hidden /> Fotografije
+          </p>
         </div>
         <div className="card-surface p-5 text-center">
           <p className="font-display text-3xl text-ink-900">{videoCount}</p>
-          <p className="mt-1 text-xs uppercase tracking-wide text-ink-700/70">🎥 Videa</p>
+          <p className="mt-1 flex items-center justify-center gap-1 text-xs uppercase tracking-wide text-ink-700/70">
+            <VideoIcon className="h-3.5 w-3.5" aria-hidden /> Videa
+          </p>
         </div>
         <div className="card-surface p-5 text-center">
           <p className="font-display text-3xl text-ink-900">{audioCount}</p>
-          <p className="mt-1 text-xs uppercase tracking-wide text-ink-700/70">🎙️ Glasovne poruke</p>
+          <p className="mt-1 flex items-center justify-center gap-1 text-xs uppercase tracking-wide text-ink-700/70">
+            <MicrophoneIcon className="h-3.5 w-3.5" aria-hidden /> Glasovne poruke
+          </p>
         </div>
       </div>
     </div>

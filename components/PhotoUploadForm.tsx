@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { VoiceRecorderButton } from "@/components/VoiceRecorderButton";
+import { CameraIcon, CheckIcon } from "@/components/icons";
 
 type Status = "idle" | "uploading" | "success" | "error";
 type MediaType = "photo" | "video" | "audio";
@@ -112,7 +113,13 @@ export function PhotoUploadForm({ eventId }: { eventId: string }) {
           status === "uploading" ? "pointer-events-none opacity-70" : ""
         }`}
       >
-        {status === "uploading" ? "Slanje u tijeku..." : "📷 Dodaj fotografiju ili video"}
+        {status === "uploading" ? (
+          "Slanje u tijeku..."
+        ) : (
+          <>
+            <CameraIcon className="h-5 w-5" aria-hidden /> Dodaj fotografiju ili video
+          </>
+        )}
       </label>
 
       <div className="mt-1">
@@ -122,7 +129,7 @@ export function PhotoUploadForm({ eventId }: { eventId: string }) {
 
       {status === "success" && (
         <p className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-green-50 px-4 py-2 text-sm text-green-800">
-          <span aria-hidden>✓</span> Hvala! Poslano uspomena: {uploadedCount}. Slobodno dodajte još.
+          <CheckIcon className="h-4 w-4" aria-hidden /> Hvala! Poslano uspomena: {uploadedCount}. Slobodno dodajte još.
         </p>
       )}
       {status === "error" && (

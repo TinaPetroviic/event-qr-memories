@@ -1,54 +1,55 @@
 import Link from "next/link";
 import { DecorativeGlow } from "@/components/DecorativeGlow";
 import { HeroIllustration } from "@/components/HeroIllustration";
+import { CameraIcon, CheckIcon, Icon, MicrophoneIcon, PlusIcon, type IconName } from "@/components/icons";
 
-const CATEGORIES = [
-  { label: "Vjenčanja", icon: "💍" },
-  { label: "Rođendani", icon: "🎂" },
-  { label: "Godišnjice", icon: "🥂" },
-  { label: "Krštenja", icon: "🕊️" },
-  { label: "Maturske večeri", icon: "🎓" },
-  { label: "Korporativni eventi", icon: "🏢" },
+const CATEGORIES: { label: string; icon: IconName }[] = [
+  { label: "Vjenčanja", icon: "rings" },
+  { label: "Rođendani", icon: "cake" },
+  { label: "Godišnjice", icon: "champagne" },
+  { label: "Krštenja", icon: "dove" },
+  { label: "Maturske večeri", icon: "graduationCap" },
+  { label: "Korporativni eventi", icon: "building" },
 ];
 
-const STEPS = [
+const STEPS: { title: string; text: string; icon: IconName }[] = [
   {
     title: "Kreirajte događaj",
     text: "Registrirajte se i unesite naziv događaja, datum i prilagođeni link za goste - za vjenčanje, rođendan, godišnjicu tvrtke ili bilo koju drugu proslavu.",
-    icon: "💌",
+    icon: "mail",
   },
   {
     title: "Podijelite QR kod",
     text: "Isprintajte QR kod u jednom od dizajna ili podijelite link na stolovima, pozivnicama ili tabli dobrodošlice.",
-    icon: "🔗",
+    icon: "link",
   },
   {
     title: "Sakupite uspomene",
     text: "Gosti fotografiraju, snimaju video ili ostave glasovnu poruku direktno u vašoj zajedničkoj galeriji.",
-    icon: "🤍",
+    icon: "heart",
   },
 ];
 
-const FEATURES = [
+const FEATURES: { title: string; text: string; icon: IconName }[] = [
   {
     title: "Fotografije i video",
     text: "Gosti dodaju fotografije i video snimke jednim dodirom, direktno iz preglednika.",
-    icon: "📷",
+    icon: "camera",
   },
   {
     title: "Glasovne poruke",
     text: "Poseban dodir - gosti mogu snimiti i ostaviti glasovnu čestitku ili poruku.",
-    icon: "🎙️",
+    icon: "microphone",
   },
   {
     title: "4 dizajna QR kartice",
     text: "Odaberite Klasik, Modernu, Romantiku ili Rustik izgled koji odgovara vašem događaju.",
-    icon: "🎨",
+    icon: "palette",
   },
   {
     title: "Javna ili privatna galerija",
     text: "Sami odlučujete mogu li gosti pregledati sve uspomene ili su vidljive samo vama.",
-    icon: "🔒",
+    icon: "lock",
   },
 ];
 
@@ -130,9 +131,7 @@ export default function LandingPage() {
                 key={category.label}
                 className="card-surface-interactive flex shrink-0 items-center gap-2.5 px-5 py-3 sm:shrink"
               >
-                <span className="text-xl" aria-hidden>
-                  {category.icon}
-                </span>
+                <Icon name={category.icon} className="h-5 w-5 shrink-0 text-gold-600" aria-hidden />
                 <span className="whitespace-nowrap text-sm font-medium text-ink-900">
                   {category.label}
                 </span>
@@ -157,8 +156,8 @@ export default function LandingPage() {
               key={step.title}
               className="card-surface-interactive relative flex flex-col items-center p-6 text-center"
             >
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-gold-400 to-gold-600 text-2xl shadow-md shadow-gold-600/30">
-                {step.icon}
+              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-gold-400 to-gold-600 shadow-md shadow-gold-600/30">
+                <Icon name={step.icon} className="h-6 w-6 text-white" aria-hidden />
               </div>
               <h3 className="font-display text-xl text-ink-900">{step.title}</h3>
               <p className="mt-2 text-sm text-ink-700">{step.text}</p>
@@ -183,8 +182,8 @@ export default function LandingPage() {
                 key={feature.title}
                 className="flex items-start gap-4 rounded-2xl border border-gold-400/20 bg-white/60 p-5 shadow-sm shadow-gold-600/5"
               >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cream-50 text-xl shadow-inner">
-                  {feature.icon}
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cream-50 shadow-inner">
+                  <Icon name={feature.icon} className="h-5 w-5 text-gold-600" aria-hidden />
                 </span>
                 <div>
                   <h3 className="font-display text-lg text-ink-900">{feature.title}</h3>
@@ -228,9 +227,9 @@ export default function LandingPage() {
                 <li key={item} className="flex items-center gap-3 text-sm text-cream-50/90">
                   <span
                     aria-hidden
-                    className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold-400/90 text-xs text-ink-900"
+                    className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold-400/90 text-ink-900"
                   >
-                    ✓
+                    <CheckIcon className="h-3 w-3" />
                   </span>
                   {item}
                 </li>
@@ -260,13 +259,13 @@ export default function LandingPage() {
                 </div>
 
                 <div className="flex flex-1 flex-col items-center justify-center gap-2.5 px-3 text-center">
-                  <span className="text-3xl">📷</span>
+                  <CameraIcon className="h-8 w-8 text-white" aria-hidden />
                   <span className="rounded-full bg-gold-500 px-4 py-2 text-xs font-medium text-white shadow-md shadow-black/20">
                     Dodaj fotografiju
                   </span>
                   <span className="text-[10px] uppercase tracking-widest text-white/40">ili</span>
-                  <span className="rounded-full border border-white/25 px-4 py-1.5 text-xs text-white/70">
-                    🎙️ Snimi poruku
+                  <span className="inline-flex items-center gap-1 rounded-full border border-white/25 px-4 py-1.5 text-xs text-white/70">
+                    <MicrophoneIcon className="h-3.5 w-3.5" aria-hidden /> Snimi poruku
                   </span>
 
                   <div className="mt-2 flex gap-1.5" aria-hidden>
@@ -300,7 +299,7 @@ export default function LandingPage() {
                   aria-hidden
                   className="ml-2 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-cream-100 text-gold-500 transition-transform duration-300 group-open:rotate-45"
                 >
-                  +
+                  <PlusIcon className="h-4 w-4" />
                 </span>
               </summary>
               <p className="mt-3 text-sm text-ink-700">{faq.a}</p>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { PhotoGrid, type GalleryPhoto } from "@/components/PhotoGrid";
 import { DecorativeGlow } from "@/components/DecorativeGlow";
+import { HeartIcon } from "@/components/icons";
 
 export default async function GuestGalleryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -42,7 +43,7 @@ export default async function GuestGalleryPage({ params }: { params: Promise<{ s
           </p>
           <h1 className="mt-3 font-display text-3xl text-ink-900 sm:text-4xl">{event.title}</h1>
           <p className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-white/60 px-4 py-1.5 text-sm text-ink-700">
-            <span aria-hidden>🤍</span>
+            <HeartIcon className="h-4 w-4" aria-hidden />
             {photos.length} uspomena podijeljeno s ljubavlju
           </p>
         </div>

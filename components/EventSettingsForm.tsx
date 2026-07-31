@@ -5,6 +5,7 @@ import { updateEventSettings, type SettingsFormState } from "@/app/dashboard/eve
 import type { EventRow } from "@/lib/database.types";
 import { QR_DESIGNS, QR_DESIGN_KEYS } from "@/lib/qrDesigns";
 import { QrMotifIcon } from "@/components/QrMotifIcon";
+import { CheckIcon } from "@/components/icons";
 
 const initialState: SettingsFormState = {};
 
@@ -110,11 +111,11 @@ export function EventSettingsForm({ event }: { event: EventRow }) {
               >
                 {selected && (
                   <span
-                    className="absolute right-2 top-2 flex h-5 w-5 items-center justify-center rounded-full text-xs text-white"
+                    className="absolute right-2 top-2 flex h-5 w-5 items-center justify-center rounded-full text-white"
                     style={{ background: option.accentColor }}
                     aria-hidden
                   >
-                    ✓
+                    <CheckIcon className="h-3 w-3" />
                   </span>
                 )}
                 <div

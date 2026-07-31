@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { CreateEventModal } from "@/components/CreateEventModal";
 import { formatDateShort } from "@/lib/utils/date";
 import { EVENT_TYPES } from "@/lib/eventTypes";
+import { CalendarIcon, ChevronRightIcon, Icon, SparkleIcon } from "@/components/icons";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -37,8 +38,8 @@ export default async function DashboardPage() {
 
       {!events || events.length === 0 ? (
         <div className="mt-12 rounded-3xl border border-dashed border-gold-400/40 bg-white/50 p-12 text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gold-500/10 text-3xl">
-            🎉
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gold-500/10">
+            <SparkleIcon className="h-8 w-8 text-gold-600" aria-hidden />
           </div>
           <p className="mt-5 font-display text-xl text-ink-900">Još nemate kreiranih događaja</p>
           <p className="mx-auto mt-2 max-w-sm text-ink-700">
@@ -73,17 +74,17 @@ export default async function DashboardPage() {
                 <div className="flex flex-1 flex-col gap-4 p-6 pt-4">
                   <div className="flex items-start justify-between gap-3">
                     <p className="font-display text-2xl text-ink-900">{event.title}</p>
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream-100 text-lg text-gold-600 transition group-hover:-translate-y-0.5 group-hover:bg-gold-500 group-hover:text-white">
-                      →
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream-100 text-gold-600 transition group-hover:-translate-y-0.5 group-hover:bg-gold-500 group-hover:text-white">
+                      <ChevronRightIcon className="h-5 w-5" aria-hidden />
                     </span>
                   </div>
                   <p className="flex items-center gap-1.5 text-sm text-ink-700">
-                    <span aria-hidden>📅</span>
+                    <CalendarIcon className="h-4 w-4" aria-hidden />
                     {formatDateShort(event.event_date)}
                   </p>
                   <div className="mt-auto flex flex-wrap items-center justify-end gap-2 border-t border-gold-400/15 pt-4">
-                    <span className="rounded-full bg-cream-100 px-3 py-1 text-xs font-medium text-ink-700">
-                      <span aria-hidden>{eventTypeInfo.icon}</span> {eventTypeInfo.label}
+                    <span className="inline-flex items-center gap-1 rounded-full bg-cream-100 px-3 py-1 text-xs font-medium text-ink-700">
+                      <Icon name={eventTypeInfo.icon} className="h-3.5 w-3.5" aria-hidden /> {eventTypeInfo.label}
                     </span>
                     <span
                       className={`rounded-full px-3 py-1 text-xs font-medium ${

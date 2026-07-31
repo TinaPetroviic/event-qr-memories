@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { HeadphonesIcon, MicrophoneIcon } from "@/components/icons";
 
 type RecorderState = "idle" | "recording" | "preview" | "unsupported";
 
@@ -106,7 +107,7 @@ export function VoiceRecorderButton({
     return (
       <div className="mt-3 flex flex-col items-center gap-3 rounded-2xl border border-gold-400/30 bg-cream-50 p-4 shadow-inner">
         <p className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-gold-600">
-          <span aria-hidden>🎧</span> Preslušajte prije slanja
+          <HeadphonesIcon className="h-3.5 w-3.5" aria-hidden /> Preslušajte prije slanja
         </p>
         <audio controls src={previewUrl} className="w-full" />
         <div className="flex w-full gap-2">
@@ -152,7 +153,7 @@ export function VoiceRecorderButton({
       disabled={disabled}
       className="btn-outline px-6 py-3"
     >
-      🎙️ Snimi glasovnu poruku
+      <MicrophoneIcon className="h-5 w-5" aria-hidden /> Snimi glasovnu poruku
     </button>
   );
 }

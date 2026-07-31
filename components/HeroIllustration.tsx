@@ -1,5 +1,6 @@
 import { QrMotifIcon } from "@/components/QrMotifIcon";
 import { SPARKLE_DOT_RADIUS, SPARKLE_RAYS } from "@/lib/qrMotifs";
+import { CameraIcon, MicrophoneIcon } from "@/components/icons";
 
 // Deterministic decorative QR-style matrix: three viewfinder "finder patterns"
 // (the nested-square markers real QR codes use in three corners) plus a
@@ -126,13 +127,13 @@ export function HeroIllustration() {
 
       {/* Floating chip: photo */}
       <div className="absolute -left-2 top-3 flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[11px] font-medium text-ink-900 shadow-md shadow-gold-600/15 sm:-left-4 sm:top-6 sm:text-xs">
-        <span aria-hidden>📷</span>
+        <CameraIcon className="h-3.5 w-3.5" aria-hidden />
         Fotografija
       </div>
 
       {/* Floating chip: voice message */}
       <div className="absolute -right-3 bottom-8 flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[11px] font-medium text-ink-900 shadow-md shadow-gold-600/15 sm:-right-5 sm:bottom-12 sm:text-xs">
-        <span aria-hidden>🎙️</span>
+        <MicrophoneIcon className="h-3.5 w-3.5" aria-hidden />
         Poruka
       </div>
 
