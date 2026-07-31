@@ -118,10 +118,14 @@ export function PhotoGrid({
   if (items.length === 0) {
     return (
       <div className="rounded-3xl border border-dashed border-gold-400/40 bg-white/50 p-10 text-center">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gold-500/10 text-2xl">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gold-500/10 text-2xl">
           🤍
         </div>
-        <p className="mt-4 text-ink-700">Još nema uspomena. Prve fotografije i poruke gostiju pojavit će se ovdje.</p>
+        <p className="mt-4 font-display text-lg text-ink-900">Još nema uspomena</p>
+        <p className="mx-auto mt-2 max-w-sm text-ink-700">
+          Budite prvi koji će podijeliti trenutak – fotografije, videa i glasovne poruke gostiju pojavit će se
+          ovdje čim ih pošalju.
+        </p>
       </div>
     );
   }

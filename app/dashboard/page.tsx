@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { CreateEventModal } from "@/components/CreateEventModal";
 import { formatDateShort } from "@/lib/utils/date";
+import { EVENT_TYPES } from "@/lib/eventTypes";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -47,35 +48,57 @@ export default async function DashboardPage() {
         </div>
       ) : (
         <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
-          {events.map((event) => (
-            <Link
-              key={event.id}
-              href={`/dashboard/events/${event.id}`}
-              className="card-surface-interactive group flex flex-col gap-4 p-6"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <p className="font-display text-2xl text-ink-900">{event.title}</p>
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream-100 text-lg text-gold-600 transition group-hover:-translate-y-0.5 group-hover:bg-gold-500 group-hover:text-white">
-                  →
-                </span>
-              </div>
-              <p className="flex items-center gap-1.5 text-sm text-ink-700">
-                <span aria-hidden>📅</span>
-                {formatDateShort(event.event_date)}
-              </p>
-              <div className="mt-auto flex items-center justify-end gap-2 border-t border-gold-400/15 pt-4">
-                <span
-                  className={`rounded-full px-3 py-1 text-xs font-medium ${
-                    event.gallery_public
-                      ? "bg-green-100 text-green-800"
-                      : "bg-ink-900/5 text-ink-700"
-                  }`}
-                >
-                  {event.gallery_public ? "Javna galerija" : "Privatna galerija"}
-                </span>
-              </div>
-            </Link>
-          ))}
+          {events.map((event) => {
+            const eventTypeInfo = EVENT_TYPES[event.event_type];
+            const coverUrl = event.cover_image_path
+              ? supabase.storage.from("photos").getPublicUrl(event.cover_image_path).data.publicUrl
+              : null;
+
+            return (
+              <Link
+                key={event.id}
+                href={`/dashboard/events/${event.id}`}
+                className="card-surface-interactive group flex flex-col gap-4 overflow-hidden p-0"
+              >
+                {coverUrl && (
+                  // Guest/owner-chosen cover image, dimensions unknown ahead of time.
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={coverUrl}
+                    alt=""
+                    aria-hidden
+                    className="h-32 w-full object-cover"
+                  />
+                )}
+                <div className="flex flex-1 flex-col gap-4 p-6 pt-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="font-display text-2xl text-ink-900">{event.title}</p>
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream-100 text-lg text-gold-600 transition group-hover:-translate-y-0.5 group-hover:bg-gold-500 group-hover:text-white">
+                      →
+                    </span>
+                  </div>
+                  <p className="flex items-center gap-1.5 text-sm text-ink-700">
+                    <span aria-hidden>📅</span>
+                    {formatDateShort(event.event_date)}
+                  </p>
+                  <div className="mt-auto flex flex-wrap items-center justify-end gap-2 border-t border-gold-400/15 pt-4">
+                    <span className="rounded-full bg-cream-100 px-3 py-1 text-xs font-medium text-ink-700">
+                      <span aria-hidden>{eventTypeInfo.icon}</span> {eventTypeInfo.label}
+                    </span>
+                    <span
+                      className={`rounded-full px-3 py-1 text-xs font-medium ${
+                        event.gallery_public
+                          ? "bg-green-100 text-green-800"
+                          : "bg-ink-900/5 text-ink-700"
+                      }`}
+                    >
+                      {event.gallery_public ? "Javna galerija" : "Privatna galerija"}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       )}
     </div>

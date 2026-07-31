@@ -15,6 +15,8 @@ export type EventRow = {
   welcome_message: string;
   gallery_public: boolean;
   qr_design: "classic" | "modern" | "romantic" | "rustic";
+  event_type: "wedding" | "birthday" | "anniversary" | "corporate" | "graduation" | "other";
+  cover_image_path: string | null;
   created_at: string;
 };
 
