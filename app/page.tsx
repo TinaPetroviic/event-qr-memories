@@ -370,7 +370,7 @@ export default function LandingPage() {
                   href="#znacajke"
                   className="rounded transition-colors hover:text-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/50"
                 >
-                  Značajke
+                  Mogućnosti
                 </a>
               </li>
               <li>
