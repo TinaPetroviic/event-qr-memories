@@ -8,6 +8,7 @@ export type GalleryPhoto = {
   url: string;
   storagePath: string;
   guestName: string | null;
+  mediaType: "photo" | "video" | "audio";
   createdAt: string;
 };
 
@@ -27,7 +28,7 @@ export function PhotoGrid({
   if (items.length === 0) {
     return (
       <div className="rounded-3xl border border-dashed border-gold-400/40 bg-white/50 p-10 text-center text-ink-700">
-        Još nema fotografija.
+        Još nema uspomena.
       </div>
     );
   }
@@ -48,14 +49,27 @@ export function PhotoGrid({
           key={photo.id}
           className="group relative aspect-square overflow-hidden rounded-2xl border border-gold-400/20 bg-cream-100 shadow-sm"
         >
-          {/* Guest-uploaded content, dimensions unknown ahead of time. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={photo.url}
-            alt={photo.guestName ? `Fotografija od ${photo.guestName}` : "Fotografija s vjenčanja"}
-            className="h-full w-full object-cover"
-            loading="lazy"
-          />
+          {photo.mediaType === "photo" && (
+            // Guest-uploaded content, dimensions unknown ahead of time.
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={photo.url}
+              alt={photo.guestName ? `Fotografija od ${photo.guestName}` : "Fotografija s vjenčanja"}
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
+          )}
+          {photo.mediaType === "video" && (
+            <video controls playsInline className="h-full w-full object-cover">
+              <source src={photo.url} />
+            </video>
+          )}
+          {photo.mediaType === "audio" && (
+            <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-cream-100 p-3 text-center">
+              <span className="text-2xl">🎤</span>
+              <audio controls className="w-full" src={photo.url} />
+            </div>
+          )}
           {photo.guestName && (
             <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-900/70 to-transparent p-2">
               <p className="truncate text-xs font-medium text-white">{photo.guestName}</p>

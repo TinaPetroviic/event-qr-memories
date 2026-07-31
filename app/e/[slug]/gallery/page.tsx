@@ -24,6 +24,7 @@ export default async function GuestGalleryPage({ params }: { params: Promise<{ s
     url: supabase.storage.from("photos").getPublicUrl(p.storage_path).data.publicUrl,
     storagePath: p.storage_path,
     guestName: p.guest_name,
+    mediaType: p.media_type,
     createdAt: p.created_at,
   }));
 
@@ -38,7 +39,7 @@ export default async function GuestGalleryPage({ params }: { params: Promise<{ s
           <h1 className="mt-3 font-display text-3xl text-ink-900 sm:text-4xl">
             {event.bride_name} <span className="text-gold-500">&amp;</span> {event.groom_name}
           </h1>
-          <p className="mt-2 text-ink-700">{photos.length} fotografija podijeljeno s ljubavlju</p>
+          <p className="mt-2 text-ink-700">{photos.length} uspomena podijeljeno s ljubavlju</p>
         </div>
 
         <div className="mt-10">

@@ -1,14 +1,16 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { updateEventSettings, type SettingsFormState } from "@/app/dashboard/events/[id]/actions";
 import type { EventRow } from "@/lib/database.types";
+import { QR_DESIGNS, QR_DESIGN_KEYS } from "@/lib/qrDesigns";
 
 const initialState: SettingsFormState = {};
 
 export function EventSettingsForm({ event }: { event: EventRow }) {
   const action = updateEventSettings.bind(null, event.id);
   const [state, formAction, pending] = useActionState(action, initialState);
+  const [qrDesign, setQrDesign] = useState(event.qr_design);
 
   return (
     <form action={formAction} className="space-y-4">
@@ -94,6 +96,39 @@ export function EventSettingsForm({ event }: { event: EventRow }) {
           <span className="text-ink-700">- svi posjetitelji linka mogu vidjeti sve fotografije</span>
         </span>
       </label>
+
+      <div>
+        <span className="mb-2 block text-sm font-medium text-ink-700">Dizajn QR kartice</span>
+        <input type="hidden" name="qrDesign" value={qrDesign} />
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {QR_DESIGN_KEYS.map((key) => {
+            const option = QR_DESIGNS[key];
+            const selected = qrDesign === key;
+            return (
+              <button
+                key={key}
+                type="button"
+                onClick={() => setQrDesign(key)}
+                className={`rounded-xl border p-3 text-left transition ${
+                  selected ? "ring-2 ring-gold-500" : "hover:border-gold-400"
+                }`}
+                style={{ background: option.background, borderColor: option.border }}
+                aria-pressed={selected}
+              >
+                <div
+                  className="mb-2 flex h-8 w-8 items-center justify-center rounded-full text-sm"
+                  style={{ background: option.accentColor, color: option.background }}
+                >
+                  {option.motif}
+                </div>
+                <span className="text-sm font-medium" style={{ color: option.textColor }}>
+                  {option.label}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
       {state.error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{state.error}</p>}
       {state.success && (

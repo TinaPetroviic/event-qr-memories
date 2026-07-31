@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { isValidSlug, slugify } from "@/lib/utils/slug";
+import { isQrDesignKey } from "@/lib/qrDesigns";
 
 export type SettingsFormState = {
   error?: string;
@@ -36,10 +37,16 @@ export async function updateEventSettings(
   const rawSlug = String(formData.get("slug") ?? "").trim();
   const welcomeMessage = String(formData.get("welcomeMessage") ?? "").trim();
   const galleryPublic = formData.get("galleryPublic") === "on";
+  const rawQrDesign = String(formData.get("qrDesign") ?? "classic").trim();
 
   if (!brideName || !groomName || !weddingDate) {
     return { error: "Molimo popunite sva obavezna polja." };
   }
+
+  if (!isQrDesignKey(rawQrDesign)) {
+    return { error: "Odabrani dizajn QR kartice nije ispravan." };
+  }
+  const qrDesign = rawQrDesign;
 
   const slug = slugify(rawSlug);
   if (!isValidSlug(slug)) {
@@ -66,6 +73,7 @@ export async function updateEventSettings(
       slug,
       welcome_message: welcomeMessage,
       gallery_public: galleryPublic,
+      qr_design: qrDesign,
     })
     .eq("id", eventId)
     .eq("owner_id", user.id);

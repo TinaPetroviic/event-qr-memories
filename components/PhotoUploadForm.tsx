@@ -2,8 +2,16 @@
 
 import { useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { VoiceRecorderButton } from "@/components/VoiceRecorderButton";
 
 type Status = "idle" | "uploading" | "success" | "error";
+type MediaType = "photo" | "video" | "audio";
+
+function mediaTypeFromMime(mime: string): MediaType {
+  if (mime.startsWith("video/")) return "video";
+  if (mime.startsWith("audio/")) return "audio";
+  return "photo";
+}
 
 export function PhotoUploadForm({ eventId }: { eventId: string }) {
   const [guestName, setGuestName] = useState("");
@@ -12,46 +20,63 @@ export function PhotoUploadForm({ eventId }: { eventId: string }) {
   const [uploadedCount, setUploadedCount] = useState(0);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
+  const uploadOne = async (file: File, mediaType: MediaType) => {
+    const supabase = createClient();
+    const ext = file.name.split(".").pop()?.toLowerCase() || (mediaType === "audio" ? "webm" : "jpg");
+    const path = `${eventId}/${crypto.randomUUID()}.${ext}`;
+
+    const { error: uploadError } = await supabase.storage.from("photos").upload(path, file, {
+      contentType: file.type || undefined,
+      upsert: false,
+    });
+
+    if (uploadError) {
+      throw uploadError;
+    }
+
+    const { error: insertError } = await supabase.from("photos").insert({
+      event_id: eventId,
+      storage_path: path,
+      guest_name: guestName.trim() || null,
+      media_type: mediaType,
+    });
+
+    if (insertError) {
+      throw insertError;
+    }
+
+    setUploadedCount((count) => count + 1);
+  };
+
   const handleFiles = async (files: FileList | null) => {
     if (!files || files.length === 0) return;
 
     setStatus("uploading");
     setErrorMessage("");
-    const supabase = createClient();
 
     try {
       for (const file of Array.from(files)) {
-        const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
-        const path = `${eventId}/${crypto.randomUUID()}.${ext}`;
-
-        const { error: uploadError } = await supabase.storage.from("photos").upload(path, file, {
-          contentType: file.type || undefined,
-          upsert: false,
-        });
-
-        if (uploadError) {
-          throw uploadError;
-        }
-
-        const { error: insertError } = await supabase.from("photos").insert({
-          event_id: eventId,
-          storage_path: path,
-          guest_name: guestName.trim() || null,
-        });
-
-        if (insertError) {
-          throw insertError;
-        }
-
-        setUploadedCount((count) => count + 1);
+        await uploadOne(file, mediaTypeFromMime(file.type));
       }
 
       setStatus("success");
     } catch {
       setStatus("error");
-      setErrorMessage("Slanje fotografije nije uspjelo. Provjerite internetsku vezu i pokušajte ponovo.");
+      setErrorMessage("Slanje nije uspjelo. Provjerite internetsku vezu i pokušajte ponovo.");
     } finally {
       if (inputRef.current) inputRef.current.value = "";
+    }
+  };
+
+  const handleVoiceUpload = async (file: File) => {
+    setStatus("uploading");
+    setErrorMessage("");
+    try {
+      await uploadOne(file, "audio");
+      setStatus("success");
+    } catch {
+      setStatus("error");
+      setErrorMessage("Slanje glasovne poruke nije uspjelo. Provjerite internetsku vezu i pokušajte ponovo.");
     }
   };
 
@@ -73,7 +98,7 @@ export function PhotoUploadForm({ eventId }: { eventId: string }) {
       <input
         ref={inputRef}
         type="file"
-        accept="image/*"
+        accept="image/*,video/*"
         capture="environment"
         multiple
         className="hidden"
@@ -87,12 +112,16 @@ export function PhotoUploadForm({ eventId }: { eventId: string }) {
           status === "uploading" ? "pointer-events-none opacity-70" : ""
         }`}
       >
-        {status === "uploading" ? "Slanje u tijeku..." : "📷 Dodaj fotografiju"}
+        {status === "uploading" ? "Slanje u tijeku..." : "📷 Dodaj fotografiju ili video"}
       </label>
+
+      <div>
+        <VoiceRecorderButton onUpload={handleVoiceUpload} disabled={status === "uploading"} />
+      </div>
 
       {status === "success" && (
         <p className="mt-4 rounded-lg bg-green-50 px-4 py-2 text-sm text-green-800">
-          Hvala! Poslano fotografija: {uploadedCount}. Slobodno dodajte još.
+          Hvala! Poslano uspomena: {uploadedCount}. Slobodno dodajte još.
         </p>
       )}
       {status === "error" && (

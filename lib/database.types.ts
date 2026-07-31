@@ -15,6 +15,7 @@ export type EventRow = {
   slug: string;
   welcome_message: string;
   gallery_public: boolean;
+  qr_design: "classic" | "modern" | "romantic" | "rustic";
   created_at: string;
 };
 
@@ -23,6 +24,7 @@ export type PhotoRow = {
   event_id: string;
   storage_path: string;
   guest_name: string | null;
+  media_type: "photo" | "video" | "audio";
   created_at: string;
 };
 

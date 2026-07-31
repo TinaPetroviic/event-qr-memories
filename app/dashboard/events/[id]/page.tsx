@@ -36,6 +36,7 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
     url: supabase.storage.from("photos").getPublicUrl(p.storage_path).data.publicUrl,
     storagePath: p.storage_path,
     guestName: p.guest_name,
+    mediaType: p.media_type,
     createdAt: p.created_at,
   }));
 
@@ -58,7 +59,13 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="lg:col-span-1">
-          <QRCodeCard slug={event.slug} />
+          <QRCodeCard
+            slug={event.slug}
+            brideName={event.bride_name}
+            groomName={event.groom_name}
+            weddingDate={formatWeddingDate(event.wedding_date)}
+            design={event.qr_design}
+          />
         </div>
         <div className="rounded-3xl border border-gold-400/30 bg-white/70 p-6 shadow-sm shadow-gold-600/5 lg:col-span-2">
           <h3 className="mb-4 font-display text-xl text-ink-900">Postavke događaja</h3>
@@ -69,7 +76,7 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
       <div>
         <div className="mb-4 flex items-center justify-between">
           <h3 className="font-display text-xl text-ink-900">
-            Fotografije gostiju <span className="text-ink-700">({photos.length})</span>
+            Uspomene gostiju <span className="text-ink-700">({photos.length})</span>
           </h3>
         </div>
         <PhotoGrid eventId={event.id} photos={photos} editable />
