@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-inter);
+
+  --color-cream-50: #fdfbf6;
+  --color-cream-100: #f9f2e7;
+  --color-cream-200: #f2e6d1;
+  --color-gold-400: #cba15c;
+  --color-gold-500: #b8894a;
+  --color-gold-600: #9c7238;
+  --color-ink-700: #4a3b2f;
+  --color-ink-900: #2e2419;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream-50);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+}
+
+.font-display {
+  font-family: var(--font-serif);
+}
+
+/* Soft decorative divider used across the elegant cream/gold theme */
+.divider-flourish {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.divider-flourish::before,
+.divider-flourish::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, var(--color-gold-400), transparent);
+}
