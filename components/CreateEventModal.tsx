@@ -50,8 +50,11 @@ export function CreateEventModal() {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   className="input-field px-3 py-2"
-                  placeholder="Nina & Marko, Rođendan Amele, 10 godina firme..."
+                  placeholder="npr. Nina & Marko"
                 />
+                <p className="mt-1.5 text-xs text-ink-700/60">
+                  Imena, rođendan, godišnjica firme – šta god slavite.
+                </p>
               </div>
 
               <div>
@@ -82,9 +85,10 @@ export function CreateEventModal() {
                       setSlug(e.target.value);
                     }}
                     className="w-full bg-transparent text-ink-900 outline-none"
-                    placeholder="nina-marko"
+                    placeholder="nina-i-marko"
                   />
                 </div>
+                <p className="mt-1.5 text-xs text-ink-700/60">Ovo je link koji dijelite s gostima.</p>
               </div>
 
               {state.error && (

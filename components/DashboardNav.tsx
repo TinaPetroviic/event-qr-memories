@@ -10,11 +10,11 @@ export function DashboardNav({ email }: { email: string }) {
           QR Uspomene
         </Link>
         <div className="flex items-center gap-4">
-          <span className="hidden items-center gap-2 text-sm text-ink-700 sm:flex">
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gold-500/15 font-display text-xs text-gold-600">
+          <span className="hidden max-w-[180px] items-center gap-2 text-sm text-ink-700 sm:flex md:max-w-xs" title={email}>
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gold-500/15 font-display text-xs text-gold-600">
               {initial}
             </span>
-            {email}
+            <span className="truncate">{email}</span>
           </span>
           <form action="/auth/signout" method="post">
             <button type="submit" className="btn-outline px-4 py-1.5 text-sm">
