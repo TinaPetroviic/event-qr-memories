@@ -24,7 +24,7 @@ export default function SignupPage() {
         <div className="relative hidden flex-col justify-between overflow-hidden bg-gradient-to-br from-gold-500 to-gold-600 p-10 text-cream-50 lg:flex">
           <DecorativeGlow tone="dark" />
           <Link href="/" className="relative font-display text-2xl">
-            QR Uspomene
+            EventPix
           </Link>
           <div className="relative">
             <p className="font-display text-2xl italic leading-snug">
@@ -40,7 +40,7 @@ export default function SignupPage() {
         <div className="bg-white/70 p-8 backdrop-blur-sm sm:p-10">
           <div className="mb-8 text-center lg:hidden">
             <Link href="/" className="font-display text-2xl text-ink-900">
-              QR Uspomene
+              EventPix
             </Link>
           </div>
           <div className="mb-8 text-center lg:text-left">

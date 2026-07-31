@@ -1,4 +1,4 @@
-# QR Uspomene
+# EventPix
 
 Multi-tenant event QR photo-sharing platform. Organizers create an event -
 a wedding, birthday, company anniversary, graduation, or any other

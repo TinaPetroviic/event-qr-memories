@@ -73,7 +73,7 @@ export default async function GuestEventPage({ params }: { params: Promise<{ slu
           className="animate-fade-up mt-4 font-display text-4xl leading-tight text-ink-900 sm:text-6xl"
           style={{ animationDelay: "170ms" }}
         >
-          QR Uspomene
+          EventPix
         </h1>
 
         <p

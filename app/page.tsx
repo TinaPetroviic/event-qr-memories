@@ -93,7 +93,7 @@ export default function LandingPage() {
               className="animate-fade-up mt-6 max-w-xl font-display text-5xl leading-tight text-ink-900 sm:text-6xl"
               style={{ animationDelay: "80ms" }}
             >
-              QR Uspomene
+              EventPix
             </h1>
             <p
               className="animate-fade-up mt-6 max-w-xl text-lg text-ink-700"
@@ -284,9 +284,9 @@ export default function LandingPage() {
         <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
           <span>Česta pitanja</span>
         </p>
-        <h2 className="mt-4 text-center font-display text-3xl text-ink-900">Što je QR Uspomene?</h2>
+        <h2 className="mt-4 text-center font-display text-3xl text-ink-900">Što je EventPix?</h2>
         <p className="mx-auto mt-4 max-w-xl text-center text-ink-700">
-          QR Uspomene je jednostavan način da sakupite fotografije, video snimke i glasovne poruke
+          EventPix je jednostavan način da sakupite fotografije, video snimke i glasovne poruke
           gostiju s vašeg vjenčanja, rođendana, godišnjice ili bilo koje druge proslave - sve na jednom
           mjestu, bez potrebe da gosti instaliraju bilo šta.
         </p>
@@ -332,7 +332,7 @@ export default function LandingPage() {
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-10 sm:grid-cols-[1.4fr_1fr_1fr] sm:gap-8">
           <div className="col-span-2 text-center sm:col-span-1 sm:text-left">
             <p className="divider-flourish justify-center font-display text-lg text-ink-900 sm:justify-start">
-              <span>QR Uspomene</span>
+              <span>EventPix</span>
             </p>
             <p className="mx-auto mt-3 max-w-[26ch] text-ink-700/80 sm:mx-0">
               Digitalna knjiga uspomena za vjenčanja, rođendane i sve vrste proslava.
@@ -394,7 +394,7 @@ export default function LandingPage() {
 
         <div className="mx-auto mt-12 max-w-5xl border-t border-gold-400/15 pt-6">
           <p className="text-center text-xs text-ink-700/70">
-            © {new Date().getFullYear()} QR Uspomene. Sva prava pridržana.
+            © {new Date().getFullYear()} EventPix. Sva prava pridržana.
           </p>
         </div>
       </footer>
