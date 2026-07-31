@@ -51,7 +51,7 @@ export default function LoginPage() {
                 required
                 autoComplete="email"
                 className="input-field"
-                placeholder="vas@email.com"
+                placeholder="tina@gmail.com"
               />
             </div>
             <div>

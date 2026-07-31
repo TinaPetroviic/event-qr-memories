@@ -32,7 +32,7 @@ export default function SignupPage() {
               događaj.&rdquo;
             </p>
             <p className="divider-flourish mt-6 text-xs font-medium uppercase tracking-[0.3em] text-cream-100/80">
-              <span>Kreirajte svoj album</span>
+              <span>Kreirajte svoju galeriju</span>
             </p>
           </div>
         </div>
@@ -46,8 +46,8 @@ export default function SignupPage() {
           <div className="mb-8 text-center lg:text-left">
             <h1 className="font-display text-3xl text-ink-900">Kreirajte račun</h1>
             <p className="mt-2 text-sm text-ink-700">
-              Napravite nezaboravnu digitalnu uspomenu s fotografijama vaših gostiju, za bilo koju vrstu
-              događaja.
+              Napravite digitalnu galeriju uspomena s fotografijama, video zapisima i glasovnim porukama
+              vaših gostiju - za bilo koju vrstu događaja.
             </p>
           </div>
 
@@ -74,7 +74,7 @@ export default function SignupPage() {
                   required
                   autoComplete="email"
                   className="input-field"
-                  placeholder="vas@email.com"
+                  placeholder="tina@gmail.com"
                 />
               </div>
               <div>
