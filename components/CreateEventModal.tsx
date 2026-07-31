@@ -66,48 +66,61 @@ export function CreateEventModal() {
             <h2 className="mt-3 font-display text-2xl text-ink-900">Kreirajte novi događaj</h2>
             <p className="mt-1 text-sm text-ink-700">Unesite osnovne podatke o vašem događaju.</p>
 
-            <form action={formAction} className="mt-6 space-y-8">
+            <form action={formAction} className="mt-6 space-y-6">
               {/* Section A: basic event details */}
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] sm:gap-6">
-                <div className="flex gap-3 sm:flex-col sm:gap-2">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
-                    <ClipboardIcon className="h-5 w-5" aria-hidden />
+              <div>
+                <div className="flex items-center gap-3">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
+                    <ClipboardIcon className="h-4.5 w-4.5" aria-hidden />
                   </span>
                   <div>
                     <h3 className="font-display text-lg text-ink-900">Osnovni podaci o događaju</h3>
-                    <p className="mt-0.5 text-xs text-ink-700/70">
-                      Vrsta, naziv, datum i link koji dijelite s gostima.
-                    </p>
+                    <p className="text-xs text-ink-700/70">Vrsta, naziv, datum i link koji dijelite s gostima.</p>
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  <div>
-                    <label htmlFor="eventType" className="mb-1 block text-sm font-medium text-ink-700">
-                      Vrsta događaja
-                    </label>
-                    <select
-                      id="eventType"
-                      name="eventType"
-                      required
-                      value={eventType}
-                      onChange={(e) => setEventType(e.target.value as EventTypeKey)}
-                      className={`input-field px-3 py-2 ${eventType === "" ? "text-ink-700/50" : "text-ink-900"}`}
-                    >
-                      <option value="" disabled className="text-ink-700">
-                        Odaberite vrstu događaja
-                      </option>
-                      {/* Native <option> elements can only render text, not
-                          SVG icons, so this dropdown intentionally shows the
-                          label only - the icon shows up everywhere else this
-                          event type is displayed (dashboard cards, admin
-                          panel header). */}
-                      {EVENT_TYPE_KEYS.map((key) => (
-                        <option key={key} value={key}>
-                          {EVENT_TYPES[key].label}
+                <div className="mt-4 space-y-4">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="eventType" className="mb-1 block text-sm font-medium text-ink-700">
+                        Vrsta događaja
+                      </label>
+                      <select
+                        id="eventType"
+                        name="eventType"
+                        required
+                        value={eventType}
+                        onChange={(e) => setEventType(e.target.value as EventTypeKey)}
+                        className={`input-field px-3 py-2 ${eventType === "" ? "text-ink-700/50" : "text-ink-900"}`}
+                      >
+                        <option value="" disabled className="text-ink-700">
+                          Odaberite vrstu događaja
                         </option>
-                      ))}
-                    </select>
+                        {/* Native <option> elements can only render text, not
+                            SVG icons, so this dropdown intentionally shows the
+                            label only - the icon shows up everywhere else this
+                            event type is displayed (dashboard cards, admin
+                            panel header). */}
+                        {EVENT_TYPE_KEYS.map((key) => (
+                          <option key={key} value={key}>
+                            {EVENT_TYPES[key].label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label htmlFor="eventDate" className="mb-1 block text-sm font-medium text-ink-700">
+                        Datum događaja
+                      </label>
+                      <input
+                        id="eventDate"
+                        name="eventDate"
+                        type="date"
+                        required
+                        className="input-field px-3 py-2"
+                      />
+                    </div>
                   </div>
 
                   <div>
@@ -126,19 +139,6 @@ export function CreateEventModal() {
                     <p className="mt-1.5 text-xs text-ink-700/60">
                       Imena, rođendan, godišnjica tvrtke – što god slavite.
                     </p>
-                  </div>
-
-                  <div>
-                    <label htmlFor="eventDate" className="mb-1 block text-sm font-medium text-ink-700">
-                      Datum događaja
-                    </label>
-                    <input
-                      id="eventDate"
-                      name="eventDate"
-                      type="date"
-                      required
-                      className="input-field px-3 py-2"
-                    />
                   </div>
 
                   <div>
@@ -167,20 +167,20 @@ export function CreateEventModal() {
               <div className="border-t border-gold-400/15" />
 
               {/* Section B: optional cover image */}
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] sm:gap-6">
-                <div className="flex gap-3 sm:flex-col sm:gap-2">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
-                    <ImageIcon className="h-5 w-5" aria-hidden />
+              <div>
+                <div className="flex items-center gap-3">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
+                    <ImageIcon className="h-4.5 w-4.5" aria-hidden />
                   </span>
                   <div>
                     <h3 className="font-display text-lg text-ink-900">Naslovna fotografija</h3>
-                    <p className="mt-0.5 text-xs text-ink-700/70">
+                    <p className="text-xs text-ink-700/70">
                       Opcionalno. Prikazuje se gostima i na vašoj nadzornoj ploči.
                     </p>
                   </div>
                 </div>
 
-                <div>
+                <div className="mt-4">
                   <input
                     ref={fileInputRef}
                     id="coverImage"
