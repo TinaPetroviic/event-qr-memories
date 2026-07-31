@@ -2,6 +2,7 @@ import Link from "next/link";
 import { DecorativeGlow } from "@/components/DecorativeGlow";
 import { HeroIllustration } from "@/components/HeroIllustration";
 import { Reveal } from "@/components/Reveal";
+import { SiteHeader } from "@/components/SiteHeader";
 import { CameraIcon, CheckIcon, Icon, MicrophoneIcon, PlusIcon, type IconName } from "@/components/icons";
 
 const CATEGORIES: { label: string; icon: IconName }[] = [
@@ -80,15 +81,16 @@ const FAQS = [
 export default function LandingPage() {
   return (
     <main className="flex flex-1 flex-col overflow-x-clip">
+      <SiteHeader />
       <section className="relative overflow-hidden bg-gradient-to-b from-cream-100 via-cream-50 to-cream-50 px-4 py-20 sm:py-28">
         <DecorativeGlow />
         <div className="relative mx-auto grid max-w-6xl gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-8">
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <p
-              className="divider-flourish animate-fade-up text-xs font-medium uppercase tracking-[0.3em] text-gold-600 lg:justify-start"
+              className="animate-fade-up text-xs font-medium uppercase tracking-[0.3em] text-gold-600"
               style={{ animationDelay: "0ms" }}
             >
-              <span>Digitalna galerija uspomena za svaki događaj</span>
+              Digitalna galerija uspomena za svaki događaj
             </p>
             <h1
               className="animate-fade-up mt-6 max-w-xl font-display text-5xl leading-tight text-ink-900 sm:text-6xl"
@@ -121,7 +123,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="border-y border-gold-400/15 bg-cream-50 px-4 py-10">
+      <section className="bg-cream-50 px-4 py-14">
         <div className="mx-auto max-w-5xl">
           <Reveal>
             <p className="text-center text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
@@ -146,11 +148,11 @@ export default function LandingPage() {
       </section>
 
       <section id="kako-funkcionira" className="mx-auto w-full max-w-5xl scroll-mt-8 px-4 py-20">
-        <Reveal>
-          <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
-            <span>Jednostavno u tri koraka</span>
+        <Reveal className="text-center">
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
+            Jednostavno u tri koraka
           </p>
-          <h2 className="mt-4 text-center font-display text-3xl text-ink-900">Kako funkcionira?</h2>
+          <h2 className="mt-4 font-display text-3xl text-ink-900">Kako funkcionira?</h2>
         </Reveal>
         <div className="relative mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3">
           <div
@@ -176,8 +178,8 @@ export default function LandingPage() {
       <section id="znacajke" className="scroll-mt-8 bg-cream-100 px-4 py-20">
         <div className="mx-auto max-w-5xl">
           <Reveal className="text-center">
-            <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
-              <span>Sve na jednom mjestu</span>
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
+              Sve na jednom mjestu
             </p>
             <h2 className="mt-4 font-display text-3xl text-ink-900">
               Sve što vam je potrebno za bilo koju proslavu
@@ -217,8 +219,8 @@ export default function LandingPage() {
         <DecorativeGlow tone="dark" />
         <div className="relative mx-auto grid max-w-5xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <Reveal animation="slide-in-left" className="text-center lg:text-left">
-            <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-300">
-              <span>Nula trenja za goste</span>
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-300">
+              Nula trenja za goste
             </p>
             <h2 className="mt-4 font-display text-3xl leading-tight sm:text-4xl">
               Bez aplikacije. Bez registracije. Samo skenirajte i pošaljite.
@@ -290,11 +292,11 @@ export default function LandingPage() {
       </section>
 
       <section id="faq" className="mx-auto w-full max-w-3xl scroll-mt-8 px-4 py-20">
-        <Reveal>
-          <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
-            <span>Česta pitanja</span>
+        <Reveal className="text-center">
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
+            Česta pitanja
           </p>
-          <h2 className="mt-4 text-center font-display text-3xl text-ink-900">Što je EventPix?</h2>
+          <h2 className="mt-4 font-display text-3xl text-ink-900">Što je EventPix?</h2>
           <p className="mx-auto mt-4 max-w-xl text-center text-ink-700">
             EventPix je jednostavan način da sakupite fotografije, video snimke i glasovne poruke
             gostiju s vašeg vjenčanja, rođendana, godišnjice ili bilo koje druge proslave - sve na jednom
@@ -325,8 +327,8 @@ export default function LandingPage() {
 
       <section className="relative overflow-hidden px-4 py-20 text-center">
         <Reveal animation="scale-in" className="mx-auto max-w-2xl rounded-[2.5rem] border border-gold-400/30 bg-gradient-to-br from-white/80 to-cream-100/80 px-6 py-14 shadow-lg shadow-gold-600/10 sm:px-12">
-          <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
-            <span>Počnite danas</span>
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
+            Počnite danas
           </p>
           <h2 className="mt-4 font-display text-3xl text-ink-900">
             Spremni da počnete sakupljati uspomene?
@@ -346,9 +348,7 @@ export default function LandingPage() {
       <footer className="border-t border-gold-400/20 bg-cream-100/60 px-4 pb-10 pt-16 text-sm text-ink-700">
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-10 sm:grid-cols-[1.4fr_1fr_1fr] sm:gap-8">
           <div className="col-span-2 text-center sm:col-span-1 sm:text-left">
-            <p className="divider-flourish justify-center font-display text-lg text-ink-900 sm:justify-start">
-              <span>EventPix</span>
-            </p>
+            <p className="font-display text-lg text-ink-900">EventPix</p>
             <p className="mx-auto mt-3 max-w-[26ch] text-ink-700/80 sm:mx-0">
               Digitalna galerija uspomena za vjenčanja, rođendane i sve vrste proslava.
             </p>
@@ -407,7 +407,7 @@ export default function LandingPage() {
           </nav>
         </div>
 
-        <div className="mx-auto mt-12 max-w-5xl border-t border-gold-400/15 pt-6">
+        <div className="mx-auto mt-12 max-w-5xl">
           <p className="text-center text-xs text-ink-700/70">
             © {new Date().getFullYear()} EventPix. Sva prava pridržana.
           </p>
