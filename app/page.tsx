@@ -241,18 +241,40 @@ export default function LandingPage() {
           <div className="flex justify-center">
             <div
               aria-hidden
-              className="flex h-[300px] w-[160px] flex-col rounded-[2rem] border-4 border-white/15 bg-white/5 p-2.5 shadow-2xl shadow-black/30 sm:h-[340px] sm:w-[180px]"
+              className="relative flex h-[320px] w-[170px] flex-col rounded-[2.25rem] border-4 border-white/15 bg-gradient-to-b from-white/10 to-white/[0.02] p-2 shadow-2xl shadow-black/40 sm:h-[360px] sm:w-[190px]"
             >
-              <div className="mx-auto mb-2 h-1.5 w-10 shrink-0 rounded-full bg-white/25" />
-              <div className="flex flex-1 flex-col items-center justify-center gap-3 rounded-[1.5rem] bg-gradient-to-b from-white/10 to-white/[0.03] px-3 text-center">
-                <span className="text-3xl">📷</span>
-                <span className="rounded-full bg-gold-500 px-4 py-2 text-xs font-medium text-white shadow-md shadow-black/20">
-                  Dodaj fotografiju
-                </span>
-                <span className="text-[10px] uppercase tracking-widest text-white/40">ili</span>
-                <span className="rounded-full border border-white/25 px-4 py-1.5 text-xs text-white/70">
-                  🎙️ Snimi poruku
-                </span>
+              {/* Side buttons, for a bit of phone-hardware realism. */}
+              <span className="absolute -right-[3px] top-16 h-9 w-[3px] rounded-full bg-white/15" />
+              <span className="absolute -left-[3px] top-12 h-5 w-[3px] rounded-full bg-white/15" />
+              <span className="absolute -left-[3px] top-20 h-8 w-[3px] rounded-full bg-white/15" />
+
+              <div className="mx-auto mb-1.5 h-1.5 w-10 shrink-0 rounded-full bg-white/25" />
+
+              <div className="flex flex-1 flex-col overflow-hidden rounded-[1.75rem] bg-gradient-to-b from-white/[0.08] to-white/[0.02]">
+                {/* Browser address bar - a real webpage, not an installed app. */}
+                <div className="flex items-center gap-1.5 border-b border-white/10 px-2.5 py-2">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-white/25" />
+                  <span className="flex-1 truncate rounded-full bg-white/10 px-2 py-1 text-center text-[7px] tracking-wide text-white/50">
+                    qr-uspomene.app/e/nina-i-marko
+                  </span>
+                </div>
+
+                <div className="flex flex-1 flex-col items-center justify-center gap-2.5 px-3 text-center">
+                  <span className="text-3xl">📷</span>
+                  <span className="rounded-full bg-gold-500 px-4 py-2 text-xs font-medium text-white shadow-md shadow-black/20">
+                    Dodaj fotografiju
+                  </span>
+                  <span className="text-[10px] uppercase tracking-widest text-white/40">ili</span>
+                  <span className="rounded-full border border-white/25 px-4 py-1.5 text-xs text-white/70">
+                    🎙️ Snimi poruku
+                  </span>
+
+                  <div className="mt-2 flex gap-1.5" aria-hidden>
+                    {["bg-gold-400/50", "bg-blush-300/50", "bg-white/25", "bg-gold-300/40"].map((tone, i) => (
+                      <span key={i} className={`h-6 w-6 rounded-md ${tone}`} />
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

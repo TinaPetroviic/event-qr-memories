@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { createEvent, type CreateEventState } from "@/app/dashboard/actions";
 import { suggestEventSlug } from "@/lib/utils/slug";
 import { EVENT_TYPE_KEYS, EVENT_TYPES, type EventTypeKey } from "@/lib/eventTypes";
@@ -48,12 +49,13 @@ export function CreateEventModal() {
         <span aria-hidden>+</span> Novi događaj
       </button>
 
-      {open && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-ink-900/80 px-4 py-8 backdrop-blur-md animate-fade-up overflow-y-auto"
-          style={{ animationDuration: "0.2s" }}
-          onClick={closeModal}
-        >
+      {open &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-ink-900/80 px-4 py-8 backdrop-blur-md animate-fade-up overflow-y-auto"
+            style={{ animationDuration: "0.2s" }}
+            onClick={closeModal}
+          >
           <div
             className="my-auto w-full max-w-2xl rounded-3xl border border-gold-400/20 bg-cream-50 p-6 shadow-2xl sm:p-8"
             onClick={(e) => e.stopPropagation()}
@@ -239,8 +241,9 @@ export function CreateEventModal() {
               </div>
             </form>
           </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </>
   );
 }
