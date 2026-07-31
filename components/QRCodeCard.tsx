@@ -5,6 +5,7 @@ import QRCode from "qrcode";
 import { QR_DESIGNS, type QrDesignKey } from "@/lib/qrDesigns";
 import { drawQrMotif } from "@/lib/qrMotifs";
 import { QrMotifIcon } from "@/components/QrMotifIcon";
+import { LinkIcon } from "@/components/icons";
 
 /**
  * Per-theme corner-bracket weight/cap, giving each theme one small
@@ -304,7 +305,7 @@ export function QRCodeCard({
 
   return (
     <div
-      className="relative flex h-full flex-col overflow-hidden rounded-3xl p-6 text-center shadow-md transition-colors duration-300 sm:p-8"
+      className="relative flex h-full flex-col overflow-hidden rounded-3xl p-6 text-center shadow-lg shadow-black/5 transition-colors duration-300 sm:p-8"
       style={{ background: theme.background }}
     >
       {/* Barely-there radial vignette for a subtle premium-paper feel - never
@@ -373,7 +374,7 @@ export function QRCodeCard({
         <div className="mt-6 flex justify-center">
           <div className="relative inline-block p-2.5">
             <CornerBrackets color={theme.accentColor} weight={bracketSpecFor(theme.key).screenBorder} />
-            <div className="rounded-xl p-4 shadow-inner" style={{ background: theme.qr.light }}>
+            <div className="rounded-xl p-4 shadow-md shadow-black/10" style={{ background: theme.qr.light }}>
               <canvas ref={canvasRef} />
             </div>
           </div>
@@ -388,6 +389,11 @@ export function QRCodeCard({
             className="flex items-center gap-2 rounded-xl border px-3 py-2 text-left"
             style={{ borderColor: theme.border, background: theme.qr.light }}
           >
+            <LinkIcon
+              className="h-4 w-4 shrink-0"
+              style={{ color: theme.accentColor, opacity: 0.8 }}
+              aria-hidden
+            />
             <span className="flex-1 truncate text-sm" style={{ color: theme.textColor, opacity: 0.85 }}>
               {guestUrl}
             </span>

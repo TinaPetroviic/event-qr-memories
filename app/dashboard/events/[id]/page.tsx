@@ -9,7 +9,14 @@ import { DeleteEventButton } from "@/components/DeleteEventButton";
 import { AdminPanelTabs } from "@/components/AdminPanelTabs";
 import { formatDateShort } from "@/lib/utils/date";
 import { EVENT_TYPES } from "@/lib/eventTypes";
-import { CalendarIcon, CameraIcon, Icon, MicrophoneIcon, VideoIcon } from "@/components/icons";
+import {
+  CalendarIcon,
+  CameraIcon,
+  Icon,
+  LinkIcon,
+  MicrophoneIcon,
+  VideoIcon,
+} from "@/components/icons";
 
 export default async function EventAdminPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -55,19 +62,33 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
     : null;
 
   const eventTypeInfo = EVENT_TYPES[event.event_type];
+  const guestPath = `/e/${event.slug}`;
 
   const summaryPanel = (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      {/* items-start (rather than the CSS Grid default of "stretch") lets each
+          card size to its own content, so the shorter details card never
+          gets pulled down to match the taller QR card's height. */}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:items-start">
         <div className="card-surface overflow-hidden lg:col-span-2">
-          {coverUrl && (
+          {coverUrl ? (
             // Owner-chosen cover image, dimensions unknown ahead of time.
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={coverUrl} alt="" aria-hidden className="h-40 w-full object-cover sm:h-52" />
+            <img src={coverUrl} alt="" aria-hidden className="h-40 w-full object-cover sm:h-48" />
+          ) : (
+            // No cover uploaded - a soft themed placeholder (built from the
+            // event's own type, not fabricated data) so the card still reads
+            // as a considered hero rather than an empty gap.
+            <div
+              aria-hidden
+              className="flex h-40 w-full items-center justify-center bg-gradient-to-br from-gold-200/70 via-cream-100 to-blush-100 sm:h-48"
+            >
+              <Icon name={eventTypeInfo.icon} className="h-12 w-12 text-gold-500/70" aria-hidden />
+            </div>
           )}
-          <div className="p-6">
+          <div className="p-6 sm:p-7">
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">Detalji događaja</p>
-            <h3 className="mt-2 font-display text-2xl text-ink-900">{event.title}</h3>
+            <h3 className="mt-2 font-display text-2xl text-ink-900 sm:text-3xl">{event.title}</h3>
             <div className="mt-3 flex flex-wrap gap-2 text-sm">
               <span className="flex items-center gap-1.5 rounded-full bg-cream-100 px-3 py-1 text-ink-700">
                 <CalendarIcon className="h-4 w-4" aria-hidden /> {formatDateShort(event.event_date)}
@@ -83,6 +104,22 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
                 {event.gallery_public ? "Javna galerija" : "Privatna galerija"}
               </span>
             </div>
+
+            <div className="my-6 h-px w-full bg-gradient-to-r from-transparent via-gold-400/25 to-transparent" />
+
+            <p className="text-xs font-medium uppercase tracking-[0.25em] text-gold-600">Stranica za goste</p>
+            <div className="mt-2.5 flex items-center gap-2.5 rounded-xl border border-gold-400/25 bg-cream-50 px-4 py-3">
+              <LinkIcon className="h-4 w-4 shrink-0 text-gold-500" aria-hidden />
+              <span className="flex-1 truncate text-sm text-ink-700">{guestPath}</span>
+              <Link
+                href={guestPath}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 text-sm font-medium text-gold-600 hover:underline"
+              >
+                Otvori
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -95,27 +132,36 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
       </div>
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <div className="card-surface animate-scale-in p-5 text-center" style={{ animationDelay: "0ms" }}>
-          <p className="font-display text-3xl text-ink-900">{photos.length}</p>
-          <p className="mt-1 text-xs uppercase tracking-wide text-ink-700/70">Ukupno uspomena</p>
+        <div
+          className="card-surface animate-scale-in flex flex-col items-center gap-1 bg-gradient-to-br from-gold-400 to-gold-600 p-5 text-center text-white shadow-md shadow-gold-600/25"
+          style={{ animationDelay: "0ms" }}
+        >
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20">
+            <Icon name="sparkle" className="h-4 w-4" aria-hidden />
+          </span>
+          <p className="mt-1 font-display text-3xl">{photos.length}</p>
+          <p className="text-xs uppercase tracking-wide text-white/85">Ukupno uspomena</p>
         </div>
-        <div className="card-surface animate-scale-in p-5 text-center" style={{ animationDelay: "70ms" }}>
-          <p className="font-display text-3xl text-ink-900">{photoCount}</p>
-          <p className="mt-1 flex items-center justify-center gap-1 text-xs uppercase tracking-wide text-ink-700/70">
-            <CameraIcon className="h-3.5 w-3.5" aria-hidden /> Fotografije
-          </p>
+        <div className="card-surface animate-scale-in flex flex-col items-center gap-1 p-5 text-center" style={{ animationDelay: "70ms" }}>
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold-100 text-gold-600">
+            <CameraIcon className="h-4 w-4" aria-hidden />
+          </span>
+          <p className="mt-1 font-display text-3xl text-ink-900">{photoCount}</p>
+          <p className="text-xs uppercase tracking-wide text-ink-700/70">Fotografije</p>
         </div>
-        <div className="card-surface animate-scale-in p-5 text-center" style={{ animationDelay: "140ms" }}>
-          <p className="font-display text-3xl text-ink-900">{videoCount}</p>
-          <p className="mt-1 flex items-center justify-center gap-1 text-xs uppercase tracking-wide text-ink-700/70">
-            <VideoIcon className="h-3.5 w-3.5" aria-hidden /> Videa
-          </p>
+        <div className="card-surface animate-scale-in flex flex-col items-center gap-1 p-5 text-center" style={{ animationDelay: "140ms" }}>
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blush-100 text-blush-600">
+            <VideoIcon className="h-4 w-4" aria-hidden />
+          </span>
+          <p className="mt-1 font-display text-3xl text-ink-900">{videoCount}</p>
+          <p className="text-xs uppercase tracking-wide text-ink-700/70">Videa</p>
         </div>
-        <div className="card-surface animate-scale-in p-5 text-center" style={{ animationDelay: "210ms" }}>
-          <p className="font-display text-3xl text-ink-900">{audioCount}</p>
-          <p className="mt-1 flex items-center justify-center gap-1 text-xs uppercase tracking-wide text-ink-700/70">
-            <MicrophoneIcon className="h-3.5 w-3.5" aria-hidden /> Glasovne poruke
-          </p>
+        <div className="card-surface animate-scale-in flex flex-col items-center gap-1 p-5 text-center" style={{ animationDelay: "210ms" }}>
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-cream-200 text-ink-700">
+            <MicrophoneIcon className="h-4 w-4" aria-hidden />
+          </span>
+          <p className="mt-1 font-display text-3xl text-ink-900">{audioCount}</p>
+          <p className="text-xs uppercase tracking-wide text-ink-700/70">Glasovne poruke</p>
         </div>
       </div>
     </div>
