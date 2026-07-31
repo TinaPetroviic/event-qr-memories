@@ -62,9 +62,7 @@ export function CreateEventModal() {
             style={{ animationDuration: "0.3s" }}
             onClick={(e) => e.stopPropagation()}
           >
-            <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
-              <span>Novi početak</span>
-            </p>
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">Novi početak</p>
             <h2 className="mt-3 font-display text-2xl text-ink-900">Kreirajte novi događaj</h2>
             <p className="mt-1 text-sm text-ink-700">Unesite osnovne podatke o vašem događaju.</p>
 
@@ -94,9 +92,9 @@ export function CreateEventModal() {
                       required
                       value={eventType}
                       onChange={(e) => setEventType(e.target.value as EventTypeKey)}
-                      className="input-field px-3 py-2"
+                      className={`input-field px-3 py-2 ${eventType === "" ? "text-ink-700/50" : "text-ink-900"}`}
                     >
-                      <option value="" disabled>
+                      <option value="" disabled className="text-ink-700">
                         Odaberite vrstu događaja
                       </option>
                       {/* Native <option> elements can only render text, not
