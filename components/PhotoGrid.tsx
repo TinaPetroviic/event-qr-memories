@@ -165,7 +165,16 @@ export function PhotoGrid({
                 setLightboxIndex(index);
               }
             }}
-            className="group relative aspect-square cursor-pointer overflow-hidden rounded-2xl border border-gold-400/20 bg-cream-100 shadow-sm transition hover:shadow-lg hover:shadow-gold-600/10"
+            // animate-scale-in plays once per DOM node: on first paint it
+            // staggers across the initial batch (capped so a big gallery
+            // doesn't crawl in), and because a realtime INSERT prepends a
+            // genuinely new item (see the postgres_changes handler above),
+            // React mounts a fresh node for it too - so new memories dropping
+            // into the grid live get the same gentle "settle in" without any
+            // extra wiring. Existing tiles that merely shift position keep
+            // their already-mounted node and don't replay it.
+            className="animate-scale-in group relative aspect-square cursor-pointer overflow-hidden rounded-2xl border border-gold-400/20 bg-cream-100 shadow-sm transition hover:shadow-lg hover:shadow-gold-600/10"
+            style={{ animationDelay: `${Math.min(index * 30, 240)}ms` }}
           >
             {photo.mediaType === "photo" && (
               // Guest-uploaded content, dimensions unknown ahead of time.

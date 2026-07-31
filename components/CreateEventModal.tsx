@@ -58,7 +58,8 @@ export function CreateEventModal() {
             onClick={closeModal}
           >
           <div
-            className="my-auto w-full max-w-2xl rounded-3xl border border-gold-400/20 bg-cream-50 p-6 shadow-2xl sm:p-8"
+            className="animate-scale-in my-auto w-full max-w-2xl rounded-3xl border border-gold-400/20 bg-cream-50 p-6 shadow-2xl sm:p-8"
+            style={{ animationDuration: "0.3s" }}
             onClick={(e) => e.stopPropagation()}
           >
             <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">

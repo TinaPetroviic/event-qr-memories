@@ -95,23 +95,23 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
       </div>
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <div className="card-surface p-5 text-center">
+        <div className="card-surface animate-scale-in p-5 text-center" style={{ animationDelay: "0ms" }}>
           <p className="font-display text-3xl text-ink-900">{photos.length}</p>
           <p className="mt-1 text-xs uppercase tracking-wide text-ink-700/70">Ukupno uspomena</p>
         </div>
-        <div className="card-surface p-5 text-center">
+        <div className="card-surface animate-scale-in p-5 text-center" style={{ animationDelay: "70ms" }}>
           <p className="font-display text-3xl text-ink-900">{photoCount}</p>
           <p className="mt-1 flex items-center justify-center gap-1 text-xs uppercase tracking-wide text-ink-700/70">
             <CameraIcon className="h-3.5 w-3.5" aria-hidden /> Fotografije
           </p>
         </div>
-        <div className="card-surface p-5 text-center">
+        <div className="card-surface animate-scale-in p-5 text-center" style={{ animationDelay: "140ms" }}>
           <p className="font-display text-3xl text-ink-900">{videoCount}</p>
           <p className="mt-1 flex items-center justify-center gap-1 text-xs uppercase tracking-wide text-ink-700/70">
             <VideoIcon className="h-3.5 w-3.5" aria-hidden /> Videa
           </p>
         </div>
-        <div className="card-surface p-5 text-center">
+        <div className="card-surface animate-scale-in p-5 text-center" style={{ animationDelay: "210ms" }}>
           <p className="font-display text-3xl text-ink-900">{audioCount}</p>
           <p className="mt-1 flex items-center justify-center gap-1 text-xs uppercase tracking-wide text-ink-700/70">
             <MicrophoneIcon className="h-3.5 w-3.5" aria-hidden /> Glasovne poruke

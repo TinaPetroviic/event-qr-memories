@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { DecorativeGlow } from "@/components/DecorativeGlow";
 import { HeroIllustration } from "@/components/HeroIllustration";
+import { Reveal } from "@/components/Reveal";
 import { CameraIcon, CheckIcon, Icon, MicrophoneIcon, PlusIcon, type IconName } from "@/components/icons";
 
 const CATEGORIES: { label: string; icon: IconName }[] = [
@@ -91,20 +92,20 @@ export default function LandingPage() {
             </p>
             <h1
               className="animate-fade-up mt-6 max-w-xl font-display text-5xl leading-tight text-ink-900 sm:text-6xl"
-              style={{ animationDelay: "80ms" }}
+              style={{ animationDelay: "120ms" }}
             >
               EventPix
             </h1>
             <p
               className="animate-fade-up mt-6 max-w-xl text-lg text-ink-700"
-              style={{ animationDelay: "160ms" }}
+              style={{ animationDelay: "260ms" }}
             >
               Neka vaši gosti podijele svoje najljepše trenutke s vašeg vjenčanja, rođendana, godišnjice
               tvrtke ili bilo kojeg drugog događaja - jednim skeniranjem QR koda, bez preuzimanja aplikacije.
             </p>
             <div
               className="animate-fade-up mt-10 flex flex-col gap-4 sm:flex-row"
-              style={{ animationDelay: "240ms" }}
+              style={{ animationDelay: "400ms" }}
             >
               <Link href="/signup" className="btn-primary px-8 py-3.5">
                 Kreirajte svoj događaj
@@ -114,7 +115,7 @@ export default function LandingPage() {
               </Link>
             </div>
           </div>
-          <div className="animate-fade-up" style={{ animationDelay: "200ms" }}>
+          <div className="animate-scale-in" style={{ animationDelay: "320ms" }}>
             <HeroIllustration />
           </div>
         </div>
@@ -122,38 +123,44 @@ export default function LandingPage() {
 
       <section className="border-y border-gold-400/15 bg-cream-50 px-4 py-10">
         <div className="mx-auto max-w-5xl">
-          <p className="text-center text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
-            Za svaku vrstu proslave
-          </p>
+          <Reveal>
+            <p className="text-center text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
+              Za svaku vrstu proslave
+            </p>
+          </Reveal>
           <div className="mt-6 flex gap-3 overflow-x-auto pb-2 sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0">
-            {CATEGORIES.map((category) => (
-              <div
+            {CATEGORIES.map((category, index) => (
+              <Reveal
                 key={category.label}
+                delay={Math.min(index * 60, 300)}
                 className="card-surface-interactive flex shrink-0 items-center gap-2.5 px-5 py-3 sm:shrink"
               >
                 <Icon name={category.icon} className="h-5 w-5 shrink-0 text-gold-600" aria-hidden />
                 <span className="whitespace-nowrap text-sm font-medium text-ink-900">
                   {category.label}
                 </span>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       <section id="kako-funkcionira" className="mx-auto w-full max-w-5xl scroll-mt-8 px-4 py-20">
-        <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
-          <span>Jednostavno u tri koraka</span>
-        </p>
-        <h2 className="mt-4 text-center font-display text-3xl text-ink-900">Kako funkcionira?</h2>
+        <Reveal>
+          <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
+            <span>Jednostavno u tri koraka</span>
+          </p>
+          <h2 className="mt-4 text-center font-display text-3xl text-ink-900">Kako funkcionira?</h2>
+        </Reveal>
         <div className="relative mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3">
           <div
             aria-hidden
             className="absolute left-0 right-0 top-9 hidden h-px bg-gradient-to-r from-transparent via-gold-400/50 to-transparent sm:block"
           />
-          {STEPS.map((step) => (
-            <div
+          {STEPS.map((step, index) => (
+            <Reveal
               key={step.title}
+              delay={index * 130}
               className="card-surface-interactive relative flex flex-col items-center p-6 text-center"
             >
               <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-gold-400 to-gold-600 shadow-md shadow-gold-600/30">
@@ -161,25 +168,27 @@ export default function LandingPage() {
               </div>
               <h3 className="font-display text-xl text-ink-900">{step.title}</h3>
               <p className="mt-2 text-sm text-ink-700">{step.text}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       <section id="znacajke" className="scroll-mt-8 bg-cream-100 px-4 py-20">
         <div className="mx-auto max-w-5xl">
-          <div className="text-center">
+          <Reveal className="text-center">
             <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
               <span>Sve na jednom mjestu</span>
             </p>
             <h2 className="mt-4 font-display text-3xl text-ink-900">
               Sve što vam je potrebno za bilo koju proslavu
             </h2>
-          </div>
+          </Reveal>
           <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-5 sm:grid-cols-2">
-            {FEATURES.map((feature) => (
-              <div
+            {FEATURES.map((feature, index) => (
+              <Reveal
                 key={feature.title}
+                animation="scale-in"
+                delay={Math.min(index * 90, 270)}
                 className="flex items-start gap-4 rounded-2xl border border-gold-400/20 bg-white/60 p-5 shadow-sm shadow-gold-600/5"
               >
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cream-50 shadow-inner">
@@ -189,7 +198,7 @@ export default function LandingPage() {
                   <h3 className="font-display text-lg text-ink-900">{feature.title}</h3>
                   <p className="mt-1 text-sm text-ink-700">{feature.text}</p>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -207,7 +216,7 @@ export default function LandingPage() {
       <section className="relative overflow-hidden bg-ink-900 px-4 py-20 text-cream-50">
         <DecorativeGlow tone="dark" />
         <div className="relative mx-auto grid max-w-5xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
-          <div className="text-center lg:text-left">
+          <Reveal animation="slide-in-left" className="text-center lg:text-left">
             <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-300">
               <span>Nula trenja za goste</span>
             </p>
@@ -235,9 +244,9 @@ export default function LandingPage() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
 
-          <div className="flex justify-center">
+          <Reveal animation="slide-in-right" delay={120} className="flex justify-center">
             <div
               aria-hidden
               className="relative flex h-[320px] w-[170px] flex-col rounded-[2.25rem] border-4 border-white/15 bg-gradient-to-b from-white/10 to-white/[0.02] p-2 shadow-2xl shadow-black/40 sm:h-[360px] sm:w-[190px]"
@@ -276,42 +285,46 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section id="faq" className="mx-auto w-full max-w-3xl scroll-mt-8 px-4 py-20">
-        <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
-          <span>Česta pitanja</span>
-        </p>
-        <h2 className="mt-4 text-center font-display text-3xl text-ink-900">Što je EventPix?</h2>
-        <p className="mx-auto mt-4 max-w-xl text-center text-ink-700">
-          EventPix je jednostavan način da sakupite fotografije, video snimke i glasovne poruke
-          gostiju s vašeg vjenčanja, rođendana, godišnjice ili bilo koje druge proslave - sve na jednom
-          mjestu, bez potrebe da gosti instaliraju bilo šta.
-        </p>
+        <Reveal>
+          <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
+            <span>Česta pitanja</span>
+          </p>
+          <h2 className="mt-4 text-center font-display text-3xl text-ink-900">Što je EventPix?</h2>
+          <p className="mx-auto mt-4 max-w-xl text-center text-ink-700">
+            EventPix je jednostavan način da sakupite fotografije, video snimke i glasovne poruke
+            gostiju s vašeg vjenčanja, rođendana, godišnjice ili bilo koje druge proslave - sve na jednom
+            mjestu, bez potrebe da gosti instaliraju bilo šta.
+          </p>
+        </Reveal>
         <div className="mt-10 space-y-4">
-          {FAQS.map((faq) => (
-            <details key={faq.q} className="card-surface group px-6 py-4">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl font-display text-lg text-ink-900 outline-none transition-colors hover:text-gold-600 focus-visible:ring-2 focus-visible:ring-gold-400/50">
-                {faq.q}
-                <span
-                  aria-hidden
-                  className="ml-2 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-cream-100 text-gold-500 transition-transform duration-300 group-open:rotate-45"
-                >
-                  <PlusIcon className="h-4 w-4" />
-                </span>
-              </summary>
-              <p className="group-open:animate-fade-up mt-3 text-sm text-ink-700" style={{ animationDuration: "0.35s" }}>
-                {faq.a}
-              </p>
-            </details>
+          {FAQS.map((faq, index) => (
+            <Reveal key={faq.q} delay={Math.min(index * 70, 280)}>
+              <details className="card-surface group px-6 py-4">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl font-display text-lg text-ink-900 outline-none transition-colors hover:text-gold-600 focus-visible:ring-2 focus-visible:ring-gold-400/50">
+                  {faq.q}
+                  <span
+                    aria-hidden
+                    className="ml-2 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-cream-100 text-gold-500 transition-transform duration-300 group-open:rotate-45"
+                  >
+                    <PlusIcon className="h-4 w-4" />
+                  </span>
+                </summary>
+                <p className="group-open:animate-fade-up mt-3 text-sm text-ink-700" style={{ animationDuration: "0.35s" }}>
+                  {faq.a}
+                </p>
+              </details>
+            </Reveal>
           ))}
         </div>
       </section>
 
       <section className="relative overflow-hidden px-4 py-20 text-center">
-        <div className="mx-auto max-w-2xl rounded-[2.5rem] border border-gold-400/30 bg-gradient-to-br from-white/80 to-cream-100/80 px-6 py-14 shadow-lg shadow-gold-600/10 sm:px-12">
+        <Reveal animation="scale-in" className="mx-auto max-w-2xl rounded-[2.5rem] border border-gold-400/30 bg-gradient-to-br from-white/80 to-cream-100/80 px-6 py-14 shadow-lg shadow-gold-600/10 sm:px-12">
           <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
             <span>Počnite danas</span>
           </p>
@@ -327,7 +340,7 @@ export default function LandingPage() {
               Kreirajte besplatan račun
             </Link>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <footer className="border-t border-gold-400/20 bg-cream-100/60 px-4 pb-10 pt-16 text-sm text-ink-700">
