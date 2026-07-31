@@ -196,6 +196,15 @@ export default function LandingPage() {
         </div>
       </section>
 
+      <div aria-hidden className="w-full overflow-hidden bg-cream-100">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none" className="block h-14 w-full sm:h-20">
+          <path
+            d="M0,32 C240,90 480,90 720,50 C960,10 1200,10 1440,55 L1440,100 L0,100 Z"
+            fill="#2e2419"
+          />
+        </svg>
+      </div>
+
       <section className="relative overflow-hidden bg-ink-900 px-4 py-20 text-cream-50">
         <DecorativeGlow tone="dark" />
         <div className="relative mx-auto grid max-w-5xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
