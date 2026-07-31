@@ -1,11 +1,11 @@
 "use client";
 
-import { useActionState, useMemo, useRef, useState } from "react";
+import { useActionState, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { createEvent, type CreateEventState } from "@/app/dashboard/actions";
 import { suggestEventSlug } from "@/lib/utils/slug";
 import { EVENT_TYPE_KEYS, EVENT_TYPES, type EventTypeKey } from "@/lib/eventTypes";
-import { ClipboardIcon, ImageIcon, PlusIcon, UploadIcon } from "@/components/icons";
+import { ClipboardIcon, PlusIcon } from "@/components/icons";
 
 const initialState: CreateEventState = {};
 
@@ -15,32 +15,12 @@ export function CreateEventModal() {
   const [slugTouched, setSlugTouched] = useState(false);
   const [slug, setSlug] = useState("");
   const [eventType, setEventType] = useState<EventTypeKey | "">("");
-  const [coverPreview, setCoverPreview] = useState<string | null>(null);
-  const [coverFileName, setCoverFileName] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [state, formAction, pending] = useActionState(createEvent, initialState);
 
   const suggestedSlug = useMemo(() => suggestEventSlug(title), [title]);
   const effectiveSlug = slugTouched ? slug : suggestedSlug;
 
-  const handleCoverChange = (file: File | null) => {
-    if (coverPreview) URL.revokeObjectURL(coverPreview);
-    if (!file) {
-      setCoverPreview(null);
-      setCoverFileName(null);
-      return;
-    }
-    setCoverPreview(URL.createObjectURL(file));
-    setCoverFileName(file.name);
-  };
-
-  const clearCover = () => {
-    handleCoverChange(null);
-    if (fileInputRef.current) fileInputRef.current.value = "";
-  };
-
   const closeModal = () => {
-    clearCover();
     setOpen(false);
   };
 
@@ -173,76 +153,6 @@ export function CreateEventModal() {
                       <span className="text-ink-700">- svi posjetitelji linka mogu vidjeti sve fotografije</span>
                     </span>
                   </label>
-                </div>
-              </div>
-
-              <div className="border-t border-gold-400/15" />
-
-              {/* Section B: optional cover image */}
-              <div>
-                <div className="flex items-center gap-3">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
-                    <ImageIcon className="h-4.5 w-4.5" aria-hidden />
-                  </span>
-                  <div>
-                    <h3 className="font-display text-lg text-ink-900">Naslovna fotografija</h3>
-                    <p className="text-xs text-ink-700/70">
-                      Opcionalno. Prikazuje se gostima i na vašoj nadzornoj ploči.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-4">
-                  <input
-                    ref={fileInputRef}
-                    id="coverImage"
-                    name="coverImage"
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={(e) => handleCoverChange(e.target.files?.[0] ?? null)}
-                  />
-
-                  {coverPreview ? (
-                    <div className="card-surface relative overflow-hidden">
-                      {/* Preview of a couple's own chosen upload before submit. */}
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={coverPreview} alt="Pregled naslovne fotografije" className="h-40 w-full object-cover" />
-                      <div className="flex items-center justify-between gap-3 p-3">
-                        <p className="truncate text-xs text-ink-700">{coverFileName}</p>
-                        <div className="flex shrink-0 gap-2">
-                          <button
-                            type="button"
-                            onClick={() => fileInputRef.current?.click()}
-                            className="rounded-full border border-gold-400/40 px-3 py-1 text-xs font-medium text-ink-700 transition hover:bg-cream-100 active:scale-95"
-                          >
-                            Promijeni
-                          </button>
-                          <button
-                            type="button"
-                            onClick={clearCover}
-                            className="rounded-full border border-red-300 px-3 py-1 text-xs font-medium text-red-700 transition hover:bg-red-50 active:scale-95"
-                          >
-                            Ukloni
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => fileInputRef.current?.click()}
-                      className="flex w-full items-center gap-3 rounded-2xl border-2 border-dashed border-gold-400/40 bg-white/50 px-4 py-3 text-left transition hover:border-gold-500 hover:bg-cream-100 active:scale-[0.99]"
-                    >
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
-                        <UploadIcon className="h-5 w-5" aria-hidden />
-                      </span>
-                      <span>
-                        <span className="block text-sm font-medium text-ink-900">Dodirnite za učitavanje</span>
-                        <span className="block text-xs text-ink-700/60">JPG ili PNG, po želji</span>
-                      </span>
-                    </button>
-                  )}
                 </div>
               </div>
 
