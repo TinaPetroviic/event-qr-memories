@@ -16,12 +16,22 @@ export type QrDesign = {
   border: string;
   /** Primary text color (names, caption). */
   textColor: string;
-  /** Secondary/accent color (date, buttons, ornament). */
+  /** Secondary/accent color (date, buttons, ornament, corner brackets). */
   accentColor: string;
   /** Colors handed to the `qrcode` library - needs enough contrast to scan reliably. */
   qr: { dark: string; light: string };
   /** Small decorative motif rendered on the card. */
   motif: string;
+  /** Short uppercase eyebrow label shown above the title, e.g. "SKENIRAJTE I PODIJELITE". */
+  eyebrow: string;
+  /** Caption line rendered below the QR code. */
+  caption: string;
+  /** Whether the title/headline is rendered in italic (softer, script-like feel). */
+  headlineItalic: boolean;
+  /** Headline letter-spacing feel: "normal" (elegant serif) or "wide" (bold stacked uppercase). */
+  headlineStyle: "serif" | "stacked";
+  /** Frame treatment: a single thin hairline, or a double hairline (outer + inner with a gap). */
+  frameStyle: "single" | "double";
 };
 
 export const QR_DESIGNS: Record<QrDesignKey, QrDesign> = {
@@ -34,6 +44,11 @@ export const QR_DESIGNS: Record<QrDesignKey, QrDesign> = {
     accentColor: "#b8894a",
     qr: { dark: "#2e2419", light: "#fdfbf6" },
     motif: "✦",
+    eyebrow: "Skenirajte i podijelite uspomene",
+    caption: "Skenirajte i podijelite fotografije",
+    headlineItalic: false,
+    headlineStyle: "serif",
+    frameStyle: "double",
   },
   modern: {
     key: "modern",
@@ -41,9 +56,14 @@ export const QR_DESIGNS: Record<QrDesignKey, QrDesign> = {
     background: "#ffffff",
     border: "#1f1f1f",
     textColor: "#1a1a1a",
-    accentColor: "#3a3a3a",
+    accentColor: "#1a1a1a",
     qr: { dark: "#111111", light: "#ffffff" },
     motif: "—",
+    eyebrow: "Skenirajte i podijelite uspomene",
+    caption: "Skenirajte kod i podijelite trenutak",
+    headlineItalic: false,
+    headlineStyle: "stacked",
+    frameStyle: "single",
   },
   romantic: {
     key: "romantic",
@@ -54,6 +74,11 @@ export const QR_DESIGNS: Record<QrDesignKey, QrDesign> = {
     accentColor: "#b23b5a",
     qr: { dark: "#6b1f34", light: "#fdf2f4" },
     motif: "♥",
+    eyebrow: "Skenirajte i podijelite uspomene",
+    caption: "...i uživajte u čarobnim trenucima",
+    headlineItalic: true,
+    headlineStyle: "serif",
+    frameStyle: "single",
   },
   rustic: {
     key: "rustic",
@@ -64,6 +89,11 @@ export const QR_DESIGNS: Record<QrDesignKey, QrDesign> = {
     accentColor: "#6f4e2e",
     qr: { dark: "#3d2b18", light: "#f3ead6" },
     motif: "🌿",
+    eyebrow: "Skenirajte i podijelite uspomene",
+    caption: "Skenirajte i podijelite fotografije",
+    headlineItalic: false,
+    headlineStyle: "serif",
+    frameStyle: "double",
   },
 };
 
