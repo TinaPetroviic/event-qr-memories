@@ -79,7 +79,7 @@ export default function SignupPage() {
               </div>
               <div>
                 <label htmlFor="password" className="mb-1 block text-sm font-medium text-ink-700">
-                  Zaporka
+                  Lozinka
                 </label>
                 <input
                   id="password"
@@ -94,7 +94,7 @@ export default function SignupPage() {
               </div>
               <div>
                 <label htmlFor="confirmPassword" className="mb-1 block text-sm font-medium text-ink-700">
-                  Potvrdite zaporku
+                  Potvrdite lozinku
                 </label>
                 <input
                   id="confirmPassword"
@@ -104,7 +104,7 @@ export default function SignupPage() {
                   autoComplete="new-password"
                   minLength={6}
                   className="input-field"
-                  placeholder="Ponovite zaporku"
+                  placeholder="Ponovite lozinku"
                 />
               </div>
 

@@ -56,7 +56,7 @@ export default function LoginPage() {
             </div>
             <div>
               <label htmlFor="password" className="mb-1 block text-sm font-medium text-ink-700">
-                Zaporka
+                Lozinka
               </label>
               <input
                 id="password"

@@ -20,19 +20,19 @@ export default async function GuestEventPage({ params }: { params: Promise<{ slu
     : null;
 
   return (
-    <main className="relative flex flex-1 flex-col items-center overflow-hidden bg-gradient-to-b from-cream-100 via-cream-50 to-cream-50 px-4 py-14 sm:py-20">
+    <main className="relative flex flex-1 flex-col items-center overflow-hidden bg-gradient-to-b from-cream-100 via-cream-50 to-cream-50">
       <DecorativeGlow />
 
       {coverUrl && (
-        <div className="animate-fade-up relative z-10 mb-8 w-full max-w-xl overflow-hidden rounded-3xl shadow-lg shadow-gold-600/10">
+        <div className="animate-fade-up relative h-56 w-full sm:h-80">
           {/* Owner-chosen cover image, dimensions unknown ahead of time. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={coverUrl} alt="" aria-hidden className="h-48 w-full object-cover sm:h-64" />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-900/50 via-transparent to-transparent" />
+          <img src={coverUrl} alt="" aria-hidden className="h-full w-full object-cover" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-cream-100 via-ink-900/10 to-ink-900/20" />
         </div>
       )}
 
-      <div className="relative w-full max-w-xl text-center">
+      <div className="relative w-full max-w-xl px-4 py-14 text-center sm:py-20">
         <p
           className="divider-flourish animate-fade-up text-xs font-medium uppercase tracking-[0.3em] text-gold-600"
           style={{ animationDelay: "0ms" }}

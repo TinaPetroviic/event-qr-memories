@@ -14,15 +14,15 @@ export async function signup(_prevState: SignupFormState, formData: FormData): P
   const confirmPassword = String(formData.get("confirmPassword") ?? "");
 
   if (!email || !password) {
-    return { error: "Molimo unesite e-mail i zaporku." };
+    return { error: "Molimo unesite e-mail i lozinku." };
   }
 
   if (password.length < 6) {
-    return { error: "Zaporka mora imati najmanje 6 znakova." };
+    return { error: "Lozinka mora imati najmanje 6 znakova." };
   }
 
   if (password !== confirmPassword) {
-    return { error: "Zaporke se ne podudaraju." };
+    return { error: "Lozinke se ne podudaraju." };
   }
 
   const supabase = await createClient();

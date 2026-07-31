@@ -222,7 +222,7 @@ export default function LandingPage() {
             <ul className="mx-auto mt-6 max-w-md space-y-3 text-left lg:mx-0">
               {[
                 "Bez preuzimanja aplikacije",
-                "Bez računa ili zaporke za goste",
+                "Bez računa ili lozinke za goste",
                 "Radi na svakom telefonu s kamerom i internetom",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-3 text-sm text-cream-50/90">
