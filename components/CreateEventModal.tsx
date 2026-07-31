@@ -150,9 +150,6 @@ export function CreateEventModal() {
                       className="input-field px-3 py-2"
                       placeholder="npr. Nina & Marko"
                     />
-                    <p className="mt-1.5 text-xs text-ink-700/60">
-                      Imena, rođendan, godišnjica tvrtke – što god slavite.
-                    </p>
                   </div>
 
                   <div>
@@ -173,7 +170,6 @@ export function CreateEventModal() {
                         placeholder="nina-i-marko"
                       />
                     </div>
-                    <p className="mt-1.5 text-xs text-ink-700/60">Ovo je link koji dijelite s gostima.</p>
                   </div>
 
               <label className="flex items-center gap-3 rounded-xl border border-gold-400/30 bg-cream-100/60 px-4 py-3">
