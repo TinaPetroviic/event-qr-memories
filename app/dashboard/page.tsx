@@ -65,10 +65,7 @@ export default async function DashboardPage() {
                 <span aria-hidden>📅</span>
                 {formatDateShort(event.wedding_date)}
               </p>
-              <div className="mt-auto flex items-center justify-between gap-2 border-t border-gold-400/15 pt-4">
-                <span className="rounded-full bg-cream-100 px-3 py-1 text-xs font-medium text-ink-700">
-                  /e/{event.slug}
-                </span>
+              <div className="mt-auto flex items-center justify-end gap-2 border-t border-gold-400/15 pt-4">
                 <span
                   className={`rounded-full px-3 py-1 text-xs font-medium ${
                     event.gallery_public
