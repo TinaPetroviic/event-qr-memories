@@ -91,7 +91,7 @@ export function PhotoUploadForm({ eventId }: { eventId: string }) {
           id="guestName"
           value={guestName}
           onChange={(e) => setGuestName(e.target.value)}
-          placeholder="npr. Amela"
+          placeholder="npr. Tina"
           className="input-field py-3 text-center"
         />
       </div>
