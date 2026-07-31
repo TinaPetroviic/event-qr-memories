@@ -4,9 +4,14 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { isValidSlug, slugify } from "@/lib/utils/slug";
-import { isQrDesignKey } from "@/lib/qrDesigns";
+import { isQrDesignKey, type QrDesignKey } from "@/lib/qrDesigns";
 
 export type SettingsFormState = {
+  error?: string;
+  success?: boolean;
+};
+
+export type QrDesignActionState = {
   error?: string;
   success?: boolean;
 };
@@ -36,16 +41,10 @@ export async function updateEventSettings(
   const rawSlug = String(formData.get("slug") ?? "").trim();
   const welcomeMessage = String(formData.get("welcomeMessage") ?? "").trim();
   const galleryPublic = formData.get("galleryPublic") === "on";
-  const rawQrDesign = String(formData.get("qrDesign") ?? "classic").trim();
 
   if (!title || !eventDate) {
     return { error: "Molimo popunite sva obavezna polja." };
   }
-
-  if (!isQrDesignKey(rawQrDesign)) {
-    return { error: "Odabrani dizajn QR kartice nije ispravan." };
-  }
-  const qrDesign = rawQrDesign;
 
   const slug = slugify(rawSlug);
   if (!isValidSlug(slug)) {
@@ -71,7 +70,6 @@ export async function updateEventSettings(
       slug,
       welcome_message: welcomeMessage,
       gallery_public: galleryPublic,
-      qr_design: qrDesign,
     })
     .eq("id", eventId)
     .eq("owner_id", user.id);
@@ -82,6 +80,33 @@ export async function updateEventSettings(
 
   revalidatePath(`/dashboard/events/${eventId}`);
   revalidatePath("/dashboard");
+  return { success: true };
+}
+
+// Separate, single-purpose action for the QR card theme so switching a
+// design (from the live QR card on the Pregled tab) can save immediately,
+// without going through the full settings form/validation above.
+export async function updateQrDesign(
+  eventId: string,
+  design: QrDesignKey
+): Promise<QrDesignActionState> {
+  const { supabase, user } = await requireOwner();
+
+  if (!isQrDesignKey(design)) {
+    return { error: "Odabrani dizajn QR kartice nije ispravan." };
+  }
+
+  const { error } = await supabase
+    .from("events")
+    .update({ qr_design: design })
+    .eq("id", eventId)
+    .eq("owner_id", user.id);
+
+  if (error) {
+    return { error: "Došlo je do greške prilikom spremanja dizajna." };
+  }
+
+  revalidatePath(`/dashboard/events/${eventId}`);
   return { success: true };
 }
 

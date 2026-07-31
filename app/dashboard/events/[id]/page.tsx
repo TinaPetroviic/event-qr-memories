@@ -1,11 +1,10 @@
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { QRCodeCard } from "@/components/QRCodeCard";
+import { QrShareCard } from "@/components/QrShareCard";
 import { EventSettingsForm } from "@/components/EventSettingsForm";
 import { PhotoGrid, type GalleryPhoto } from "@/components/PhotoGrid";
 import { DownloadGalleryButton } from "@/components/DownloadGalleryButton";
-import { DeleteEventButton } from "@/components/DeleteEventButton";
 import { AdminPanelTabs } from "@/components/AdminPanelTabs";
 import { formatDateShort } from "@/lib/utils/date";
 import { EVENT_TYPES } from "@/lib/eventTypes";
@@ -123,11 +122,12 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
           </div>
         </div>
 
-        <QRCodeCard
+        <QrShareCard
+          eventId={event.id}
           slug={event.slug}
           title={event.title}
           eventDate={formatDateShort(event.event_date)}
-          design={event.qr_design}
+          initialDesign={event.qr_design}
         />
       </div>
 
@@ -171,7 +171,8 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
     <div className="card-surface p-6">
       <h3 className="mb-1 font-display text-xl text-ink-900">Postavke događaja</h3>
       <p className="mb-5 text-sm text-ink-700">
-        Uredite osnovne podatke, poruku dobrodošlice i izgled QR kartice.
+        Uredite osnovne podatke i poruku dobrodošlice za goste. Dizajn QR kartice mijenjate izravno na kartici u
+        Pregledu.
       </p>
       <EventSettingsForm event={event} />
     </div>
@@ -195,13 +196,10 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
         <Link href="/dashboard" className="text-sm text-gold-600 hover:underline">
           ← Natrag na sve događaje
         </Link>
-        <div className="mt-2 flex flex-wrap items-end justify-between gap-4 border-b border-gold-400/15 pb-6">
-          <div>
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">Admin panel</p>
-            <h1 className="mt-1 font-display text-3xl text-ink-900 sm:text-4xl">{event.title}</h1>
-            <p className="mt-1 text-ink-700">{formatDateShort(event.event_date)}</p>
-          </div>
-          <DeleteEventButton eventId={event.id} />
+        <div className="mt-2 border-b border-gold-400/15 pb-6">
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">Admin panel</p>
+          <h1 className="mt-1 font-display text-3xl text-ink-900 sm:text-4xl">{event.title}</h1>
+          <p className="mt-1 text-ink-700">{formatDateShort(event.event_date)}</p>
         </div>
       </div>
 
