@@ -218,13 +218,15 @@ export function CreateEventModal() {
                     <button
                       type="button"
                       onClick={() => fileInputRef.current?.click()}
-                      className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-gold-400/40 bg-white/50 px-4 py-8 text-center transition hover:border-gold-500 hover:bg-cream-100 active:scale-[0.99]"
+                      className="flex w-full items-center gap-3 rounded-2xl border-2 border-dashed border-gold-400/40 bg-white/50 px-4 py-3 text-left transition hover:border-gold-500 hover:bg-cream-100 active:scale-[0.99]"
                     >
-                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
                         <UploadIcon className="h-5 w-5" aria-hidden />
                       </span>
-                      <span className="text-sm font-medium text-ink-900">Dodirnite za učitavanje</span>
-                      <span className="text-xs text-ink-700/60">JPG ili PNG, po želji</span>
+                      <span>
+                        <span className="block text-sm font-medium text-ink-900">Dodirnite za učitavanje</span>
+                        <span className="block text-xs text-ink-700/60">JPG ili PNG, po želji</span>
+                      </span>
                     </button>
                   )}
                 </div>
