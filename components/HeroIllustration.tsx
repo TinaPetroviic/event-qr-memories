@@ -108,7 +108,7 @@ export function HeroIllustration() {
           <span className="pointer-events-none absolute -bottom-2.5 -right-2.5 h-5 w-5 rounded-br-sm border-b-2 border-r-2 border-gold-500 sm:h-6 sm:w-6" />
 
           <div
-            className="grid gap-[1px] rounded-lg bg-ink-900 p-2 shadow-inner shadow-black/40 sm:p-2.5"
+            className="grid gap-[1px] rounded-lg bg-gold-600 p-2 shadow-inner shadow-ink-900/40 sm:p-2.5"
             style={{ gridTemplateColumns: `repeat(${GRID_SIZE}, minmax(0, 1fr))` }}
           >
             {CELLS.map((dark, i) => (
