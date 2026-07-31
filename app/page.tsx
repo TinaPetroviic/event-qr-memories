@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { DecorativeGlow } from "@/components/DecorativeGlow";
 import { HeroIllustration } from "@/components/HeroIllustration";
-import { WaveDivider } from "@/components/WaveDivider";
 
 const CATEGORIES = [
   { label: "Vjenčanja", icon: "💍" },
@@ -197,8 +196,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <WaveDivider fill="#2e2419" backdropClassName="bg-cream-100" />
-
       <section className="relative overflow-hidden bg-ink-900 px-4 py-20 text-cream-50">
         <DecorativeGlow tone="dark" />
         <div className="relative mx-auto grid max-w-5xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
@@ -252,8 +249,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
-      <WaveDivider fill="#fdfbf6" backdropClassName="bg-ink-900" flip />
 
       <section id="faq" className="mx-auto w-full max-w-3xl scroll-mt-8 px-4 py-20">
         <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
