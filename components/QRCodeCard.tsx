@@ -3,16 +3,55 @@
 import { useEffect, useRef, useState } from "react";
 import QRCode from "qrcode";
 import { QR_DESIGNS, type QrDesignKey } from "@/lib/qrDesigns";
+import { drawQrMotif } from "@/lib/qrMotifs";
+import { QrMotifIcon } from "@/components/QrMotifIcon";
+
+/**
+ * Per-theme corner-bracket weight/cap, giving each theme one small
+ * distinguishing touch without changing the overall viewfinder layout:
+ * modern reads crisp and thin, rustic slightly heavier with soft rounded
+ * ends, classic/romantic sit in between.
+ */
+function bracketSpecFor(key: QrDesignKey): { screenBorder: number; canvasWidth: number; cap: CanvasLineCap } {
+  switch (key) {
+    case "modern":
+      return { screenBorder: 1.5, canvasWidth: 3, cap: "butt" };
+    case "romantic":
+      return { screenBorder: 2, canvasWidth: 4, cap: "round" };
+    case "rustic":
+      return { screenBorder: 2.5, canvasWidth: 5, cap: "round" };
+    case "classic":
+    default:
+      return { screenBorder: 2, canvasWidth: 4, cap: "square" };
+  }
+}
 
 /** Small L-shaped "viewfinder" corner marks rendered around the QR code. */
-function CornerBrackets({ color }: { color: string }) {
+function CornerBrackets({ color, weight }: { color: string; weight: number }) {
   const arm = "h-6 w-6 sm:h-7 sm:w-7";
+  const base = { borderColor: color, borderStyle: "solid" as const };
   return (
     <>
-      <span className={`pointer-events-none absolute -left-2 -top-2 ${arm} border-l-2 border-t-2`} style={{ borderColor: color }} aria-hidden />
-      <span className={`pointer-events-none absolute -right-2 -top-2 ${arm} border-r-2 border-t-2`} style={{ borderColor: color }} aria-hidden />
-      <span className={`pointer-events-none absolute -bottom-2 -left-2 ${arm} border-b-2 border-l-2`} style={{ borderColor: color }} aria-hidden />
-      <span className={`pointer-events-none absolute -bottom-2 -right-2 ${arm} border-b-2 border-r-2`} style={{ borderColor: color }} aria-hidden />
+      <span
+        className={`pointer-events-none absolute -left-2 -top-2 ${arm}`}
+        style={{ ...base, borderTopWidth: weight, borderLeftWidth: weight, borderRightWidth: 0, borderBottomWidth: 0 }}
+        aria-hidden
+      />
+      <span
+        className={`pointer-events-none absolute -right-2 -top-2 ${arm}`}
+        style={{ ...base, borderTopWidth: weight, borderRightWidth: weight, borderLeftWidth: 0, borderBottomWidth: 0 }}
+        aria-hidden
+      />
+      <span
+        className={`pointer-events-none absolute -bottom-2 -left-2 ${arm}`}
+        style={{ ...base, borderBottomWidth: weight, borderLeftWidth: weight, borderTopWidth: 0, borderRightWidth: 0 }}
+        aria-hidden
+      />
+      <span
+        className={`pointer-events-none absolute -bottom-2 -right-2 ${arm}`}
+        style={{ ...base, borderBottomWidth: weight, borderRightWidth: weight, borderTopWidth: 0, borderLeftWidth: 0 }}
+        aria-hidden
+      />
     </>
   );
 }
@@ -36,11 +75,12 @@ function drawCornerBrackets(
   arm: number,
   color: string,
   lineWidth: number,
+  lineCap: CanvasLineCap = "square",
 ) {
   ctx.save();
   ctx.strokeStyle = color;
   ctx.lineWidth = lineWidth;
-  ctx.lineCap = "square";
+  ctx.lineCap = lineCap;
   ctx.setLineDash([]);
 
   ctx.beginPath();
@@ -145,8 +185,16 @@ export function QRCodeCard({
       const serifFamily =
         getComputedStyle(document.documentElement).getPropertyValue("--font-playfair").trim() || "serif";
 
-      // Background fill.
+      // Background fill, plus a barely-there radial vignette for a subtle
+      // premium-paper feel. Drawn before the QR backing tile (an opaque fill
+      // added later) so it never touches - and can never soften - the QR's
+      // scan contrast.
       ctx.fillStyle = theme.background;
+      ctx.fillRect(0, 0, width, height);
+      const vignette = ctx.createRadialGradient(width / 2, height * 0.4, 0, width / 2, height * 0.4, height * 0.75);
+      vignette.addColorStop(0, `${theme.border}00`);
+      vignette.addColorStop(1, `${theme.border}14`);
+      ctx.fillStyle = vignette;
       ctx.fillRect(0, 0, width, height);
 
       // Editorial frame: generous margins + a thin hairline (or double
@@ -189,21 +237,23 @@ export function QRCodeCard({
         ctx.fillText(title, width / 2, 280, width - 140);
       }
 
-      // Thin decorative divider with the theme's motif centered on it.
+      // Thin decorative divider with the theme's vector motif centered on it
+      // (a plain continuous hairline for "none", to stay minimal on modern).
       const dividerY = 345;
       ctx.strokeStyle = theme.accentColor;
       ctx.lineWidth = 1.5;
       ctx.beginPath();
-      ctx.moveTo(width / 2 - 90, dividerY);
-      ctx.lineTo(width / 2 - 24, dividerY);
-      ctx.moveTo(width / 2 + 24, dividerY);
-      ctx.lineTo(width / 2 + 90, dividerY);
+      if (theme.motifKey === "none") {
+        ctx.moveTo(width / 2 - 90, dividerY);
+        ctx.lineTo(width / 2 + 90, dividerY);
+      } else {
+        ctx.moveTo(width / 2 - 90, dividerY);
+        ctx.lineTo(width / 2 - 26, dividerY);
+        ctx.moveTo(width / 2 + 26, dividerY);
+        ctx.lineTo(width / 2 + 90, dividerY);
+      }
       ctx.stroke();
-      ctx.fillStyle = theme.accentColor;
-      ctx.font = "26px serif";
-      ctx.textBaseline = "middle";
-      ctx.fillText(theme.motif, width / 2, dividerY + 1);
-      ctx.textBaseline = "alphabetic";
+      drawQrMotif(ctx, theme.motifKey, width / 2, dividerY, 46, theme.accentColor);
 
       // Event date - smaller, letter-spaced.
       ctx.fillStyle = theme.accentColor;
@@ -223,6 +273,7 @@ export function QRCodeCard({
       ctx.drawImage(qrCanvas, qrX, qrY, qrSize, qrSize);
 
       const bracketGap = 16;
+      const bracketSpec = bracketSpecFor(theme.key);
       drawCornerBrackets(
         ctx,
         qrX - backingPad - bracketGap,
@@ -231,7 +282,8 @@ export function QRCodeCard({
         qrSize + (backingPad + bracketGap) * 2,
         46,
         theme.accentColor,
-        4,
+        bracketSpec.canvasWidth,
+        bracketSpec.cap,
       );
 
       // Caption.
@@ -255,6 +307,15 @@ export function QRCodeCard({
       className="relative overflow-hidden rounded-3xl p-6 text-center shadow-md transition-colors duration-300 sm:p-8"
       style={{ background: theme.background }}
     >
+      {/* Barely-there radial vignette for a subtle premium-paper feel - never
+          drawn over the QR tile, which sits in its own opaque backing. */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `radial-gradient(circle at 50% 38%, transparent 45%, ${theme.border}14 100%)`,
+        }}
+        aria-hidden
+      />
       {/* Generous-margin editorial frame: a thin inset hairline, doubled for the more ornate themes. */}
       <div
         className="pointer-events-none absolute inset-3 rounded-2xl sm:inset-4"
@@ -291,11 +352,15 @@ export function QRCodeCard({
         </h3>
 
         <div className="mt-3 flex items-center justify-center gap-3">
-          <span className="h-px w-9" style={{ background: theme.border }} />
-          <span className="text-sm leading-none" style={{ color: theme.accentColor }}>
-            {theme.motif}
-          </span>
-          <span className="h-px w-9" style={{ background: theme.border }} />
+          {theme.motifKey === "none" ? (
+            <span className="h-px w-28" style={{ background: theme.border }} />
+          ) : (
+            <>
+              <span className="h-px w-9" style={{ background: theme.border }} />
+              <QrMotifIcon motifKey={theme.motifKey} color={theme.accentColor} size={22} />
+              <span className="h-px w-9" style={{ background: theme.border }} />
+            </>
+          )}
         </div>
 
         <p
@@ -307,7 +372,7 @@ export function QRCodeCard({
 
         <div className="mt-6 flex justify-center">
           <div className="relative inline-block p-2.5">
-            <CornerBrackets color={theme.accentColor} />
+            <CornerBrackets color={theme.accentColor} weight={bracketSpecFor(theme.key).screenBorder} />
             <div className="rounded-xl p-4 shadow-inner" style={{ background: theme.qr.light }}>
               <canvas ref={canvasRef} />
             </div>

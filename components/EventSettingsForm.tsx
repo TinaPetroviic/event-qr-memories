@@ -4,6 +4,7 @@ import { useActionState, useState } from "react";
 import { updateEventSettings, type SettingsFormState } from "@/app/dashboard/events/[id]/actions";
 import type { EventRow } from "@/lib/database.types";
 import { QR_DESIGNS, QR_DESIGN_KEYS } from "@/lib/qrDesigns";
+import { QrMotifIcon } from "@/components/QrMotifIcon";
 
 const initialState: SettingsFormState = {};
 
@@ -117,10 +118,14 @@ export function EventSettingsForm({ event }: { event: EventRow }) {
                   </span>
                 )}
                 <div
-                  className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full text-base shadow-sm"
-                  style={{ background: option.accentColor, color: option.background }}
+                  className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full shadow-sm"
+                  style={{ background: option.accentColor }}
                 >
-                  {option.motif}
+                  {option.motifKey === "none" ? (
+                    <span className="h-1.5 w-1.5 rounded-full" style={{ background: option.background }} aria-hidden />
+                  ) : (
+                    <QrMotifIcon motifKey={option.motifKey} color={option.background} size={20} />
+                  )}
                 </div>
                 <span
                   className="mb-2 block h-8 w-full rounded-md"

@@ -5,6 +5,8 @@
 // "classic" reproduces the app's original cream/gold look so existing events
 // don't visually change unless the couple explicitly picks another design.
 
+import type { QrMotifKey } from "@/lib/qrMotifs";
+
 export type QrDesignKey = "classic" | "modern" | "romantic" | "rustic";
 
 export type QrDesign = {
@@ -20,8 +22,13 @@ export type QrDesign = {
   accentColor: string;
   /** Colors handed to the `qrcode` library - needs enough contrast to scan reliably. */
   qr: { dark: string; light: string };
-  /** Small decorative motif rendered on the card. */
-  motif: string;
+  /**
+   * Small decorative ornament rendered on the card, as real vector line-art
+   * (see lib/qrMotifs.ts + components/QrMotifIcon.tsx) rather than an emoji -
+   * emoji rendering depends on the OS/browser's color emoji font and is a
+   * robustness risk for the printable canvas PNG export.
+   */
+  motifKey: QrMotifKey;
   /** Short uppercase eyebrow label shown above the title, e.g. "SKENIRAJTE I PODIJELITE". */
   eyebrow: string;
   /** Caption line rendered below the QR code. */
@@ -43,7 +50,7 @@ export const QR_DESIGNS: Record<QrDesignKey, QrDesign> = {
     textColor: "#2e2419",
     accentColor: "#b8894a",
     qr: { dark: "#2e2419", light: "#fdfbf6" },
-    motif: "✦",
+    motifKey: "sparkle",
     eyebrow: "Skenirajte i podijelite uspomene",
     caption: "Skenirajte i podijelite fotografije",
     headlineItalic: false,
@@ -58,7 +65,7 @@ export const QR_DESIGNS: Record<QrDesignKey, QrDesign> = {
     textColor: "#1a1a1a",
     accentColor: "#1a1a1a",
     qr: { dark: "#111111", light: "#ffffff" },
-    motif: "—",
+    motifKey: "none",
     eyebrow: "Skenirajte i podijelite uspomene",
     caption: "Skenirajte kod i podijelite trenutak",
     headlineItalic: false,
@@ -73,7 +80,7 @@ export const QR_DESIGNS: Record<QrDesignKey, QrDesign> = {
     textColor: "#6b1f34",
     accentColor: "#b23b5a",
     qr: { dark: "#6b1f34", light: "#fdf2f4" },
-    motif: "♥",
+    motifKey: "heart",
     eyebrow: "Skenirajte i podijelite uspomene",
     caption: "...i uživajte u čarobnim trenucima",
     headlineItalic: true,
@@ -88,7 +95,7 @@ export const QR_DESIGNS: Record<QrDesignKey, QrDesign> = {
     textColor: "#4a3520",
     accentColor: "#6f4e2e",
     qr: { dark: "#3d2b18", light: "#f3ead6" },
-    motif: "🌿",
+    motifKey: "sprig",
     eyebrow: "Skenirajte i podijelite uspomene",
     caption: "Skenirajte i podijelite fotografije",
     headlineItalic: false,
