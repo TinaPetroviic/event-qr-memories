@@ -102,8 +102,8 @@ export default function LandingPage() {
               className="animate-fade-up mt-6 max-w-xl text-lg text-ink-700"
               style={{ animationDelay: "260ms" }}
             >
-              Neka vaši gosti podijele svoje najljepše trenutke s vašeg vjenčanja, rođendana, godišnjice
-              tvrtke ili bilo kojeg drugog događaja - jednim skeniranjem QR koda, bez preuzimanja aplikacije.
+              Gosti dijele fotografije, video i glasovne poruke s vašeg vjenčanja, rođendana ili bilo koje
+              druge proslave - jednim skeniranjem QR koda, bez preuzimanja aplikacije.
             </p>
             <div
               className="animate-fade-up mt-10 flex flex-col gap-4 sm:flex-row"
@@ -345,69 +345,71 @@ export default function LandingPage() {
         </Reveal>
       </section>
 
-      <footer className="border-t border-gold-400/20 bg-cream-100/60 px-4 pb-10 pt-16 text-sm text-ink-700">
-        <div className="mx-auto grid max-w-5xl grid-cols-2 gap-10 sm:grid-cols-[1.4fr_1fr_1fr] sm:gap-8">
-          <div className="col-span-2 text-center sm:col-span-1 sm:text-left">
+      <footer className="border-t border-gold-400/20 bg-cream-100/60 px-4 pb-10 pt-16 text-sm text-ink-700 sm:px-6">
+        <div className="mx-auto flex max-w-6xl flex-col gap-10 text-center sm:flex-row sm:items-start sm:justify-between sm:text-left">
+          <div className="max-w-xs">
             <p className="font-display text-lg text-ink-900">EventPix</p>
             <p className="mx-auto mt-3 max-w-[26ch] text-ink-700/80 sm:mx-0">
               Digitalna galerija uspomena za vjenčanja, rođendane i sve vrste proslava.
             </p>
           </div>
 
-          <nav aria-label="Proizvod" className="text-center sm:text-left">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">Proizvod</p>
-            <ul className="mt-4 space-y-2.5">
-              <li>
-                <a
-                  href="#kako-funkcionira"
-                  className="rounded transition-colors hover:text-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/50"
-                >
-                  Kako funkcionira
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#znacajke"
-                  className="rounded transition-colors hover:text-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/50"
-                >
-                  Mogućnosti
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#faq"
-                  className="rounded transition-colors hover:text-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/50"
-                >
-                  Česta pitanja
-                </a>
-              </li>
-            </ul>
-          </nav>
+          <div className="flex flex-col gap-10 sm:flex-row sm:gap-20">
+            <nav aria-label="Proizvod">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">Proizvod</p>
+              <ul className="mt-4 space-y-2.5">
+                <li>
+                  <a
+                    href="#kako-funkcionira"
+                    className="rounded transition-colors hover:text-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/50"
+                  >
+                    Kako funkcionira
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#znacajke"
+                    className="rounded transition-colors hover:text-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/50"
+                  >
+                    Mogućnosti
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#faq"
+                    className="rounded transition-colors hover:text-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/50"
+                  >
+                    Česta pitanja
+                  </a>
+                </li>
+              </ul>
+            </nav>
 
-          <nav aria-label="Račun" className="text-center sm:text-left">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">Račun</p>
-            <ul className="mt-4 space-y-2.5">
-              <li>
-                <Link
-                  href="/signup"
-                  className="rounded transition-colors hover:text-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/50"
-                >
-                  Registracija
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/login"
-                  className="rounded transition-colors hover:text-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/50"
-                >
-                  Prijava
-                </Link>
-              </li>
-            </ul>
-          </nav>
+            <nav aria-label="Račun">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">Račun</p>
+              <ul className="mt-4 space-y-2.5">
+                <li>
+                  <Link
+                    href="/signup"
+                    className="rounded transition-colors hover:text-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/50"
+                  >
+                    Registracija
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/login"
+                    className="rounded transition-colors hover:text-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/50"
+                  >
+                    Prijava
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
 
-        <div className="mx-auto mt-12 max-w-5xl">
+        <div className="mx-auto mt-12 max-w-6xl">
           <p className="text-center text-xs text-ink-700/70">
             © {new Date().getFullYear()} EventPix. Sva prava pridržana.
           </p>
