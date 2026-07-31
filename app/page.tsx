@@ -1,5 +1,15 @@
 import Link from "next/link";
 import { DecorativeGlow } from "@/components/DecorativeGlow";
+import { WaveDivider } from "@/components/WaveDivider";
+
+const CATEGORIES = [
+  { label: "Vjenčanja", icon: "💍" },
+  { label: "Rođendani", icon: "🎂" },
+  { label: "Godišnjice", icon: "🥂" },
+  { label: "Krštenja", icon: "🕊️" },
+  { label: "Maturske večeri", icon: "🎓" },
+  { label: "Korporativni eventi", icon: "🏢" },
+];
 
 const STEPS = [
   {
@@ -42,6 +52,29 @@ const FEATURES = [
   },
 ];
 
+const FAQS = [
+  {
+    q: "Da li gosti moraju instalirati aplikaciju?",
+    a: "Ne. Gost samo skenira QR kod ili otvori link u svom pretraživaču - stranica se odmah otvori i može dodati fotografiju, video ili glasovnu poruku. Nije potrebna nikakva instalacija niti kreiranje naloga.",
+  },
+  {
+    q: "Mogu li imati više događaja na jednom nalogu?",
+    a: "Da. Iz svog naloga možete kreirati onoliko događaja koliko želite - svaki dobija svoj jedinstveni link i QR kod, potpuno odvojen od ostalih.",
+  },
+  {
+    q: "Da li mogu obrisati fotografije ili cijeli događaj?",
+    a: "Da. Iz admin panela u svakom trenutku možete obrisati pojedinačnu fotografiju, video ili glasovnu poruku, kao i u potpunosti obrisati događaj zajedno sa svim sadržajem.",
+  },
+  {
+    q: "Koliko fotografija, videa ili poruka gosti mogu dodati?",
+    a: "Nema ograničenja - gosti mogu dodati onoliko fotografija, video zapisa i glasovnih poruka koliko žele, jednu za drugom, sve dok traje događaj.",
+  },
+  {
+    q: "Da li galerija mora biti javna?",
+    a: "Ne, vi birate. Galerija može biti javna pa je svi gosti mogu pregledati, ili privatna pa su sve uspomene vidljive samo vama u admin panelu.",
+  },
+];
+
 export default function LandingPage() {
   return (
     <main className="flex flex-1 flex-col overflow-x-clip">
@@ -77,6 +110,29 @@ export default function LandingPage() {
             <Link href="/login" className="btn-outline px-8 py-3.5">
               Prijava
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-gold-400/15 bg-cream-50 px-4 py-10">
+        <div className="mx-auto max-w-5xl">
+          <p className="text-center text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
+            Za svaku vrstu proslave
+          </p>
+          <div className="mt-6 flex gap-3 overflow-x-auto pb-2 sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0">
+            {CATEGORIES.map((category) => (
+              <div
+                key={category.label}
+                className="card-surface flex shrink-0 items-center gap-2.5 px-5 py-3 sm:shrink"
+              >
+                <span className="text-xl" aria-hidden>
+                  {category.icon}
+                </span>
+                <span className="whitespace-nowrap text-sm font-medium text-ink-900">
+                  {category.label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -135,6 +191,92 @@ export default function LandingPage() {
         </div>
       </section>
 
+      <WaveDivider fill="#2e2419" backdropClassName="bg-cream-100" />
+
+      <section className="relative overflow-hidden bg-ink-900 px-4 py-20 text-cream-50">
+        <DecorativeGlow tone="dark" />
+        <div className="relative mx-auto grid max-w-5xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
+          <div className="text-center lg:text-left">
+            <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-300">
+              <span>Nula trenja za goste</span>
+            </p>
+            <h2 className="mt-4 font-display text-3xl leading-tight sm:text-4xl">
+              Bez aplikacije. Bez registracije. Samo skenirajte i pošaljite.
+            </h2>
+            <p className="mx-auto mt-4 max-w-md text-cream-100/80 lg:mx-0">
+              Vaši gosti ne moraju ništa preuzimati niti otvarati nalog. Skeniraju QR kod telefonom,
+              stranica se otvori u pretraživaču i za par sekundi njihova uspomena je u vašoj galeriji.
+            </p>
+            <ul className="mx-auto mt-6 max-w-md space-y-3 text-left lg:mx-0">
+              {[
+                "Bez preuzimanja aplikacije",
+                "Bez naloga ili lozinke za goste",
+                "Radi na svakom telefonu s kamerom i internetom",
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-3 text-sm text-cream-50/90">
+                  <span
+                    aria-hidden
+                    className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold-400/90 text-xs text-ink-900"
+                  >
+                    ✓
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="flex justify-center">
+            <div
+              aria-hidden
+              className="flex h-[300px] w-[160px] flex-col rounded-[2rem] border-4 border-white/15 bg-white/5 p-2.5 shadow-2xl shadow-black/30 sm:h-[340px] sm:w-[180px]"
+            >
+              <div className="mx-auto mb-2 h-1.5 w-10 shrink-0 rounded-full bg-white/25" />
+              <div className="flex flex-1 flex-col items-center justify-center gap-3 rounded-[1.5rem] bg-gradient-to-b from-white/10 to-white/[0.03] px-3 text-center">
+                <span className="text-3xl">📷</span>
+                <span className="rounded-full bg-gold-500 px-4 py-2 text-xs font-medium text-white shadow-md shadow-black/20">
+                  Dodaj fotografiju
+                </span>
+                <span className="text-[10px] uppercase tracking-widest text-white/40">ili</span>
+                <span className="rounded-full border border-white/25 px-4 py-1.5 text-xs text-white/70">
+                  🎙️ Snimi poruku
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <WaveDivider fill="#fdfbf6" backdropClassName="bg-ink-900" flip />
+
+      <section className="mx-auto w-full max-w-3xl px-4 py-20">
+        <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
+          <span>Česta pitanja</span>
+        </p>
+        <h2 className="mt-4 text-center font-display text-3xl text-ink-900">Šta je QR Uspomene?</h2>
+        <p className="mx-auto mt-4 max-w-xl text-center text-ink-700">
+          QR Uspomene je jednostavan način da sakupite fotografije, video snimke i glasovne poruke
+          gostiju s vašeg vjenčanja, rođendana, godišnjice ili bilo koje druge proslave - sve na jednom
+          mjestu, bez potrebe da gosti instaliraju bilo šta.
+        </p>
+        <div className="mt-10 space-y-4">
+          {FAQS.map((faq) => (
+            <details key={faq.q} className="card-surface group px-6 py-4">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-lg text-ink-900">
+                {faq.q}
+                <span
+                  aria-hidden
+                  className="ml-2 shrink-0 text-gold-500 transition group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p className="mt-3 text-sm text-ink-700">{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
       <section className="relative overflow-hidden px-4 py-20 text-center">
         <div className="mx-auto max-w-2xl rounded-[2.5rem] border border-gold-400/30 bg-gradient-to-br from-white/80 to-cream-100/80 px-6 py-14 shadow-lg shadow-gold-600/10 sm:px-12">
           <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
@@ -155,8 +297,26 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <footer className="border-t border-gold-400/20 px-4 py-8 text-center text-sm text-ink-700">
-        © {new Date().getFullYear()} QR Uspomene
+      <footer className="border-t border-gold-400/20 px-4 py-10 text-sm text-ink-700">
+        <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 sm:flex-row sm:items-start sm:justify-between">
+          <div className="text-center sm:text-left">
+            <p className="font-display text-lg text-ink-900">QR Uspomene</p>
+            <p className="mt-1 max-w-xs text-ink-700/80">
+              Digitalna knjiga uspomena za vjenčanja, rođendane i sve vrste proslava.
+            </p>
+          </div>
+          <nav className="flex gap-6 text-center sm:text-left" aria-label="Footer">
+            <Link href="/signup" className="hover:text-gold-600">
+              Registracija
+            </Link>
+            <Link href="/login" className="hover:text-gold-600">
+              Prijava
+            </Link>
+          </nav>
+        </div>
+        <p className="mt-8 text-center text-xs text-ink-700/70">
+          © {new Date().getFullYear()} QR Uspomene
+        </p>
       </footer>
     </main>
   );
