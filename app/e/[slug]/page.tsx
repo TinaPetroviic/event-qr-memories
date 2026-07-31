@@ -3,7 +3,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { PhotoUploadForm } from "@/components/PhotoUploadForm";
 import { DecorativeGlow } from "@/components/DecorativeGlow";
-import { formatEventDate } from "@/lib/utils/date";
+import { formatDateShort } from "@/lib/utils/date";
 
 export default async function GuestEventPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -39,7 +39,7 @@ export default async function GuestEventPage({ params }: { params: Promise<{ slu
           {event.title}
         </p>
         <p className="animate-fade-up mt-2 text-ink-700" style={{ animationDelay: "140ms" }}>
-          {formatEventDate(event.event_date)}
+          {formatDateShort(event.event_date)}
         </p>
 
         {event.welcome_message && (

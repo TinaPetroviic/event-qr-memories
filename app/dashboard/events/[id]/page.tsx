@@ -6,7 +6,7 @@ import { EventSettingsForm } from "@/components/EventSettingsForm";
 import { PhotoGrid, type GalleryPhoto } from "@/components/PhotoGrid";
 import { DownloadGalleryButton } from "@/components/DownloadGalleryButton";
 import { DeleteEventButton } from "@/components/DeleteEventButton";
-import { formatEventDate } from "@/lib/utils/date";
+import { formatDateShort } from "@/lib/utils/date";
 
 export default async function EventAdminPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -51,7 +51,7 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">Admin panel</p>
             <h1 className="mt-1 font-display text-3xl text-ink-900 sm:text-4xl">{event.title}</h1>
-            <p className="mt-1 text-ink-700">{formatEventDate(event.event_date)}</p>
+            <p className="mt-1 text-ink-700">{formatDateShort(event.event_date)}</p>
           </div>
           <DeleteEventButton eventId={event.id} />
         </div>
@@ -62,7 +62,7 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
           <QRCodeCard
             slug={event.slug}
             title={event.title}
-            eventDate={formatEventDate(event.event_date)}
+            eventDate={formatDateShort(event.event_date)}
             design={event.qr_design}
           />
         </div>

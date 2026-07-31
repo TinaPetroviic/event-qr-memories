@@ -3,7 +3,11 @@
 import { useEffect, useState, useTransition } from "react";
 import { createPortal } from "react-dom";
 import { deletePhoto } from "@/app/dashboard/events/[id]/actions";
-import { formatTimestamp } from "@/lib/utils/date";
+import { formatTimestampShort } from "@/lib/utils/date";
+import { createClient } from "@/lib/supabase/client";
+import type { Database } from "@/lib/database.types";
+
+type PhotoRow = Database["public"]["Tables"]["photos"]["Row"];
 
 export type GalleryPhoto = {
   id: string;
@@ -57,6 +61,59 @@ export function PhotoGrid({
       document.body.style.overflow = "";
     };
   }, [lightboxIndex, items.length]);
+
+  // Live-update the grid when a guest adds media or the couple deletes it
+  // from another tab/device, so nobody needs to refresh the page to see it.
+  // RLS still applies to these events (a connection only receives change
+  // events for rows it could otherwise select), so this changes nothing
+  // about who can see what - only how fast they see it.
+  useEffect(() => {
+    const supabase = createClient();
+    const channel = supabase
+      .channel(`photos-changes-${eventId}`)
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "photos", filter: `event_id=eq.${eventId}` },
+        (payload) => {
+          const row = payload.new as PhotoRow;
+          setItems((prev) => {
+            if (prev.some((p) => p.id === row.id)) return prev;
+            const photo: GalleryPhoto = {
+              id: row.id,
+              url: supabase.storage.from("photos").getPublicUrl(row.storage_path).data.publicUrl,
+              storagePath: row.storage_path,
+              guestName: row.guest_name,
+              mediaType: row.media_type,
+              createdAt: row.created_at,
+            };
+            return [photo, ...prev];
+          });
+        }
+      )
+      .on(
+        "postgres_changes",
+        { event: "DELETE", schema: "public", table: "photos", filter: `event_id=eq.${eventId}` },
+        (payload) => {
+          const deletedId = (payload.old as Partial<PhotoRow>).id;
+          if (!deletedId) return;
+          setItems((prev) => {
+            const next = prev.filter((p) => p.id !== deletedId);
+            if (next.length === prev.length) return prev;
+            setLightboxIndex((idx) => {
+              if (idx === null) return idx;
+              if (next.length === 0) return null;
+              return idx >= next.length ? next.length - 1 : idx;
+            });
+            return next;
+          });
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [eventId]);
 
   if (items.length === 0) {
     return (
@@ -228,7 +285,7 @@ export function PhotoGrid({
 
             <div className="text-center text-white">
               {activePhoto.guestName && <p className="font-medium">{activePhoto.guestName}</p>}
-              <p className="text-sm text-white/70">{formatTimestamp(activePhoto.createdAt)}</p>
+              <p className="text-sm text-white/70">{formatTimestampShort(activePhoto.createdAt)}</p>
             </div>
 
             {editable && (
