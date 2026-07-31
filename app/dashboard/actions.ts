@@ -48,6 +48,7 @@ export async function createEvent(
   const eventDate = String(formData.get("eventDate") ?? "").trim();
   const rawSlug = String(formData.get("slug") ?? "").trim();
   const rawEventType = String(formData.get("eventType") ?? "other").trim();
+  const galleryPublic = formData.get("galleryPublic") === "on";
   const coverImage = formData.get("coverImage");
 
   if (!title || !eventDate) {
@@ -79,6 +80,7 @@ export async function createEvent(
       event_date: eventDate,
       slug,
       event_type: eventType,
+      gallery_public: galleryPublic,
     })
     .select("id")
     .single();

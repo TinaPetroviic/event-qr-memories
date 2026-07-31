@@ -161,6 +161,18 @@ export function CreateEventModal() {
                     </div>
                     <p className="mt-1.5 text-xs text-ink-700/60">Ovo je link koji dijelite s gostima.</p>
                   </div>
+
+                  <label className="flex items-center gap-3 rounded-xl border border-gold-400/30 bg-cream-100/60 px-4 py-3">
+                    <input
+                      type="checkbox"
+                      name="galleryPublic"
+                      className="h-4 w-4 accent-gold-500"
+                    />
+                    <span className="text-sm text-ink-900">
+                      Javna galerija{" "}
+                      <span className="text-ink-700">- svi posjetitelji linka mogu vidjeti sve fotografije</span>
+                    </span>
+                  </label>
                 </div>
               </div>
 
