@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { QRCodeCard } from "@/components/QRCodeCard";
 import { EventSettingsForm } from "@/components/EventSettingsForm";
 import { PhotoGrid, type GalleryPhoto } from "@/components/PhotoGrid";
+import { DownloadGalleryButton } from "@/components/DownloadGalleryButton";
 import { DeleteEventButton } from "@/components/DeleteEventButton";
 import { formatWeddingDate } from "@/lib/utils/date";
 
@@ -78,10 +79,13 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
       </div>
 
       <div>
-        <div className="mb-4 flex items-center justify-between border-b border-gold-400/15 pb-3">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-gold-400/15 pb-3">
           <h3 className="font-display text-xl text-ink-900">
             Uspomene gostiju <span className="text-ink-700">({photos.length})</span>
           </h3>
+          {photos.length > 0 && (
+            <DownloadGalleryButton photos={photos} zipName={`${event.bride_name}-${event.groom_name}`} />
+          )}
         </div>
         <PhotoGrid eventId={event.id} photos={photos} editable />
       </div>
