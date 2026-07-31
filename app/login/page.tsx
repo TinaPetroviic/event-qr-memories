@@ -51,7 +51,6 @@ export default function LoginPage() {
                 required
                 autoComplete="email"
                 className="input-field"
-                placeholder="Vaša adresa e-pošte"
               />
             </div>
             <div>
@@ -65,7 +64,6 @@ export default function LoginPage() {
                 required
                 autoComplete="current-password"
                 className="input-field"
-                placeholder="Vaša lozinka"
               />
             </div>
 

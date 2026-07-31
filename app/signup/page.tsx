@@ -74,12 +74,11 @@ export default function SignupPage() {
                   required
                   autoComplete="email"
                   className="input-field"
-                  placeholder="Vaša adresa e-pošte"
                 />
               </div>
               <div>
                 <label htmlFor="password" className="mb-1 block text-sm font-medium text-ink-700">
-                  Lozinka <span className="font-normal text-ink-700/60">(najmanje 6 znakova)</span>
+                  Lozinka
                 </label>
                 <input
                   id="password"
@@ -89,7 +88,6 @@ export default function SignupPage() {
                   autoComplete="new-password"
                   minLength={6}
                   className="input-field"
-                  placeholder="Vaša lozinka"
                 />
               </div>
               <div>
@@ -104,7 +102,6 @@ export default function SignupPage() {
                   autoComplete="new-password"
                   minLength={6}
                   className="input-field"
-                  placeholder="Potvrdite vašu lozinku"
                 />
               </div>
 
