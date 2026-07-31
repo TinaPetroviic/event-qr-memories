@@ -50,3 +50,19 @@ export function formatDateShort(isoDate: string): string {
   const pad = (n: number) => String(n).padStart(2, "0");
   return `${pad(day)}.${pad(month)}.${year}.`;
 }
+
+/**
+ * Formats a full ISO timestamp (e.g. a `created_at` value) as e.g.
+ * "31. jula 2026.". Implemented without Intl for the same reason as
+ * `formatWeddingDate` - relying on `toLocaleDateString` with a "bs-BA"
+ * locale produces a broken/generic fallback on runtimes that lack that
+ * locale's ICU data (observed as garbage like "2026 M07 31").
+ */
+export function formatTimestamp(iso: string): string {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "";
+  const day = date.getDate();
+  const monthName = MONTHS[date.getMonth()];
+  const year = date.getFullYear();
+  return `${day}. ${monthName} ${year}.`;
+}

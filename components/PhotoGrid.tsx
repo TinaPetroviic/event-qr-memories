@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState, useTransition } from "react";
+import { createPortal } from "react-dom";
 import { deletePhoto } from "@/app/dashboard/events/[id]/actions";
+import { formatTimestamp } from "@/lib/utils/date";
 
 export type GalleryPhoto = {
   id: string;
@@ -11,19 +13,6 @@ export type GalleryPhoto = {
   mediaType: "photo" | "video" | "audio";
   createdAt: string;
 };
-
-// Client-only formatting (this component is "use client" and this value never
-// renders on the server), so relying on the runtime's locale here can't cause
-// a server/client hydration mismatch the way it could in a server component.
-function formatTimestamp(iso: string): string {
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return "";
-  return date.toLocaleDateString("bs-BA", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-}
 
 export function PhotoGrid({
   eventId,
@@ -167,11 +156,13 @@ export function PhotoGrid({
         ))}
       </div>
 
-      {activePhoto && lightboxIndex !== null && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-ink-900/90 p-4"
-          onClick={closeLightbox}
-        >
+      {activePhoto &&
+        lightboxIndex !== null &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-ink-900/90 p-4"
+            onClick={closeLightbox}
+          >
           <button
             type="button"
             onClick={closeLightbox}
@@ -251,8 +242,9 @@ export function PhotoGrid({
               </button>
             )}
           </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </>
   );
 }
