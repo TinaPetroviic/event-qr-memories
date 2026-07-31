@@ -14,7 +14,7 @@ export function CreateEventModal() {
   const [title, setTitle] = useState("");
   const [slugTouched, setSlugTouched] = useState(false);
   const [slug, setSlug] = useState("");
-  const [eventType, setEventType] = useState<EventTypeKey>("other");
+  const [eventType, setEventType] = useState<EventTypeKey | "">("");
   const [coverPreview, setCoverPreview] = useState<string | null>(null);
   const [coverFileName, setCoverFileName] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -91,10 +91,14 @@ export function CreateEventModal() {
                     <select
                       id="eventType"
                       name="eventType"
+                      required
                       value={eventType}
                       onChange={(e) => setEventType(e.target.value as EventTypeKey)}
                       className="input-field px-3 py-2"
                     >
+                      <option value="" disabled>
+                        Odaberite vrstu događaja
+                      </option>
                       {/* Native <option> elements can only render text, not
                           SVG icons, so this dropdown intentionally shows the
                           label only - the icon shows up everywhere else this
