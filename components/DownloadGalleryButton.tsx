@@ -55,7 +55,7 @@ export function DownloadGalleryButton({ photos, zipName }: { photos: GalleryPhot
 
       setMessage(
         skipped > 0
-          ? `Preuzimanje spremno. Preskočeno je ${skipped} od ${photos.length} fajlova (nije bilo moguće preuzeti).`
+          ? `Preuzimanje spremno. Preskočeno je ${skipped} od ${photos.length} datoteka (nije bilo moguće preuzeti).`
           : "Preuzimanje je spremno."
       );
     } catch {

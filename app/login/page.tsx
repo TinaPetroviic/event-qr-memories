@@ -23,7 +23,7 @@ export default function LoginPage() {
               &ldquo;Najljepši trenuci se pamte u malim uspomenama - hvala što ih čuvate zauvijek.&rdquo;
             </p>
             <p className="divider-flourish mt-6 text-xs font-medium uppercase tracking-[0.3em] text-cream-100/80">
-              <span>Dobrodošli nazad</span>
+              <span>Dobrodošli natrag</span>
             </p>
           </div>
         </div>
@@ -35,7 +35,7 @@ export default function LoginPage() {
             </Link>
           </div>
           <div className="mb-8 text-center lg:text-left">
-            <h1 className="font-display text-3xl text-ink-900">Dobrodošli nazad</h1>
+            <h1 className="font-display text-3xl text-ink-900">Dobrodošli natrag</h1>
             <p className="mt-2 text-sm text-ink-700">Prijavite se kako biste upravljali svojim događajima.</p>
           </div>
 
@@ -56,7 +56,7 @@ export default function LoginPage() {
             </div>
             <div>
               <label htmlFor="password" className="mb-1 block text-sm font-medium text-ink-700">
-                Lozinka
+                Zaporka
               </label>
               <input
                 id="password"

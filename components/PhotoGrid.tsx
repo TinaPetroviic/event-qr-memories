@@ -121,7 +121,7 @@ export function PhotoGrid({
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gold-500/10 text-2xl">
           🤍
         </div>
-        <p className="mt-4 text-ink-700">Još nema uspomena. Prve fotografije i poruke gostiju pojaviće se ovdje.</p>
+        <p className="mt-4 text-ink-700">Još nema uspomena. Prve fotografije i poruke gostiju pojavit će se ovdje.</p>
       </div>
     );
   }
@@ -206,7 +206,7 @@ export function PhotoGrid({
                 disabled={isPending && pendingId === photo.id}
                 className="absolute right-2 top-2 rounded-full bg-ink-900/70 px-2.5 py-1 text-xs font-medium text-white opacity-0 transition group-hover:opacity-100 hover:bg-red-600 disabled:opacity-100"
               >
-                {isPending && pendingId === photo.id ? "..." : "Obriši"}
+                {isPending && pendingId === photo.id ? "..." : "Izbriši"}
               </button>
             )}
           </div>
@@ -295,7 +295,7 @@ export function PhotoGrid({
                 disabled={isPending && pendingId === activePhoto.id}
                 className="rounded-full bg-red-600/90 px-5 py-2 text-sm font-medium text-white transition hover:bg-red-600 disabled:opacity-60"
               >
-                {isPending && pendingId === activePhoto.id ? "Brisanje..." : "Obriši"}
+                {isPending && pendingId === activePhoto.id ? "Brisanje..." : "Izbriši"}
               </button>
             )}
           </div>

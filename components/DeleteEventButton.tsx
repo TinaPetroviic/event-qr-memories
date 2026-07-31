@@ -7,7 +7,7 @@ export function DeleteEventButton({ eventId }: { eventId: string }) {
   const [isPending, startTransition] = useTransition();
 
   const handleClick = () => {
-    if (!window.confirm("Jeste li sigurni da želite trajno obrisati ovaj događaj i sve fotografije?")) {
+    if (!window.confirm("Jeste li sigurni da želite trajno izbrisati ovaj događaj i sve fotografije?")) {
       return;
     }
     // deleteEvent redirects to /dashboard on success.
@@ -23,7 +23,7 @@ export function DeleteEventButton({ eventId }: { eventId: string }) {
       disabled={isPending}
       className="inline-flex items-center gap-1.5 rounded-full border border-red-300 px-5 py-2 text-sm font-medium text-red-700 transition hover:bg-red-50 disabled:pointer-events-none disabled:opacity-60"
     >
-      {isPending ? "Brisanje..." : "Obriši događaj"}
+      {isPending ? "Brisanje..." : "Izbriši događaj"}
     </button>
   );
 }

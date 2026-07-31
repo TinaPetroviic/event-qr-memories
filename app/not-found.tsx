@@ -11,10 +11,10 @@ export default function NotFound() {
         </p>
         <h1 className="mt-4 font-display text-4xl text-ink-900">Stranica nije pronađena</h1>
         <p className="mx-auto mt-3 max-w-md text-ink-700">
-          Provjerite da li je link ispravan, ili se vratite na početnu stranicu.
+          Provjerite je li link ispravan, ili se vratite na početnu stranicu.
         </p>
         <Link href="/" className="btn-primary mt-8">
-          Nazad na početnu
+          Natrag na početnu
         </Link>
       </div>
     </main>

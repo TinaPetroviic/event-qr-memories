@@ -14,7 +14,7 @@ const CATEGORIES = [
 const STEPS = [
   {
     title: "Kreirajte događaj",
-    text: "Registrujte se i unesite naziv događaja, datum i prilagođeni link za goste - za vjenčanje, rođendan, godišnjicu firme ili bilo koju drugu proslavu.",
+    text: "Registrirajte se i unesite naziv događaja, datum i prilagođeni link za goste - za vjenčanje, rođendan, godišnjicu tvrtke ili bilo koju drugu proslavu.",
     icon: "💌",
   },
   {
@@ -24,7 +24,7 @@ const STEPS = [
   },
   {
     title: "Sakupite uspomene",
-    text: "Gosti fotografišu, snimaju video ili ostave glasovnu poruku direktno u vašoj zajedničkoj galeriji.",
+    text: "Gosti fotografiraju, snimaju video ili ostave glasovnu poruku direktno u vašoj zajedničkoj galeriji.",
     icon: "🤍",
   },
 ];
@@ -47,30 +47,30 @@ const FEATURES = [
   },
   {
     title: "Javna ili privatna galerija",
-    text: "Sami odlučujete da li gosti mogu pregledati sve uspomene ili su vidljive samo vama.",
+    text: "Sami odlučujete mogu li gosti pregledati sve uspomene ili su vidljive samo vama.",
     icon: "🔒",
   },
 ];
 
 const FAQS = [
   {
-    q: "Da li gosti moraju instalirati aplikaciju?",
-    a: "Ne. Gost samo skenira QR kod ili otvori link u svom pretraživaču - stranica se odmah otvori i može dodati fotografiju, video ili glasovnu poruku. Nije potrebna nikakva instalacija niti kreiranje naloga.",
+    q: "Moraju li gosti instalirati aplikaciju?",
+    a: "Ne. Gost samo skenira QR kod ili otvori link u svom pretraživaču - stranica se odmah otvori i može dodati fotografiju, video ili glasovnu poruku. Nije potrebna nikakva instalacija niti kreiranje računa.",
   },
   {
-    q: "Mogu li imati više događaja na jednom nalogu?",
-    a: "Da. Iz svog naloga možete kreirati onoliko događaja koliko želite - svaki dobija svoj jedinstveni link i QR kod, potpuno odvojen od ostalih.",
+    q: "Mogu li imati više događaja na jednom računu?",
+    a: "Da. Iz svog računa možete kreirati onoliko događaja koliko želite - svaki dobiva svoj jedinstveni link i QR kod, potpuno odvojen od ostalih.",
   },
   {
-    q: "Da li mogu obrisati fotografije ili cijeli događaj?",
-    a: "Da. Iz admin panela u svakom trenutku možete obrisati pojedinačnu fotografiju, video ili glasovnu poruku, kao i u potpunosti obrisati događaj zajedno sa svim sadržajem.",
+    q: "Mogu li izbrisati fotografije ili cijeli događaj?",
+    a: "Da. Iz admin panela u svakom trenutku možete izbrisati pojedinačnu fotografiju, video ili glasovnu poruku, kao i u potpunosti izbrisati događaj zajedno sa svim sadržajem.",
   },
   {
     q: "Koliko fotografija, videa ili poruka gosti mogu dodati?",
     a: "Nema ograničenja - gosti mogu dodati onoliko fotografija, video zapisa i glasovnih poruka koliko žele, jednu za drugom, sve dok traje događaj.",
   },
   {
-    q: "Da li galerija mora biti javna?",
+    q: "Mora li galerija biti javna?",
     a: "Ne, vi birate. Galerija može biti javna pa je svi gosti mogu pregledati, ili privatna pa su sve uspomene vidljive samo vama u admin panelu.",
   },
 ];
@@ -98,7 +98,7 @@ export default function LandingPage() {
             style={{ animationDelay: "160ms" }}
           >
             Neka vaši gosti podijele svoje najljepše trenutke s vašeg vjenčanja, rođendana, godišnjice
-            firme ili bilo kojeg drugog događaja - jednim skeniranjem QR koda, bez preuzimanja aplikacije.
+            tvrtke ili bilo kojeg drugog događaja - jednim skeniranjem QR koda, bez preuzimanja aplikacije.
           </p>
           <div
             className="animate-fade-up mt-10 flex flex-col gap-4 sm:flex-row"
@@ -141,7 +141,7 @@ export default function LandingPage() {
         <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
           <span>Jednostavno u tri koraka</span>
         </p>
-        <h2 className="mt-4 text-center font-display text-3xl text-ink-900">Kako funkcioniše?</h2>
+        <h2 className="mt-4 text-center font-display text-3xl text-ink-900">Kako funkcionira?</h2>
         <div className="relative mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3">
           <div
             aria-hidden
@@ -204,13 +204,13 @@ export default function LandingPage() {
               Bez aplikacije. Bez registracije. Samo skenirajte i pošaljite.
             </h2>
             <p className="mx-auto mt-4 max-w-md text-cream-100/80 lg:mx-0">
-              Vaši gosti ne moraju ništa preuzimati niti otvarati nalog. Skeniraju QR kod telefonom,
+              Vaši gosti ne moraju ništa preuzimati niti otvarati račun. Skeniraju QR kod telefonom,
               stranica se otvori u pretraživaču i za par sekundi njihova uspomena je u vašoj galeriji.
             </p>
             <ul className="mx-auto mt-6 max-w-md space-y-3 text-left lg:mx-0">
               {[
                 "Bez preuzimanja aplikacije",
-                "Bez naloga ili lozinke za goste",
+                "Bez računa ili zaporke za goste",
                 "Radi na svakom telefonu s kamerom i internetom",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-3 text-sm text-cream-50/90">
@@ -253,7 +253,7 @@ export default function LandingPage() {
         <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
           <span>Česta pitanja</span>
         </p>
-        <h2 className="mt-4 text-center font-display text-3xl text-ink-900">Šta je QR Uspomene?</h2>
+        <h2 className="mt-4 text-center font-display text-3xl text-ink-900">Što je QR Uspomene?</h2>
         <p className="mx-auto mt-4 max-w-xl text-center text-ink-700">
           QR Uspomene je jednostavan način da sakupite fotografije, video snimke i glasovne poruke
           gostiju s vašeg vjenčanja, rođendana, godišnjice ili bilo koje druge proslave - sve na jednom
@@ -287,7 +287,7 @@ export default function LandingPage() {
           </h2>
           <p className="mx-auto mt-3 max-w-md text-ink-700">
             Kreirajte besplatan račun za nekoliko minuta i imajte svoj QR kod spreman prije velikog dana -
-            bilo da slavite vjenčanje, rođendan, godišnjicu firme ili nešto sasvim svoje.
+            bilo da slavite vjenčanje, rođendan, godišnjicu tvrtke ili nešto sasvim svoje.
           </p>
           <div className="mt-8">
             <Link href="/signup" className="btn-primary px-8 py-3.5">

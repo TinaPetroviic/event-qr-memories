@@ -45,7 +45,7 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
     <div className="space-y-10">
       <div>
         <Link href="/dashboard" className="text-sm text-gold-600 hover:underline">
-          ← Nazad na sve događaje
+          ← Natrag na sve događaje
         </Link>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-4 border-b border-gold-400/15 pb-6">
           <div>

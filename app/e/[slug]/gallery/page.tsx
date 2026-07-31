@@ -34,7 +34,7 @@ export default async function GuestGalleryPage({ params }: { params: Promise<{ s
       <DecorativeGlow />
       <div className="relative mx-auto max-w-5xl">
         <Link href={`/e/${slug}`} className="text-sm text-gold-600 hover:underline">
-          ← Nazad
+          ← Natrag
         </Link>
         <div className="mt-2 text-center">
           <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">

@@ -12,14 +12,14 @@ export async function login(_prevState: AuthFormState, formData: FormData): Prom
   const password = String(formData.get("password") ?? "");
 
   if (!email || !password) {
-    return { error: "Molimo unesite e-mail i lozinku." };
+    return { error: "Molimo unesite e-mail i zaporku." };
   }
 
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error) {
-    return { error: "Pogrešan e-mail ili lozinka." };
+    return { error: "Pogrešan e-mail ili zaporka." };
   }
 
   redirect("/dashboard");

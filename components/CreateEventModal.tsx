@@ -53,7 +53,7 @@ export function CreateEventModal() {
                   placeholder="npr. Nina & Marko"
                 />
                 <p className="mt-1.5 text-xs text-ink-700/60">
-                  Imena, rođendan, godišnjica firme – šta god slavite.
+                  Imena, rođendan, godišnjica tvrtke – što god slavite.
                 </p>
               </div>
 
