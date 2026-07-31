@@ -121,7 +121,7 @@ export function HeroIllustration() {
         </div>
 
         <p className="mt-4 text-[10px] leading-relaxed text-ink-700 sm:text-xs">
-          Fotografija · video · glasovna poruka
+          Fotografija · Video · Glasovna poruka
         </p>
       </div>
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LogOutIcon } from "@/components/icons";
 
 export function DashboardNav({ email }: { email: string }) {
   const initial = email.trim().charAt(0).toUpperCase() || "?";
@@ -9,16 +10,22 @@ export function DashboardNav({ email }: { email: string }) {
         <Link href="/dashboard" className="font-display text-xl text-ink-900">
           EventPix
         </Link>
-        <div className="flex items-center gap-4">
-          <span className="hidden max-w-[180px] items-center gap-2 text-sm text-ink-700 sm:flex md:max-w-xs" title={email}>
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gold-500/15 font-display text-xs text-gold-600">
-              {initial}
-            </span>
-            <span className="truncate">{email}</span>
+        <div className="flex items-center gap-1 rounded-full border border-gold-400/20 bg-white/60 p-1">
+          <span
+            title={email}
+            aria-label={email}
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gold-500/15 font-display text-xs text-gold-600"
+          >
+            {initial}
           </span>
           <form action="/auth/signout" method="post">
-            <button type="submit" className="btn-outline px-4 py-1.5 text-sm">
-              Odjava
+            <button
+              type="submit"
+              title="Odjava"
+              aria-label="Odjava"
+              className="flex h-8 w-8 items-center justify-center rounded-full text-ink-700 transition hover:bg-gold-500/15 hover:text-gold-600"
+            >
+              <LogOutIcon className="h-4 w-4" aria-hidden />
             </button>
           </form>
         </div>

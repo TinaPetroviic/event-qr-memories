@@ -332,6 +332,15 @@ export function PlusIcon(props: IconProps) {
   );
 }
 
+export function LogOutIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M15 4H7a1.5 1.5 0 0 0-1.5 1.5v13A1.5 1.5 0 0 0 7 20h8" />
+      <path d="M10 12h10.5M17 8l3.5 4-3.5 4" />
+    </Base>
+  );
+}
+
 export const ICONS = {
   camera: CameraIcon,
   video: VideoIcon,
