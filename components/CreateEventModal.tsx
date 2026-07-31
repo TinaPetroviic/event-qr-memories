@@ -67,7 +67,7 @@ export function CreateEventModal() {
             style={{ animationDuration: "0.3s" }}
             onClick={(e) => e.stopPropagation()}
           >
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">Novi početak</p>
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">Počnimo</p>
             <h2 className="mt-3 font-display text-2xl text-ink-900">Kreirajte novi događaj</h2>
             <p className="mt-1 text-sm text-ink-700">Unesite osnovne podatke o vašem događaju.</p>
 
