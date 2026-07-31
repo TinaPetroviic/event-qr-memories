@@ -105,7 +105,7 @@ export function VoiceRecorderButton({
 
   if (state === "preview") {
     return (
-      <div className="mt-3 flex flex-col items-center gap-3 rounded-2xl border border-ink-900/15 bg-cream-50 p-4 shadow-inner">
+      <div className="mt-3 flex flex-col items-center gap-3 rounded-2xl border border-gold-400/30 bg-cream-50 p-4 shadow-inner">
         <p className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-gold-600">
           <HeadphonesIcon className="h-3.5 w-3.5" aria-hidden /> Preslušajte prije slanja
         </p>

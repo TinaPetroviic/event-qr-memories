@@ -52,7 +52,8 @@ export function HeroIllustration() {
       aria-hidden
       className="relative mx-auto h-[280px] w-[240px] sm:h-[340px] sm:w-[290px] lg:h-[400px] lg:w-[360px]"
     >
-      <div className="absolute -bottom-8 -right-4 h-44 w-44 rounded-full bg-gold-300/15 blur-[80px]" />
+      <div className="absolute -left-6 -top-6 h-40 w-40 rounded-full bg-gold-300/30 blur-3xl" />
+      <div className="absolute -bottom-8 -right-4 h-44 w-44 rounded-full bg-blush-300/30 blur-3xl" />
 
       {/* Small sparkle accents echoing the printable QR card's motif set,
           filling the open space around the main card so the composition
@@ -75,9 +76,27 @@ export function HeroIllustration() {
           <circle cx={12} cy={12} r={SPARKLE_DOT_RADIUS} fill="currentColor" />
         </svg>
       </span>
+      <span className="absolute bottom-6 right-6 text-blush-500/60 lg:bottom-10" aria-hidden>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          {SPARKLE_RAYS.map((ray, i) => (
+            <line
+              key={i}
+              x1={ray.from[0] + 12}
+              y1={ray.from[1] + 12}
+              x2={ray.to[0] + 12}
+              y2={ray.to[1] + 12}
+              stroke="currentColor"
+              strokeWidth={ray.width}
+              strokeLinecap="round"
+            />
+          ))}
+          <circle cx={12} cy={12} r={SPARKLE_DOT_RADIUS} fill="currentColor" />
+        </svg>
+      </span>
+
       {/* Main tilted card */}
-      <div className="absolute left-1/2 top-1/2 w-[210px] -translate-x-1/2 -translate-y-1/2 -rotate-[5deg] rounded-2xl border border-ink-900/10 bg-white/95 p-5 text-center shadow-xl shadow-ink-900/15 backdrop-blur-sm sm:w-[250px] sm:p-6 lg:w-[270px]">
-        <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-gold-600 sm:text-[10px]">
+      <div className="absolute left-1/2 top-1/2 w-[210px] -translate-x-1/2 -translate-y-1/2 -rotate-[5deg] rounded-[1.75rem] border border-gold-400/30 bg-white/90 p-5 text-center shadow-xl shadow-gold-600/20 backdrop-blur-sm sm:w-[250px] sm:p-6 lg:w-[270px]">
+        <p className="text-[9px] font-semibold uppercase tracking-[0.25em] text-gold-600 sm:text-[10px]">
           Skenirajte kod
         </p>
 
@@ -107,20 +126,20 @@ export function HeroIllustration() {
       </div>
 
       {/* Floating chip: photo */}
-      <div className="absolute -left-2 top-3 flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[11px] font-medium text-ink-900 shadow-md shadow-ink-900/10 sm:-left-4 sm:top-6 sm:text-xs">
+      <div className="absolute -left-2 top-3 flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[11px] font-medium text-ink-900 shadow-md shadow-gold-600/15 sm:-left-4 sm:top-6 sm:text-xs">
         <CameraIcon className="h-3.5 w-3.5" aria-hidden />
         Fotografija
       </div>
 
       {/* Floating chip: voice message */}
-      <div className="absolute -right-3 bottom-8 flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[11px] font-medium text-ink-900 shadow-md shadow-ink-900/10 sm:-right-5 sm:bottom-12 sm:text-xs">
+      <div className="absolute -right-3 bottom-8 flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[11px] font-medium text-ink-900 shadow-md shadow-gold-600/15 sm:-right-5 sm:bottom-12 sm:text-xs">
         <MicrophoneIcon className="h-3.5 w-3.5" aria-hidden />
         Poruka
       </div>
 
       {/* Small vector flourish, echoing the printable card's motif options */}
       <div className="absolute -right-1 top-0 flex h-9 w-9 items-center justify-center rounded-full bg-blush-100 shadow-sm shadow-blush-500/20 sm:h-10 sm:w-10">
-        <QrMotifIcon motifKey="heart" color="#863a4c" size={16} />
+        <QrMotifIcon motifKey="heart" color="#a84e63" size={16} />
       </div>
     </div>
   );

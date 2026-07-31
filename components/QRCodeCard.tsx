@@ -304,7 +304,7 @@ export function QRCodeCard({
 
   return (
     <div
-      className="relative flex h-full flex-col overflow-hidden rounded-2xl p-6 text-center shadow-md transition-colors duration-300 sm:p-8"
+      className="relative flex h-full flex-col overflow-hidden rounded-3xl p-6 text-center shadow-md transition-colors duration-300 sm:p-8"
       style={{ background: theme.background }}
     >
       {/* Barely-there radial vignette for a subtle premium-paper feel - never
@@ -334,7 +334,7 @@ export function QRCodeCard({
 
       <div className="relative flex flex-1 flex-col">
         <p
-          className="text-[10px] font-semibold uppercase tracking-[0.2em] sm:text-xs"
+          className="text-[10px] font-semibold uppercase tracking-[0.25em] sm:text-xs"
           style={{ color: theme.accentColor }}
         >
           {theme.eyebrow}
@@ -397,7 +397,7 @@ export function QRCodeCard({
             <button
               type="button"
               onClick={handleCopy}
-              className="flex-1 rounded-xl border px-4 py-2 text-sm font-semibold transition hover:opacity-80"
+              className="flex-1 rounded-full border px-4 py-2 text-sm font-medium transition hover:opacity-80"
               style={{ borderColor: theme.accentColor, color: theme.accentColor }}
             >
               {copied ? "Kopirano!" : "Kopiraj link"}
@@ -406,7 +406,7 @@ export function QRCodeCard({
               type="button"
               onClick={handleDownload}
               disabled={downloading}
-              className="flex-1 rounded-xl px-4 py-2 text-sm font-semibold text-white shadow-md transition hover:opacity-90 disabled:opacity-60"
+              className="flex-1 rounded-full px-4 py-2 text-sm font-medium text-white shadow-md transition hover:opacity-90 disabled:opacity-60"
               style={{ background: theme.accentColor }}
             >
               {downloading ? "Priprema..." : "Preuzmi PNG"}

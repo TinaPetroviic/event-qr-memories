@@ -118,11 +118,11 @@ export function PhotoGrid({
 
   if (items.length === 0) {
     return (
-      <div className="rounded-2xl border border-dashed border-ink-900/20 bg-white/60 p-10 text-center">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-ink-900">
-          <HeartIcon className="h-6 w-6 text-gold-400" aria-hidden />
+      <div className="rounded-3xl border border-dashed border-gold-400/40 bg-white/50 p-10 text-center">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gold-500/10">
+          <HeartIcon className="h-6 w-6 text-gold-600" aria-hidden />
         </div>
-        <p className="mt-4 font-display text-lg tracking-tight text-ink-900">Još nema uspomena</p>
+        <p className="mt-4 font-display text-lg text-ink-900">Još nema uspomena</p>
         <p className="mx-auto mt-2 max-w-sm text-ink-700">
           Budite prvi koji će podijeliti trenutak – fotografije, videa i glasovne poruke gostiju pojavit će se
           ovdje čim ih pošalju.
@@ -165,7 +165,7 @@ export function PhotoGrid({
                 setLightboxIndex(index);
               }
             }}
-            className="group relative aspect-square cursor-pointer overflow-hidden rounded-xl border border-ink-900/10 bg-cream-100 shadow-sm transition hover:shadow-lg hover:shadow-ink-900/10"
+            className="group relative aspect-square cursor-pointer overflow-hidden rounded-2xl border border-gold-400/20 bg-cream-100 shadow-sm transition hover:shadow-lg hover:shadow-gold-600/10"
           >
             {photo.mediaType === "photo" && (
               // Guest-uploaded content, dimensions unknown ahead of time.
@@ -188,11 +188,11 @@ export function PhotoGrid({
               </div>
             )}
             {photo.mediaType === "audio" && (
-              <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-ink-900 p-4 text-center">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
-                  <MicrophoneIcon className="h-5 w-5 text-gold-400" aria-hidden />
+              <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-gold-200/60 via-cream-100 to-blush-100 p-4 text-center">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold-500/15">
+                  <MicrophoneIcon className="h-5 w-5 text-gold-600" aria-hidden />
                 </span>
-                <p className="text-xs font-medium uppercase tracking-wide text-gold-300">Glasovna poruka</p>
+                <p className="text-xs font-medium uppercase tracking-wide text-gold-600">Glasovna poruka</p>
                 <audio controls className="w-full" src={photo.url} onClick={(e) => e.stopPropagation()} />
               </div>
             )}
@@ -279,8 +279,8 @@ export function PhotoGrid({
               </video>
             )}
             {activePhoto.mediaType === "audio" && (
-              <div className="flex w-full max-w-sm flex-col items-center gap-3 rounded-2xl bg-white p-6 text-center">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-cream-100">
+              <div className="flex w-full max-w-sm flex-col items-center gap-3 rounded-2xl bg-gradient-to-br from-gold-200/60 via-cream-100 to-blush-100 p-6 text-center">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold-500/15">
                   <MicrophoneIcon className="h-5 w-5 text-gold-600" aria-hidden />
                 </span>
                 <p className="text-xs font-medium uppercase tracking-wide text-gold-600">Glasovna poruka</p>

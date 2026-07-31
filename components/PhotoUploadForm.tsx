@@ -82,7 +82,7 @@ export function PhotoUploadForm({ eventId }: { eventId: string }) {
   };
 
   return (
-    <div className="card-surface bg-white p-6 text-center shadow-md shadow-ink-900/5 sm:p-8">
+    <div className="card-surface bg-white/80 p-6 text-center shadow-md shadow-gold-600/10 sm:p-8">
       <div className="mx-auto mb-6 max-w-xs">
         <label htmlFor="guestName" className="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-ink-500">
           Vaše ime <span className="normal-case tracking-normal text-ink-400">(opcionalno)</span>
@@ -109,7 +109,7 @@ export function PhotoUploadForm({ eventId }: { eventId: string }) {
       />
       <label
         htmlFor="photo-input"
-        className={`btn-primary w-full cursor-pointer px-6 py-4 text-base transition hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] sm:w-auto sm:px-10 sm:text-lg ${
+        className={`btn-primary w-full cursor-pointer px-6 py-4 font-display text-base tracking-wide transition hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] sm:w-auto sm:px-10 sm:text-lg ${
           status === "uploading" ? "pointer-events-none opacity-70" : ""
         }`}
       >
@@ -124,7 +124,7 @@ export function PhotoUploadForm({ eventId }: { eventId: string }) {
       </label>
 
       <div className="mt-2">
-        <p className="divider-flourish my-5 justify-center text-xs font-medium uppercase tracking-[0.2em] text-ink-500">
+        <p className="divider-flourish my-5 text-xs font-medium uppercase tracking-[0.25em] text-ink-500">
           <span>ili</span>
         </p>
         <VoiceRecorderButton onUpload={handleVoiceUpload} disabled={status === "uploading"} />

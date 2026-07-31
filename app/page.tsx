@@ -79,18 +79,18 @@ const FAQS = [
 export default function LandingPage() {
   return (
     <main className="flex flex-1 flex-col overflow-x-clip">
-      <section className="relative overflow-hidden bg-cream-50 px-4 py-20 sm:py-28">
+      <section className="relative overflow-hidden bg-gradient-to-b from-cream-100 via-cream-50 to-cream-50 px-4 py-20 sm:py-28">
         <DecorativeGlow />
         <div className="relative mx-auto grid max-w-6xl gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-8">
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <p
-              className="divider-flourish animate-fade-up text-xs font-medium uppercase tracking-[0.2em] text-gold-600 lg:justify-start"
+              className="divider-flourish animate-fade-up text-xs font-medium uppercase tracking-[0.3em] text-gold-600 lg:justify-start"
               style={{ animationDelay: "0ms" }}
             >
               <span>Digitalna knjiga uspomena za svaki događaj</span>
             </p>
             <h1
-              className="animate-fade-up mt-6 max-w-xl font-display text-5xl leading-[1.05] tracking-tight text-ink-900 sm:text-6xl"
+              className="animate-fade-up mt-6 max-w-xl font-display text-5xl leading-tight text-ink-900 sm:text-6xl"
               style={{ animationDelay: "80ms" }}
             >
               EventPix
@@ -120,9 +120,9 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="border-y border-ink-900/10 bg-cream-50 px-4 py-10">
+      <section className="border-y border-gold-400/15 bg-cream-50 px-4 py-10">
         <div className="mx-auto max-w-5xl">
-          <p className="text-center text-xs font-medium uppercase tracking-[0.2em] text-gold-600">
+          <p className="text-center text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
             Za svaku vrstu proslave
           </p>
           <div className="mt-6 flex gap-3 overflow-x-auto pb-2 sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0">
@@ -142,22 +142,22 @@ export default function LandingPage() {
       </section>
 
       <section id="kako-funkcionira" className="mx-auto w-full max-w-5xl scroll-mt-8 px-4 py-20">
-        <p className="divider-flourish text-xs font-medium uppercase tracking-[0.2em] text-gold-600">
+        <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
           <span>Jednostavno u tri koraka</span>
         </p>
-        <h2 className="mt-4 text-center font-display text-3xl tracking-tight text-ink-900">Kako funkcionira?</h2>
+        <h2 className="mt-4 text-center font-display text-3xl text-ink-900">Kako funkcionira?</h2>
         <div className="relative mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3">
           <div
             aria-hidden
-            className="absolute left-0 right-0 top-9 hidden h-px bg-ink-900/10 sm:block"
+            className="absolute left-0 right-0 top-9 hidden h-px bg-gradient-to-r from-transparent via-gold-400/50 to-transparent sm:block"
           />
           {STEPS.map((step) => (
             <div
               key={step.title}
               className="card-surface-interactive relative flex flex-col items-center p-6 text-center"
             >
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-ink-900 shadow-md shadow-ink-900/25">
-                <Icon name={step.icon} className="h-6 w-6 text-gold-400" aria-hidden />
+              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-gold-400 to-gold-600 shadow-md shadow-gold-600/30">
+                <Icon name={step.icon} className="h-6 w-6 text-white" aria-hidden />
               </div>
               <h3 className="font-display text-xl text-ink-900">{step.title}</h3>
               <p className="mt-2 text-sm text-ink-700">{step.text}</p>
@@ -169,10 +169,10 @@ export default function LandingPage() {
       <section id="znacajke" className="scroll-mt-8 bg-cream-100 px-4 py-20">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="divider-flourish text-xs font-medium uppercase tracking-[0.2em] text-gold-600">
+            <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
               <span>Sve na jednom mjestu</span>
             </p>
-            <h2 className="mt-4 font-display text-3xl tracking-tight text-ink-900">
+            <h2 className="mt-4 font-display text-3xl text-ink-900">
               Sve što vam je potrebno za bilo koju proslavu
             </h2>
           </div>
@@ -180,9 +180,9 @@ export default function LandingPage() {
             {FEATURES.map((feature) => (
               <div
                 key={feature.title}
-                className="flex items-start gap-4 rounded-2xl border border-ink-900/10 bg-white p-5 shadow-sm shadow-ink-900/5"
+                className="flex items-start gap-4 rounded-2xl border border-gold-400/20 bg-white/60 p-5 shadow-sm shadow-gold-600/5"
               >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cream-100 shadow-inner">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cream-50 shadow-inner">
                   <Icon name={feature.icon} className="h-5 w-5 text-gold-600" aria-hidden />
                 </span>
                 <div>
@@ -199,7 +199,7 @@ export default function LandingPage() {
         <svg viewBox="0 0 1440 100" preserveAspectRatio="none" className="block h-14 w-full sm:h-20">
           <path
             d="M0,32 C240,90 480,90 720,50 C960,10 1200,10 1440,55 L1440,100 L0,100 Z"
-            fill="#211a12"
+            fill="#2e2419"
           />
         </svg>
       </div>
@@ -208,10 +208,10 @@ export default function LandingPage() {
         <DecorativeGlow tone="dark" />
         <div className="relative mx-auto grid max-w-5xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <div className="text-center lg:text-left">
-            <p className="divider-flourish text-xs font-medium uppercase tracking-[0.2em] text-gold-300">
+            <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-300">
               <span>Nula trenja za goste</span>
             </p>
-            <h2 className="mt-4 font-display text-3xl leading-tight tracking-tight sm:text-4xl">
+            <h2 className="mt-4 font-display text-3xl leading-tight sm:text-4xl">
               Bez aplikacije. Bez registracije. Samo skenirajte i pošaljite.
             </h2>
             <p className="mx-auto mt-4 max-w-md text-cream-100/80 lg:mx-0">
@@ -260,7 +260,7 @@ export default function LandingPage() {
 
                 <div className="flex flex-1 flex-col items-center justify-center gap-2.5 px-3 text-center">
                   <CameraIcon className="h-8 w-8 text-white" aria-hidden />
-                  <span className="rounded-lg bg-cream-50 px-4 py-2 text-xs font-semibold text-ink-900 shadow-md shadow-black/20">
+                  <span className="rounded-full bg-gold-500 px-4 py-2 text-xs font-medium text-white shadow-md shadow-black/20">
                     Dodaj fotografiju
                   </span>
                   <span className="text-[10px] uppercase tracking-widest text-white/40">ili</span>
@@ -269,7 +269,7 @@ export default function LandingPage() {
                   </span>
 
                   <div className="mt-2 flex gap-1.5" aria-hidden>
-                    {["bg-gold-400/50", "bg-white/20", "bg-white/25", "bg-gold-300/40"].map((tone, i) => (
+                    {["bg-gold-400/50", "bg-blush-300/50", "bg-white/25", "bg-gold-300/40"].map((tone, i) => (
                       <span key={i} className={`h-6 w-6 rounded-md ${tone}`} />
                     ))}
                   </div>
@@ -281,10 +281,10 @@ export default function LandingPage() {
       </section>
 
       <section id="faq" className="mx-auto w-full max-w-3xl scroll-mt-8 px-4 py-20">
-        <p className="divider-flourish text-xs font-medium uppercase tracking-[0.2em] text-gold-600">
+        <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
           <span>Česta pitanja</span>
         </p>
-        <h2 className="mt-4 text-center font-display text-3xl tracking-tight text-ink-900">Što je EventPix?</h2>
+        <h2 className="mt-4 text-center font-display text-3xl text-ink-900">Što je EventPix?</h2>
         <p className="mx-auto mt-4 max-w-xl text-center text-ink-700">
           EventPix je jednostavan način da sakupite fotografije, video snimke i glasovne poruke
           gostiju s vašeg vjenčanja, rođendana, godišnjice ili bilo koje druge proslave - sve na jednom
@@ -309,11 +309,11 @@ export default function LandingPage() {
       </section>
 
       <section className="relative overflow-hidden px-4 py-20 text-center">
-        <div className="mx-auto max-w-2xl rounded-3xl border border-ink-900/10 bg-cream-100 px-6 py-14 shadow-md shadow-ink-900/5 sm:px-12">
-          <p className="divider-flourish text-xs font-medium uppercase tracking-[0.2em] text-gold-600">
+        <div className="mx-auto max-w-2xl rounded-[2.5rem] border border-gold-400/30 bg-gradient-to-br from-white/80 to-cream-100/80 px-6 py-14 shadow-lg shadow-gold-600/10 sm:px-12">
+          <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
             <span>Počnite danas</span>
           </p>
-          <h2 className="mt-4 font-display text-3xl tracking-tight text-ink-900">
+          <h2 className="mt-4 font-display text-3xl text-ink-900">
             Spremni da počnete sakupljati uspomene?
           </h2>
           <p className="mx-auto mt-3 max-w-md text-ink-700">
@@ -328,7 +328,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <footer className="border-t border-ink-900/10 bg-cream-100/60 px-4 pb-10 pt-16 text-sm text-ink-700">
+      <footer className="border-t border-gold-400/20 bg-cream-100/60 px-4 pb-10 pt-16 text-sm text-ink-700">
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-10 sm:grid-cols-[1.4fr_1fr_1fr] sm:gap-8">
           <div className="col-span-2 text-center sm:col-span-1 sm:text-left">
             <p className="divider-flourish justify-center font-display text-lg text-ink-900 sm:justify-start">
@@ -392,7 +392,7 @@ export default function LandingPage() {
           </nav>
         </div>
 
-        <div className="mx-auto mt-12 max-w-5xl border-t border-ink-900/10 pt-6">
+        <div className="mx-auto mt-12 max-w-5xl border-t border-gold-400/15 pt-6">
           <p className="text-center text-xs text-ink-700/70">
             © {new Date().getFullYear()} EventPix. Sva prava pridržana.
           </p>

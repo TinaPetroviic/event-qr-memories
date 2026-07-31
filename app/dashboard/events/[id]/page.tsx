@@ -58,7 +58,7 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
 
   const summaryPanel = (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:items-start">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="card-surface overflow-hidden lg:col-span-2">
           {coverUrl && (
             // Owner-chosen cover image, dimensions unknown ahead of time.
@@ -66,8 +66,8 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
             <img src={coverUrl} alt="" aria-hidden className="h-40 w-full object-cover sm:h-52" />
           )}
           <div className="p-6">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-gold-600">Detalji događaja</p>
-            <h3 className="mt-2 font-display text-2xl tracking-tight text-ink-900">{event.title}</h3>
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">Detalji događaja</p>
+            <h3 className="mt-2 font-display text-2xl text-ink-900">{event.title}</h3>
             <div className="mt-3 flex flex-wrap gap-2 text-sm">
               <span className="flex items-center gap-1.5 rounded-full bg-cream-100 px-3 py-1 text-ink-700">
                 <CalendarIcon className="h-4 w-4" aria-hidden /> {formatDateShort(event.event_date)}
@@ -96,23 +96,23 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         <div className="card-surface p-5 text-center">
-          <p className="font-display text-3xl tracking-tight text-ink-900">{photos.length}</p>
+          <p className="font-display text-3xl text-ink-900">{photos.length}</p>
           <p className="mt-1 text-xs uppercase tracking-wide text-ink-700/70">Ukupno uspomena</p>
         </div>
         <div className="card-surface p-5 text-center">
-          <p className="font-display text-3xl tracking-tight text-ink-900">{photoCount}</p>
+          <p className="font-display text-3xl text-ink-900">{photoCount}</p>
           <p className="mt-1 flex items-center justify-center gap-1 text-xs uppercase tracking-wide text-ink-700/70">
             <CameraIcon className="h-3.5 w-3.5" aria-hidden /> Fotografije
           </p>
         </div>
         <div className="card-surface p-5 text-center">
-          <p className="font-display text-3xl tracking-tight text-ink-900">{videoCount}</p>
+          <p className="font-display text-3xl text-ink-900">{videoCount}</p>
           <p className="mt-1 flex items-center justify-center gap-1 text-xs uppercase tracking-wide text-ink-700/70">
             <VideoIcon className="h-3.5 w-3.5" aria-hidden /> Videa
           </p>
         </div>
         <div className="card-surface p-5 text-center">
-          <p className="font-display text-3xl tracking-tight text-ink-900">{audioCount}</p>
+          <p className="font-display text-3xl text-ink-900">{audioCount}</p>
           <p className="mt-1 flex items-center justify-center gap-1 text-xs uppercase tracking-wide text-ink-700/70">
             <MicrophoneIcon className="h-3.5 w-3.5" aria-hidden /> Glasovne poruke
           </p>
@@ -123,7 +123,7 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
 
   const settingsPanel = (
     <div className="card-surface p-6">
-      <h3 className="mb-1 font-display text-xl tracking-tight text-ink-900">Postavke događaja</h3>
+      <h3 className="mb-1 font-display text-xl text-ink-900">Postavke događaja</h3>
       <p className="mb-5 text-sm text-ink-700">
         Uredite osnovne podatke, poruku dobrodošlice i izgled QR kartice.
       </p>
@@ -133,8 +133,8 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
 
   const galleryPanel = (
     <div>
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-ink-900/10 pb-3">
-        <h3 className="font-display text-xl tracking-tight text-ink-900">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-gold-400/15 pb-3">
+        <h3 className="font-display text-xl text-ink-900">
           Uspomene gostiju <span className="text-ink-700">({photos.length})</span>
         </h3>
         {photos.length > 0 && <DownloadGalleryButton photos={photos} zipName={event.title} />}
@@ -149,10 +149,10 @@ export default async function EventAdminPage({ params }: { params: Promise<{ id:
         <Link href="/dashboard" className="text-sm text-gold-600 hover:underline">
           ← Natrag na sve događaje
         </Link>
-        <div className="mt-2 flex flex-wrap items-end justify-between gap-4 border-b border-ink-900/10 pb-6">
+        <div className="mt-2 flex flex-wrap items-end justify-between gap-4 border-b border-gold-400/15 pb-6">
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-gold-600">Admin panel</p>
-            <h1 className="mt-1 font-display text-3xl tracking-tight text-ink-900 sm:text-4xl">{event.title}</h1>
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">Admin panel</p>
+            <h1 className="mt-1 font-display text-3xl text-ink-900 sm:text-4xl">{event.title}</h1>
             <p className="mt-1 text-ink-700">{formatDateShort(event.event_date)}</p>
           </div>
           <DeleteEventButton eventId={event.id} />
