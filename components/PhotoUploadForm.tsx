@@ -83,16 +83,16 @@ export function PhotoUploadForm({ eventId }: { eventId: string }) {
 
   return (
     <div className="card-surface bg-white/80 p-6 text-center shadow-md shadow-gold-600/10 sm:p-8">
-      <div className="mx-auto mb-5 max-w-xs">
-        <label htmlFor="guestName" className="mb-1 block text-sm font-medium text-ink-700">
-          Vaše ime (opcionalno)
+      <div className="mx-auto mb-6 max-w-xs">
+        <label htmlFor="guestName" className="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-ink-500">
+          Vaše ime <span className="normal-case tracking-normal text-ink-400">(opcionalno)</span>
         </label>
         <input
           id="guestName"
           value={guestName}
           onChange={(e) => setGuestName(e.target.value)}
           placeholder="npr. Amela"
-          className="input-field text-center"
+          className="input-field py-3 text-center"
         />
       </div>
 
@@ -109,7 +109,7 @@ export function PhotoUploadForm({ eventId }: { eventId: string }) {
       />
       <label
         htmlFor="photo-input"
-        className={`btn-primary w-full cursor-pointer px-8 py-4 font-display text-lg sm:w-auto ${
+        className={`btn-primary w-full cursor-pointer px-6 py-4 font-display text-base tracking-wide transition hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] sm:w-auto sm:px-10 sm:text-lg ${
           status === "uploading" ? "pointer-events-none opacity-70" : ""
         }`}
       >
@@ -117,23 +117,26 @@ export function PhotoUploadForm({ eventId }: { eventId: string }) {
           "Slanje u tijeku..."
         ) : (
           <>
-            <CameraIcon className="h-5 w-5" aria-hidden /> Dodaj fotografiju ili video
+            <CameraIcon className="h-5 w-5 shrink-0" aria-hidden />
+            <span className="text-balance">Dodaj fotografiju ili video</span>
           </>
         )}
       </label>
 
-      <div className="mt-1">
-        <p className="my-4 text-xs uppercase tracking-[0.2em] text-ink-500">ili</p>
+      <div className="mt-2">
+        <p className="divider-flourish my-5 text-xs font-medium uppercase tracking-[0.25em] text-ink-500">
+          <span>ili</span>
+        </p>
         <VoiceRecorderButton onUpload={handleVoiceUpload} disabled={status === "uploading"} />
       </div>
 
       {status === "success" && (
-        <p className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-green-50 px-4 py-2 text-sm text-green-800">
+        <p className="animate-fade-up mt-4 flex items-center justify-center gap-2 rounded-lg bg-green-50 px-4 py-2 text-sm text-green-800">
           <CheckIcon className="h-4 w-4" aria-hidden /> Hvala! Poslano uspomena: {uploadedCount}. Slobodno dodajte još.
         </p>
       )}
       {status === "error" && (
-        <p className="mt-4 rounded-lg bg-red-50 px-4 py-2 text-sm text-red-700">{errorMessage}</p>
+        <p className="animate-fade-up mt-4 rounded-lg bg-red-50 px-4 py-2 text-sm text-red-700">{errorMessage}</p>
       )}
     </div>
   );

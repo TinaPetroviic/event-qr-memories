@@ -151,7 +151,7 @@ export function VoiceRecorderButton({
       type="button"
       onClick={startRecording}
       disabled={disabled}
-      className="btn-outline px-6 py-3"
+      className="btn-outline px-6 py-3 transition hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
     >
       <MicrophoneIcon className="h-5 w-5" aria-hidden /> Snimi glasovnu poruku
     </button>
