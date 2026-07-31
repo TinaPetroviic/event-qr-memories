@@ -24,7 +24,7 @@ export function CreateEventModal() {
 
       {open && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-ink-900/40 px-4 backdrop-blur-sm animate-fade-up"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-ink-900/80 px-4 backdrop-blur-md animate-fade-up"
           style={{ animationDuration: "0.2s" }}
           onClick={() => setOpen(false)}
         >
