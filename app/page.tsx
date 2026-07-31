@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { DecorativeGlow } from "@/components/DecorativeGlow";
+import { HeroIllustration } from "@/components/HeroIllustration";
 import { WaveDivider } from "@/components/WaveDivider";
 
 const CATEGORIES = [
@@ -80,36 +81,41 @@ export default function LandingPage() {
     <main className="flex flex-1 flex-col overflow-x-clip">
       <section className="relative overflow-hidden bg-gradient-to-b from-cream-100 via-cream-50 to-cream-50 px-4 py-20 sm:py-28">
         <DecorativeGlow />
-        <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
-          <p
-            className="divider-flourish animate-fade-up text-xs font-medium uppercase tracking-[0.3em] text-gold-600"
-            style={{ animationDelay: "0ms" }}
-          >
-            <span>Digitalna knjiga uspomena za svaki događaj</span>
-          </p>
-          <h1
-            className="animate-fade-up mt-6 max-w-3xl font-display text-5xl leading-tight text-ink-900 sm:text-6xl"
-            style={{ animationDelay: "80ms" }}
-          >
-            QR Uspomene
-          </h1>
-          <p
-            className="animate-fade-up mt-6 max-w-xl text-lg text-ink-700"
-            style={{ animationDelay: "160ms" }}
-          >
-            Neka vaši gosti podijele svoje najljepše trenutke s vašeg vjenčanja, rođendana, godišnjice
-            tvrtke ili bilo kojeg drugog događaja - jednim skeniranjem QR koda, bez preuzimanja aplikacije.
-          </p>
-          <div
-            className="animate-fade-up mt-10 flex flex-col gap-4 sm:flex-row"
-            style={{ animationDelay: "240ms" }}
-          >
-            <Link href="/signup" className="btn-primary px-8 py-3.5">
-              Kreirajte svoj događaj
-            </Link>
-            <Link href="/login" className="btn-outline px-8 py-3.5">
-              Prijava
-            </Link>
+        <div className="relative mx-auto grid max-w-6xl gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-8">
+          <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+            <p
+              className="divider-flourish animate-fade-up text-xs font-medium uppercase tracking-[0.3em] text-gold-600 lg:justify-start"
+              style={{ animationDelay: "0ms" }}
+            >
+              <span>Digitalna knjiga uspomena za svaki događaj</span>
+            </p>
+            <h1
+              className="animate-fade-up mt-6 max-w-xl font-display text-5xl leading-tight text-ink-900 sm:text-6xl"
+              style={{ animationDelay: "80ms" }}
+            >
+              QR Uspomene
+            </h1>
+            <p
+              className="animate-fade-up mt-6 max-w-xl text-lg text-ink-700"
+              style={{ animationDelay: "160ms" }}
+            >
+              Neka vaši gosti podijele svoje najljepše trenutke s vašeg vjenčanja, rođendana, godišnjice
+              tvrtke ili bilo kojeg drugog događaja - jednim skeniranjem QR koda, bez preuzimanja aplikacije.
+            </p>
+            <div
+              className="animate-fade-up mt-10 flex flex-col gap-4 sm:flex-row"
+              style={{ animationDelay: "240ms" }}
+            >
+              <Link href="/signup" className="btn-primary px-8 py-3.5">
+                Kreirajte svoj događaj
+              </Link>
+              <Link href="/login" className="btn-outline px-8 py-3.5">
+                Prijava
+              </Link>
+            </div>
+          </div>
+          <div className="animate-fade-up" style={{ animationDelay: "200ms" }}>
+            <HeroIllustration />
           </div>
         </div>
       </section>
@@ -123,7 +129,7 @@ export default function LandingPage() {
             {CATEGORIES.map((category) => (
               <div
                 key={category.label}
-                className="card-surface flex shrink-0 items-center gap-2.5 px-5 py-3 sm:shrink"
+                className="card-surface-interactive flex shrink-0 items-center gap-2.5 px-5 py-3 sm:shrink"
               >
                 <span className="text-xl" aria-hidden>
                   {category.icon}
@@ -137,7 +143,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-5xl px-4 py-20">
+      <section id="kako-funkcionira" className="mx-auto w-full max-w-5xl scroll-mt-8 px-4 py-20">
         <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
           <span>Jednostavno u tri koraka</span>
         </p>
@@ -162,7 +168,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="bg-cream-100 px-4 py-20">
+      <section id="znacajke" className="scroll-mt-8 bg-cream-100 px-4 py-20">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
             <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
@@ -249,7 +255,7 @@ export default function LandingPage() {
 
       <WaveDivider fill="#fdfbf6" backdropClassName="bg-ink-900" flip />
 
-      <section className="mx-auto w-full max-w-3xl px-4 py-20">
+      <section id="faq" className="mx-auto w-full max-w-3xl scroll-mt-8 px-4 py-20">
         <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
           <span>Česta pitanja</span>
         </p>
@@ -262,11 +268,11 @@ export default function LandingPage() {
         <div className="mt-10 space-y-4">
           {FAQS.map((faq) => (
             <details key={faq.q} className="card-surface group px-6 py-4">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-lg text-ink-900">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl font-display text-lg text-ink-900 outline-none transition-colors hover:text-gold-600 focus-visible:ring-2 focus-visible:ring-gold-400/50">
                 {faq.q}
                 <span
                   aria-hidden
-                  className="ml-2 shrink-0 text-gold-500 transition group-open:rotate-45"
+                  className="ml-2 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-cream-100 text-gold-500 transition-transform duration-300 group-open:rotate-45"
                 >
                   +
                 </span>
@@ -297,26 +303,75 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <footer className="border-t border-gold-400/20 px-4 py-10 text-sm text-ink-700">
-        <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 sm:flex-row sm:items-start sm:justify-between">
-          <div className="text-center sm:text-left">
-            <p className="font-display text-lg text-ink-900">QR Uspomene</p>
-            <p className="mt-1 max-w-xs text-ink-700/80">
+      <footer className="border-t border-gold-400/20 bg-cream-100/60 px-4 pb-10 pt-16 text-sm text-ink-700">
+        <div className="mx-auto grid max-w-5xl grid-cols-2 gap-10 sm:grid-cols-[1.4fr_1fr_1fr] sm:gap-8">
+          <div className="col-span-2 text-center sm:col-span-1 sm:text-left">
+            <p className="divider-flourish justify-center font-display text-lg text-ink-900 sm:justify-start">
+              <span>QR Uspomene</span>
+            </p>
+            <p className="mx-auto mt-3 max-w-[26ch] text-ink-700/80 sm:mx-0">
               Digitalna knjiga uspomena za vjenčanja, rođendane i sve vrste proslava.
             </p>
           </div>
-          <nav className="flex gap-6 text-center sm:text-left" aria-label="Footer">
-            <Link href="/signup" className="hover:text-gold-600">
-              Registracija
-            </Link>
-            <Link href="/login" className="hover:text-gold-600">
-              Prijava
-            </Link>
+
+          <nav aria-label="Proizvod" className="text-center sm:text-left">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">Proizvod</p>
+            <ul className="mt-4 space-y-2.5">
+              <li>
+                <a
+                  href="#kako-funkcionira"
+                  className="rounded transition-colors hover:text-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/50"
+                >
+                  Kako funkcionira
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#znacajke"
+                  className="rounded transition-colors hover:text-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/50"
+                >
+                  Značajke
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#faq"
+                  className="rounded transition-colors hover:text-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/50"
+                >
+                  Česta pitanja
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <nav aria-label="Račun" className="text-center sm:text-left">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">Račun</p>
+            <ul className="mt-4 space-y-2.5">
+              <li>
+                <Link
+                  href="/signup"
+                  className="rounded transition-colors hover:text-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/50"
+                >
+                  Registracija
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/login"
+                  className="rounded transition-colors hover:text-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400/50"
+                >
+                  Prijava
+                </Link>
+              </li>
+            </ul>
           </nav>
         </div>
-        <p className="mt-8 text-center text-xs text-ink-700/70">
-          © {new Date().getFullYear()} QR Uspomene
-        </p>
+
+        <div className="mx-auto mt-12 max-w-5xl border-t border-gold-400/15 pt-6">
+          <p className="text-center text-xs text-ink-700/70">
+            © {new Date().getFullYear()} QR Uspomene. Sva prava pridržana.
+          </p>
+        </div>
       </footer>
     </main>
   );
