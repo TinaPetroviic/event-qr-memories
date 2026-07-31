@@ -45,7 +45,7 @@ export function AdminPanelTabs({
               aria-selected={isActive}
               aria-controls={`tabpanel-${tab.key}`}
               onClick={() => setActive(tab.key)}
-              className={`inline-flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-medium transition ${
+              className={`inline-flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-medium transition active:scale-[0.97] ${
                 isActive
                   ? "bg-gold-500 text-white shadow-sm shadow-gold-600/30"
                   : "text-ink-700 hover:bg-cream-100"
@@ -57,17 +57,27 @@ export function AdminPanelTabs({
         })}
       </div>
 
-      {TABS.map((tab) => (
-        <div
-          key={tab.key}
-          id={`tabpanel-${tab.key}`}
-          role="tabpanel"
-          aria-labelledby={`tab-${tab.key}`}
-          hidden={active !== tab.key}
-        >
-          {panels[tab.key]}
-        </div>
-      ))}
+      {TABS.map((tab) => {
+        const isActive = active === tab.key;
+        return (
+          <div
+            key={tab.key}
+            id={`tabpanel-${tab.key}`}
+            role="tabpanel"
+            aria-labelledby={`tab-${tab.key}`}
+            hidden={!isActive}
+            // Re-adding this class each time a panel becomes active restarts
+            // the fade-up keyframe (animation-name toggles none -> fade-up),
+            // giving the tab swap a soft transition without unmounting any
+            // panel - all three stay mounted so e.g. the gallery panel's
+            // realtime subscription in PhotoGrid never drops.
+            className={isActive ? "animate-fade-up" : undefined}
+            style={isActive ? { animationDuration: "0.3s" } : undefined}
+          >
+            {panels[tab.key]}
+          </div>
+        );
+      })}
     </div>
   );
 }

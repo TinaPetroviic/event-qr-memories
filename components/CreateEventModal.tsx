@@ -199,14 +199,14 @@ export function CreateEventModal() {
                           <button
                             type="button"
                             onClick={() => fileInputRef.current?.click()}
-                            className="rounded-full border border-gold-400/40 px-3 py-1 text-xs font-medium text-ink-700 transition hover:bg-cream-100"
+                            className="rounded-full border border-gold-400/40 px-3 py-1 text-xs font-medium text-ink-700 transition hover:bg-cream-100 active:scale-95"
                           >
                             Promijeni
                           </button>
                           <button
                             type="button"
                             onClick={clearCover}
-                            className="rounded-full border border-red-300 px-3 py-1 text-xs font-medium text-red-700 transition hover:bg-red-50"
+                            className="rounded-full border border-red-300 px-3 py-1 text-xs font-medium text-red-700 transition hover:bg-red-50 active:scale-95"
                           >
                             Ukloni
                           </button>
@@ -217,7 +217,7 @@ export function CreateEventModal() {
                     <button
                       type="button"
                       onClick={() => fileInputRef.current?.click()}
-                      className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-gold-400/40 bg-white/50 px-4 py-8 text-center transition hover:border-gold-500 hover:bg-cream-100"
+                      className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-gold-400/40 bg-white/50 px-4 py-8 text-center transition hover:border-gold-500 hover:bg-cream-100 active:scale-[0.99]"
                     >
                       <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold-500/10 text-gold-600">
                         <UploadIcon className="h-5 w-5" aria-hidden />
@@ -237,7 +237,7 @@ export function CreateEventModal() {
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="flex-1 rounded-full border border-gold-400/40 px-4 py-2.5 font-medium text-ink-700 transition hover:bg-cream-100"
+                  className="flex-1 rounded-full border border-gold-400/40 px-4 py-2.5 font-medium text-ink-700 transition hover:bg-cream-100 active:scale-[0.98]"
                 >
                   Odustani
                 </button>

@@ -49,7 +49,7 @@ export default async function DashboardPage() {
         </div>
       ) : (
         <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
-          {events.map((event) => {
+          {events.map((event, index) => {
             const eventTypeInfo = EVENT_TYPES[event.event_type];
             const coverUrl = event.cover_image_path
               ? supabase.storage.from("photos").getPublicUrl(event.cover_image_path).data.publicUrl
@@ -59,7 +59,8 @@ export default async function DashboardPage() {
               <Link
                 key={event.id}
                 href={`/dashboard/events/${event.id}`}
-                className="card-surface-interactive group flex flex-col gap-4 overflow-hidden p-0"
+                className="card-surface-interactive animate-fade-up group flex flex-col gap-4 overflow-hidden p-0"
+                style={{ animationDelay: `${Math.min(index * 60, 300)}ms` }}
               >
                 {coverUrl && (
                   // Guest/owner-chosen cover image, dimensions unknown ahead of time.

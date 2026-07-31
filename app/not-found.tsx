@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <main className="relative flex flex-1 flex-col items-center justify-center overflow-hidden px-4 py-24 text-center">
       <DecorativeGlow />
-      <div className="relative">
+      <div className="animate-fade-up relative">
         <p className="divider-flourish text-xs font-medium uppercase tracking-[0.3em] text-gold-600">
           <span>404</span>
         </p>

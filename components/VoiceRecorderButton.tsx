@@ -105,7 +105,11 @@ export function VoiceRecorderButton({
 
   if (state === "preview") {
     return (
-      <div className="mt-3 flex flex-col items-center gap-3 rounded-2xl border border-gold-400/30 bg-cream-50 p-4 shadow-inner">
+      <div
+        className="animate-fade-up mt-3 flex flex-col items-center gap-3 rounded-2xl border border-gold-400/30 bg-cream-50 p-4 shadow-inner"
+        style={{ animationDuration: "0.3s" }}
+      >
+
         <p className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-gold-600">
           <HeadphonesIcon className="h-3.5 w-3.5" aria-hidden /> Preslušajte prije slanja
         </p>
@@ -134,7 +138,8 @@ export function VoiceRecorderButton({
       <button
         type="button"
         onClick={stopRecording}
-        className="mt-3 inline-flex items-center gap-3 rounded-full border border-red-400 bg-red-50 px-6 py-3 font-medium text-red-700 shadow-sm transition hover:bg-red-100"
+        className="animate-fade-up mt-3 inline-flex items-center gap-3 rounded-full border border-red-400 bg-red-50 px-6 py-3 font-medium text-red-700 shadow-sm transition hover:bg-red-100 active:scale-[0.98]"
+        style={{ animationDuration: "0.3s" }}
       >
         <span className="flex items-end gap-0.5" aria-hidden>
           <span className="h-2 w-1 animate-pulse rounded-full bg-red-500" style={{ animationDelay: "0ms" }} />
@@ -151,7 +156,7 @@ export function VoiceRecorderButton({
       type="button"
       onClick={startRecording}
       disabled={disabled}
-      className="btn-outline px-6 py-3 transition hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+      className="btn-outline px-6 py-3"
     >
       <MicrophoneIcon className="h-5 w-5" aria-hidden /> Snimi glasovnu poruku
     </button>

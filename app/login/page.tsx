@@ -12,7 +12,7 @@ export default function LoginPage() {
 
   return (
     <main className="flex flex-1 items-center justify-center px-4 py-16">
-      <div className="grid w-full max-w-4xl overflow-hidden rounded-3xl border border-gold-400/30 shadow-xl shadow-gold-600/10 lg:grid-cols-2">
+      <div className="animate-fade-up grid w-full max-w-4xl overflow-hidden rounded-3xl border border-gold-400/30 shadow-xl shadow-gold-600/10 lg:grid-cols-2">
         <div className="relative hidden flex-col justify-between overflow-hidden bg-gradient-to-br from-gold-500 to-gold-600 p-10 text-cream-50 lg:flex">
           <DecorativeGlow tone="dark" />
           <Link href="/" className="relative font-display text-2xl">

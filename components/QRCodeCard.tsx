@@ -397,7 +397,7 @@ export function QRCodeCard({
             <button
               type="button"
               onClick={handleCopy}
-              className="flex-1 rounded-full border px-4 py-2 text-sm font-medium transition hover:opacity-80"
+              className="flex-1 rounded-full border px-4 py-2 text-sm font-medium transition hover:opacity-80 active:scale-[0.98]"
               style={{ borderColor: theme.accentColor, color: theme.accentColor }}
             >
               {copied ? "Kopirano!" : "Kopiraj link"}
@@ -406,7 +406,7 @@ export function QRCodeCard({
               type="button"
               onClick={handleDownload}
               disabled={downloading}
-              className="flex-1 rounded-full px-4 py-2 text-sm font-medium text-white shadow-md transition hover:opacity-90 disabled:opacity-60"
+              className="flex-1 rounded-full px-4 py-2 text-sm font-medium text-white shadow-md transition hover:opacity-90 active:scale-[0.98] disabled:opacity-60"
               style={{ background: theme.accentColor }}
             >
               {downloading ? "Priprema..." : "Preuzmi PNG"}

@@ -302,7 +302,9 @@ export default function LandingPage() {
                   <PlusIcon className="h-4 w-4" />
                 </span>
               </summary>
-              <p className="mt-3 text-sm text-ink-700">{faq.a}</p>
+              <p className="group-open:animate-fade-up mt-3 text-sm text-ink-700" style={{ animationDuration: "0.35s" }}>
+                {faq.a}
+              </p>
             </details>
           ))}
         </div>

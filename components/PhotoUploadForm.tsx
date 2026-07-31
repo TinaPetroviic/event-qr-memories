@@ -109,7 +109,7 @@ export function PhotoUploadForm({ eventId }: { eventId: string }) {
       />
       <label
         htmlFor="photo-input"
-        className={`btn-primary w-full cursor-pointer px-6 py-4 font-display text-base tracking-wide transition hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] sm:w-auto sm:px-10 sm:text-lg ${
+        className={`btn-primary w-full cursor-pointer px-6 py-4 font-display text-base tracking-wide sm:w-auto sm:px-10 sm:text-lg ${
           status === "uploading" ? "pointer-events-none opacity-70" : ""
         }`}
       >

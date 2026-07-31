@@ -98,7 +98,7 @@ export function EventSettingsForm({ event }: { event: EventRow }) {
                 key={key}
                 type="button"
                 onClick={() => setQrDesign(key)}
-                className={`relative rounded-2xl border-2 p-4 text-center transition ${
+                className={`relative rounded-2xl border-2 p-4 text-center transition active:scale-[0.98] ${
                   selected
                     ? "shadow-md"
                     : "border-transparent shadow-sm hover:-translate-y-0.5 hover:shadow-md"

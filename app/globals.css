@@ -60,7 +60,7 @@ body {
   }
 
   .card-surface-interactive {
-    @apply rounded-3xl border border-gold-400/30 bg-white/70 shadow-sm shadow-gold-600/5 transition hover:-translate-y-0.5 hover:border-gold-400/50 hover:shadow-lg hover:shadow-gold-600/10;
+    @apply rounded-3xl border border-gold-400/30 bg-white/70 shadow-sm shadow-gold-600/5 transition hover:-translate-y-0.5 hover:border-gold-400/50 hover:shadow-lg hover:shadow-gold-600/10 active:translate-y-0 active:scale-[0.99];
   }
 
   .input-field {
@@ -68,11 +68,11 @@ body {
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-6 py-3 font-medium text-white shadow-md shadow-gold-600/30 transition hover:bg-gold-600 hover:shadow-lg hover:shadow-gold-600/30 disabled:pointer-events-none disabled:opacity-60;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-6 py-3 font-medium text-white shadow-md shadow-gold-600/30 transition hover:-translate-y-0.5 hover:bg-gold-600 hover:shadow-lg hover:shadow-gold-600/30 active:translate-y-0 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold-500/50 px-6 py-3 font-medium text-gold-600 transition hover:bg-gold-500 hover:text-white disabled:pointer-events-none disabled:opacity-60;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold-500/50 px-6 py-3 font-medium text-gold-600 transition hover:-translate-y-0.5 hover:bg-gold-500 hover:text-white active:translate-y-0 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60;
   }
 }
 

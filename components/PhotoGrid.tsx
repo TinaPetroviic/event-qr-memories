@@ -209,7 +209,7 @@ export function PhotoGrid({
                   handleDelete(photo);
                 }}
                 disabled={isPending && pendingId === photo.id}
-                className="absolute right-2 top-2 rounded-full bg-ink-900/70 px-2.5 py-1 text-xs font-medium text-white opacity-0 transition group-hover:opacity-100 hover:bg-red-600 disabled:opacity-100"
+                className="absolute right-2 top-2 rounded-full bg-ink-900/70 px-2.5 py-1 text-xs font-medium text-white opacity-0 transition group-hover:opacity-100 hover:bg-red-600 active:scale-[0.95] disabled:opacity-100"
               >
                 {isPending && pendingId === photo.id ? "..." : "Izbriši"}
               </button>
@@ -222,14 +222,15 @@ export function PhotoGrid({
         lightboxIndex !== null &&
         createPortal(
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-ink-900/90 p-4"
+            className="animate-fade-up fixed inset-0 z-50 flex items-center justify-center bg-ink-900/90 p-4"
+            style={{ animationDuration: "0.2s" }}
             onClick={closeLightbox}
           >
           <button
             type="button"
             onClick={closeLightbox}
             aria-label="Zatvori"
-            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 active:scale-90"
           >
             <CloseIcon className="h-5 w-5" aria-hidden />
           </button>
@@ -242,7 +243,7 @@ export function PhotoGrid({
                 setLightboxIndex(lightboxIndex - 1);
               }}
               aria-label="Prethodno"
-              className="absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 sm:left-4"
+              className="absolute left-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 active:scale-90 sm:left-4"
             >
               <ChevronLeftIcon className="h-5 w-5" aria-hidden />
             </button>
@@ -255,7 +256,7 @@ export function PhotoGrid({
                 setLightboxIndex(lightboxIndex + 1);
               }}
               aria-label="Sljedeće"
-              className="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 sm:right-4"
+              className="absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 active:scale-90 sm:right-4"
             >
               <ChevronRightIcon className="h-5 w-5" aria-hidden />
             </button>
@@ -298,7 +299,7 @@ export function PhotoGrid({
                 type="button"
                 onClick={() => handleDelete(activePhoto)}
                 disabled={isPending && pendingId === activePhoto.id}
-                className="rounded-full bg-red-600/90 px-5 py-2 text-sm font-medium text-white transition hover:bg-red-600 disabled:opacity-60"
+                className="rounded-full bg-red-600/90 px-5 py-2 text-sm font-medium text-white transition hover:bg-red-600 active:scale-[0.98] disabled:opacity-60"
               >
                 {isPending && pendingId === activePhoto.id ? "Brisanje..." : "Izbriši"}
               </button>
