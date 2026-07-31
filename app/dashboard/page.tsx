@@ -29,8 +29,7 @@ export default async function DashboardPage() {
     <div>
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-gold-600">Vaš prostor</p>
-          <h1 className="mt-1 font-display text-3xl text-ink-900 sm:text-4xl">Vaši događaji</h1>
+          <h1 className="font-display text-3xl text-ink-900 sm:text-4xl">Vaši događaji</h1>
           <p className="mt-1 text-ink-700">Upravljajte događajima i pogledajte fotografije gostiju.</p>
         </div>
         <CreateEventModal />
